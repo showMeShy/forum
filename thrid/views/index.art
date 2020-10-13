@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>论坛-首页</title>
+    <!-- http://localhost:3000/css/index.css -->
+    <link href="/css/index.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="login-top" style="background: #fff;">
+        <div class="head">
+            <a href="http://edu.newcapec.com.cn/"><img src="./images/logo.png"></a>
+            <span>
+                · 论坛
+            </span>
+        </div>
+    </div>
+    <div class="index_bg">
+
+    </div>
+    <div class="case-container">
+        <div class="case-index-title">
+            <h2>班级模块</h2>
+        </div>
+        <div class="case-index-content">
+            <ul class="service-list">
+                {{each classesModules as module index}}
+                <li class="service-list-item service-bj{{index+1}}">
+                    <div class="service-title">
+                        <h3>{{module.moduleName}}</h3>
+                    </div>
+                    <div class="service-content">
+                        <ul class="service-content-list">
+                            {{each module.populars as topic}}
+                            <li>
+                                <a href="/topic/queryOne/{{topic._id}}">
+                                    <h4>{{topic.topicName}}</h4>
+                                    <p>{{topic.topicDes}}</p>
+                                </a>
+                            </li>
+                            {{/each}}
+                        </ul>
+                        <a href="/topic/queryAll/{{module.moduleId}}?pageNum=1&pageSize=2"
+                            class="service-list-more">查看更多</a>
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</body>
+
+</html>

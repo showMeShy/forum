@@ -1,0 +1,266 @@
+/* 公共样式表css */
+html,
+body {
+    color: #333;
+    margin: 0;
+    height: 100%;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+img {
+    border: 0;
+}
+
+body {
+    /* background: #F4F5F9; */
+    color: #666;
+}
+
+html,
+body,
+div,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+button,
+fieldset,
+form,
+input,
+legend,
+textarea,
+th,
+td {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #08acee;
+}
+
+button {
+    outline: 0;
+}
+
+img {
+    border: 0;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    outline: none;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    color: #666;
+}
+
+a:hover {
+    color: #eee;
+}
+
+.clearfix::after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+
+
+
+.index_bg {
+    height: 180px;
+    background: url("../images/index_bg.jpg") 0 -80px;
+    background-size: cover;
+}
+
+.login-top {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 15px 0;
+}
+
+.login-top img {
+    height: 50px;
+    /* margin: 15px 0; */
+    vertical-align: middle;
+}
+
+.head span {
+    font-size: 24px;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+
+
+/* 必要布局样式css */
+.case-container {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.case-index-title {
+    font-size: 16px;
+    padding: 30px 0;
+}
+
+.case-index-title h2 {
+    font-size: 36px;
+    font-family: pingfang, "Microsoft Yahei", "HanHei SC", PingHei, "PingFang SC", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+    font-weight: normal;
+}
+
+.case-index-title p {
+    font-size: 16px;
+    color: #919599;
+    margin-top: 30px;
+}
+
+.case-index-content {
+    position: relative;
+}
+
+.service-list .service-list-item {
+    float: left;
+    width: 290px;
+    margin-right: 13px;
+    background: #fff;
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    transition: all .2s;
+    border: 1px solid #E7E9EC;
+    overflow: hidden;
+}
+
+.service-title {
+    width: 290px;
+    height: 160px;
+}
+
+.service-bj1 .service-title {
+    background: url(../images/service-001.jpg) no-repeat center top;
+}
+
+.service-bj2 .service-title {
+    background: url(../images/service-002.jpg) no-repeat center top;
+}
+
+.service-bj3 .service-title {
+    background: url(../images/service-003.jpg) no-repeat center top;
+}
+
+.service-bj4 .service-title {
+    background: url(../images/service-004.jpg) no-repeat center top;
+}
+
+.service-title h3 {
+    font-size: 24px;
+    text-align: center;
+    padding-top: 105px;
+    color: #fff;
+    font-weight: normal;
+}
+
+.service-content {
+    height: 318px;
+    border-top: 0;
+}
+
+.service-content-list {
+    margin-left: 58px;
+    margin-top: 28px;
+}
+
+.service-content-list li {
+    margin-bottom: 18px;
+    position: relative;
+}
+
+.service-content-list li:before {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #C1C5CB;
+    content: "";
+    position: absolute;
+    left: -16px;
+    top: 7px;
+}
+
+.service-content-list li h4 {
+    font-size: 14px;
+    color: #616366;
+    font-weight: 700;
+    margin-bottom: 3px;
+    line-height: 20px;
+}
+
+.service-content-list li p {
+    font-size: 14px;
+    color: #919499;
+}
+
+.service-list-more {
+    width: 200px;
+    height: 40px;
+    display: block;
+    margin: 0 auto;
+    color: #F96A69;
+    text-align: center;
+    line-height: 40px;
+    font-size: 16px;
+    border: 1px solid #F96A69;
+    transition: all .2s;
+}
+
+.service-list-more:hover {
+    background: #F96A69;
+    color: #fff;
+}
+
+.service-list .service-list-item:hover {
+    box-shadow: 0 7px 39px rgba(0, 0, 0, .1);
+    border: 1px solid #000;
+
+}
+
+.service-list {
+    margin-right: -13px;
+}
