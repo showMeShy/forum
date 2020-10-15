@@ -28,7 +28,7 @@
                 <a href="/topic/queryOne/{{topic._id}}">{{topic.topicTitle}}</a>
             </div>
             <div>
-                <a href=""><a href="">{{topic.poster}}</a></a>
+                <a href=""><a href="">{{topic.userName}}</a></a>
             </div>
             <div>
                 <a href=""><a href="">{{topic.topicTime}}</a></a>
