@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>添加话题</title>
+    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
+    <link href="dist/summernote.css" rel="stylesheet" />
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+    <!-- <script src="lib/jquery-3.4.1/jquery-3.4.1.min.js"></script> -->
+    <script src="dist/summernote.js"></script>
+    <script src="dist/lang/summernote-zh-CN.js"></script> <!-- 中文-->
+
+    <style>
+        .m {
+            width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .titleIn {
+            width: 300px;
+        }
+    </style>
+    <script>
+        $(function () {
+            $('.summernote').summernote({
+                height: 200,
+                tabsize: 2,
+                lang: 'zh-CN'
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <div class="m">
+        <h1>管理员发布话题:</h1>
+        <div>
+            <label for="">标题：<input type="text" class="titleIn"></label>
+        </div>
+        <div class="summernote"></div>
+        <button id="topicSubmit">提交</button>
+        <button id=""><a href="/backstage/queryAllTopic?pageSize=10&pageNum=1">返回</a></button>
+    </div>
+
+    <!-- 单文件上传 -->
+    <!-- <div class="single">
+        <div class="title">单个文件上传</div>
+        <input type="file" name="singleFile" id="singleFile">
+        <button class="submit">上传</button>
+        <img src="" alt="" id="img">
+    </div> -->
+    <!-- <video src="http://127.0.0.1:3000/1602490691615-mov_bbb.mp4" controls></video> -->
+    <script>
+        $("#topicSubmit").click(function () {
+            var submitHTML = $(".note-editable").html();
+            var topicName = $(".titleIn").val();
+            console.log(submitHTML);
+            $.ajax({
+                url: "/backstage/addTopic",
+                method: "post",
+                data: {
+                    topicName: topicName,
+                    topicContent: submitHTML,
+                    poster: "管理员"
+                },
+                success: function (data) {
+                    console.log("success!")
+                },
+                error: function (data) {
+                    console.log("error!")
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

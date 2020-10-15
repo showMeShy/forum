@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/css/backstage/index.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/css/backstage/populars.css">
+    <script src="/lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="/css/backstage/public.css" media="all">
+</head>
+
+<body>
+    <button type="button">添加用户</button>
+    <button type="button">小黑屋</button>
+    <div id="content" style="background: #fff;" class="content">
+        <div class="head">
+            <div>用户名</div>
+            <div>手机号</div>
+            <div>积分</div>
+            <div>操作</div>
+        </div>
+        {{each userlist as topic}}
+        <div class="topic">
+            <div>
+                <a href="/topic/queryOne/{{topic._id}}">{{topic.userName}}</a>
+            </div>
+            <div>
+                <a href=""><a href="">{{topic.phone}}</a></a>
+            </div>
+            <div>
+                <a href=""><a href="">{{topic.scores}}</a></a>
+            </div>
+            <div>
+                <a href="/backstage/deleteUserById/{{topic._id}}?pageNumU={{pageNumU}}&pageSize=10">删除</a>
+                <span>|</span>
+                <a href="">查看</a>
+
+            </div>
+        </div>
+        {{/each}}
+    </div>
+
+    <div id="pager" class="pagerController">
+        <span>当前页: {{pageNumU}} / {{pageCountU}}</span>
+        <!-- 首页 -->
+        <a href="/backstage/queryAllUser?pageNumU=1&pageSize=10">首页</a>
+
+        <!-- 上一页: 已经处于第一页,那么就不显示上一页 -->
+        {{if (pageNumU != 1)}}
+        <a href="/backstage/queryAllUser?pageNumU={{pageNumU-1}}&pageSize=10">上一页</a>
+        {{/if}}
+
+        <!-- 显示数值码 -->
+        <!-- 如果总页码小于等于5 -->
+        {{if (pageCountU <= 5)}}
+        <% for(var i = 1; i <= pageCountU; i++){ %>
+        <% if (i == pageNumU) { %>
+        <a href="/backstage/queryAllUser?pageNumU=<%= i %>&pageSize=10" class="active"><%= i %></a>
+        <% } else if (pageNumU != i) { %>
+        <a href="/backstage/queryAllUser?pageNumU=<%= i %>&pageSize=10"><%= i %></a>
+        <% } %>
+        <% } %>
+        {{/if}}
+
+        {{if (pageNumU <= 3 && pageCountU > 5) }}
+        <% for(var i = 1; i <= 5; i++){ %>
+        <% if (i == pageNumU) { %>
+        <a href="/backstage/queryAllUser?pageNumU=<%= i %>&pageSize=10" class="active"><%= i %></a>
+        <% } else if (pageNumU != i) { %>
+        <a href="/backstage/queryAllUser?pageNumU=<%= i %>&pageSize=10"><%= i %></a>
+        <% } %>
+        <% } %>
+        {{/if}}
+
+        {{if (pageNumU > 3 && (pageNumU+2 <= pageCountU)) }}
+        <% for(var i = pageNumU -2; i <= pageNumU + 2; i++){ %>
+        <% if (i == pageNumU) { %>
+        <a href="/backstage/queryAllUser?pageNumU=<%= i %>&pageSize=10" class="active"><%= i %></a>
+        <% } else if (pageNumU != i) { %>
+        <a href="/backstage/queryAllUser?pageNumU=<%= i %>&pageSize=10"><%= i %></a>
+        <% } %>
+        <% } %>
+        {{/if}}
+
+        {{if (pageNumU + 2 > pageCountU && pageCountU > 5)}}
+        <% for(var i = pageCountU - 4; i <= pageCountU; i++){ %>
+        <% if (i == pageNumU) { %>
+        <a href="/backstage/queryAllUser?pageNumU=<%= i %>&pageSize=10" class="active"><%= i %></a>
+        <% } else if (pageNumU != i) { %>
+        <a href="/backstage/queryAllUser?pageNumU=<%= i %>&pageSize=10"><%= i %></a>
+        <% } %>
+        <% } %>
+        {{/if}}
+
+        <!-- 下一页：已经处于最后一页,那么就不显示下一页 -->
+        {{if (pageNumU != pageCountU)}}
+        <a href="/backstage/queryAllUser?pageNumU={{pageNumU+1}}&pageSize=10">下一页</a>
+        {{/if}}
+
+        <!-- 尾页 -->
+        <a href="/backstage/queryAllUser?pageNumU={{pageCountU}}&pageSize=10">尾页</a>
+    </div>
+    <script>
+        // 如果当前页面没有数据，则给.active类元素加当前href
+        $(function () {
+            console.log($("#content .topic").length);
+            if ($("#content .topic").length == 0) {
+                location.href = $(".active").attr("href")
+            }
+        })
+    </script>
+</body>
+
+</html>

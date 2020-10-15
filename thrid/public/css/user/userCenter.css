@@ -1,0 +1,145 @@
+body {
+    background: #FCFCFC;
+}
+
+.navbar-brand img {
+    max-height: 36px;
+    margin-top: -7px;
+}
+
+.navbar-right li:nth-child(1) a {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.navbar-right li:nth-child(1) img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+header {
+    background: #FFFFFF;
+    margin-top: 30px;
+    display: flex;
+}
+
+header img {
+    width: 154px;
+}
+
+header .scores {
+    display: inline-block;
+    width: 77px;
+    border-right: 2px solid #EFEFEF;
+    margin-top: 15px;
+}
+
+header .scores p {
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+header .scores p:nth-child(1) {
+    font-size: 20px;
+}
+
+header .scores p:nth-child(2) {
+    color: gray;
+}
+
+header .fans {
+    display: inline-block;
+    width: 77px;
+    margin-top: 15px;
+}
+
+header .fans p {
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+header .fans p:nth-child(1) {
+    font-size: 20px;
+}
+
+header .fans p:nth-child(2) {
+    color: gray;
+}
+
+header>div:nth-child(2) {
+    padding-left: 30px;
+    margin-top: 50px;
+}
+
+header .userName {
+    display: flex;
+}
+
+header .userName p:nth-child(1) {
+    width: 82px;
+    height: 30px;
+    line-height: 30px;
+    color: #444;
+    font-size: 25px;
+    font-weight: 400;
+}
+
+header .userName p:nth-child(2) {
+    width: 82px;
+    height: 30px;
+    background: #F0F0F0;
+    color: #999;
+    font-size: 16px;
+    padding-top: 7px;
+    padding-left: 8px;
+    border-radius: 5px;
+}
+
+.nickName {
+    font-size: 18px;
+}
+
+.vip {
+    width: 45px;
+    height: 30px;
+    background: yellow;
+    font-size: 20px;
+    padding-left: 10px;
+    border-radius: 10px;
+}
+
+article {
+    margin-top: 30px;
+}
+
+article ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+article ul li {
+    width: 220px;
+    height: 157px;
+    margin-bottom: 10px;
+    background: #FFFFFF;
+    padding-left: 75px;
+    padding-top: 40px;
+}
+
+article ul li img {
+    width: 70px;
+    height: 50px;
+}
+
+footer {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background: yellow;
+}
+
+footer p {
+    display: inline-block;
+    padding-right: 20px;
+}

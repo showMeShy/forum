@@ -1,0 +1,177 @@
+{
+  "homeInfo": {
+    "title": "首页",
+    "href": "backstage/statisticsdata"
+  },
+  "logoInfo": {
+    "title": "新开普教育",
+    "image": "images/logo.png",
+    "href": ""
+  },
+  "menuInfo": [{
+      "title": "内容管理",
+      "icon": "fa fa-address-book",
+      "href": "",
+      "target": "_self",
+      "child": [{
+          "title": "话题管理",
+          "href": "",
+          "icon": "fa fa-window-maximize",
+          "target": "_self",
+          "child": [{
+              "title": "话题列表",
+              "href": "/backstage/queryAllTopic?pageSize=10&pageNum=1",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+            },
+            {
+              "title": "标签列表",
+              "href": "page/table1.html",
+              "icon": "fa fa-navicon",
+              "target": "_self"
+            },
+            {
+              "title": "全部待审核话题",
+              "href": "page/table2.html",
+              "icon": "fa fa-navicon",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "问答管理",
+          "href": "",
+          "icon": "fa fa-window-maximize",
+          "target": "_self",
+          "child": [{
+              "title": "问题列表",
+              "href": "/backstage/queryAllQuestion?pageSize=10&pageNumQ=1",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+            },
+            {
+              "title": "标签列表",
+              "href": "",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+            },
+            {
+              "title": "全部待审核问题",
+              "href": "",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "留言管理",
+          "href": "",
+          "icon": "fa fa-gears",
+          "target": "_self"
+        },
+        {
+          "title": "友情链接",
+          "href": "",
+          "icon": "fa fa-file-text",
+          "target": "_self"
+        }
+      ]
+    },
+    {
+      "title": "会员管理",
+      "icon": "fa fa-lemon-o",
+      "href": "",
+      "target": "_self",
+      "child": [{
+          "title": "会员管理",
+          "href": "",
+          "icon": "fa fa-dot-circle-o",
+          "target": "_self",
+          "child": [{
+              "title": "会员列表",
+              "href": "/backstage/queryAllUser?pageSize=10&pageNumU=1",
+              "icon": "fa fa-dot-circle-o",
+              "target": "_self"
+            },
+            {
+              "title": "会员等级",
+              "href": "",
+              "icon": "fa fa-dot-circle-o",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "员工管理",
+          "href": "",
+          "icon": "fa fa-adn",
+          "target": "_self"
+        }
+      ]
+    },
+    {
+      "title": "页面管理",
+      "icon": "fa fa-slideshare",
+      "href": "",
+      "target": "_self",
+      "child": [{
+          "title": "模板管理",
+          "href": "",
+          "icon": "fa fa-meetup",
+          "target": ""
+        },
+        {
+          "title": "在线帮助",
+          "href": "",
+          "icon": "fa fa-superpowers",
+          "target": "_self"
+        }
+      ]
+    },
+    {
+      "title": "运营管理",
+      "icon": "fa fa-lemon-o",
+      "href": "",
+      "target": "_self",
+      "child": [{
+          "title": "浏览量管理",
+          "href": "",
+          "icon": "fa fa-dot-circle-o",
+          "target": "_self"
+        },
+        {
+          "title": "系统通知列表",
+          "href": "",
+          "icon": "fa fa-dot-circle-o",
+          "target": "_self"
+        }
+      ]
+    },
+    {
+      "title": "系统设置",
+      "icon": "fa fa-lemon-o",
+      "href": "",
+      "target": "_self",
+      "child": [{
+          "title": "基本设置",
+          "href": "",
+          "icon": "fa fa-dot-circle-o",
+          "target": "_self"
+        },
+        {
+          "title": "支付管理",
+          "href": "",
+          "icon": "fa fa-dot-circle-o",
+          "target": "_self"
+        },
+        {
+          "title": "短信管理",
+          "href": "",
+          "icon": "fa fa-dot-circle-o",
+          "target": "_self"
+        }
+      ]
+    }
+
+  ]
+}

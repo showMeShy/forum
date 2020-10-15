@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户中心</title>
+    <link rel="stylesheet" href="css/user/reset.css">
+    <link rel="stylesheet" href="css/user/bootstrap.min.css">
+    <script src="js/user/jquery.min.js"></script>
+    <script src="js/user/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/user/userCenter.css">
+    <script src="js/user/loadExit.js"></script>
+</head>
+
+<body>
+    <div>{{images}}</div>
+    <!-- 头部导航条 -->
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img src="images/logo.gif" alt=""></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">问答</a></li>
+                    <li><a href="#">会员卡</a></li>
+
+                </ul>
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="搜索">
+                    </div>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#"><img src={{images}}>{{phone}}</a>
+                    </li>
+                    <li><a href="#">用户中心</a></li>
+                    <li><a href="/login.html">退出</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 内容头部 -->
+    <header class="container">
+        <div>
+            <div>
+                <img src={{images}} >
+            </div>
+            <div class="scores">
+                <p>{{scores}}</p>
+                <p>积分</p>
+            </div>
+            <div class="fans">
+                <p>{{fans}}</p>
+                <p>粉丝</p>
+            </div>
+
+        </div>
+        <div class="userDetails">
+            <div class="userName">
+                <p>{{userName}}</p>
+                <p>{{famous}}</p>
+            </div>
+            <p class="nickName">昵称：{{nickName}}</p>
+            <p class="vip">vip</p>
+        </div>
+    </header>
+    <!-- 模块导航盒子部分 -->
+    <article class="container">
+        <ul>
+          
+            <li class="item">
+                <a href=""><img src="images/ht.png" alt=""></a>
+                <h4>我的话题</h4>
+            </li>
+            <li class="item">
+                <a href=""><img src="images/pl.png" alt=""></a>
+                <h4>我的评论</h4>
+            </li>
+            <li class="item">
+                <a href="/answer?pageNum=1&pageSize=2"><img src="images/hf.png" alt=""></a>
+                <h4><a href="/answer?pageNum=1&pageSize=2">我的回复</a></h4>
+            </li>
+            <li class="item">
+                <a href=""><img src="images/wt.png" alt=""></a>
+                <h4>我的问题</h4>
+            </li>
+            <li class="itemempty">
+                <a href=""><img src="images/da.png" alt=""></a>
+                <h4>我的答案</h4>
+            </li>
+              <li class="item">
+                <a href=""><img src="images/xg.png" alt=""></a>
+                <h4>修改资料</h4>
+            </li>
+
+        </ul>
+    </article>
+    <footer>
+        <p>Powered by diyhi</p>
+        <p>联系我们</p>
+    </footer>
+    
+</body>
+
+</html>

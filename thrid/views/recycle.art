@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回收站</title>
+    <link href="/css/backstage/index.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/css/backstage/populars.css">
+    <script src="/lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="/css/backstage/public.css" media="all">
+    <style>
+        .head>div:nth-child(1) {
+            width: 60%;
+            float: left;
+            border-right: 1px solid #aaa;
+        }
+
+        .head>div:nth-child(2) {
+            width: 20%;
+            float: left;
+            border-right: 1px solid #aaa;
+        }
+
+        .head>div:nth-child(3) {
+            width: 10%;
+            float: left;
+            border-right: 1px solid #aaa;
+        }
+
+        .head>div:nth-child(4) {
+            width: 10%;
+            float: right;
+        }
+
+        div.topic>div:nth-child(1) {
+            width: 60%;
+            float: left;
+            border-right: 1px solid #aaa;
+        }
+
+        div.topic>div:nth-child(2) {
+            width: 20%;
+            float: left;
+            border-right: 1px solid #aaa;
+        }
+
+        div.topic>div:nth-child(3) {
+            width: 10%;
+            float: left;
+            border-right: 1px solid #aaa;
+        }
+
+        div.topic>div:nth-child(4) {
+            width: 10%;
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <button type="button"><a href="/backstage/queryAlltopic?pageSize=10&pageNumD=1">返回</a></button>
+    <div id="content" style="background: #fff;" class="content">
+        <div class="head">
+            <div>话题</div>
+            <div>用户</div>
+            <div>状态</div>
+            <div>操作</div>
+        </div>
+        {{each recylelist as topic}}
+        <div class="topic">
+            <div>
+                <a href="">{{topic.topicTitle}}</a>
+            </div>
+            <div>
+                <a href=""><a href="">{{topic.poster}}</a></a>
+            </div>
+            <div>
+                <a href=""><a href="">{{topic.topicStatus}}</a></a>
+            </div>
+            <div>
+                <a href="/backstage/recoverById/{{topic._id}}?pageNumD={{pageNumD}}&pageSize=10">恢复</a>
+                <span>|</span>
+                <a href="">查看</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+
+    <div id="pager" class="pagerController">
+        <span>当前页: {{pageNumD}} / {{pageCountD}}</span>
+        <!-- 首页 -->
+        <a href="/backstage/queryRecycle?pageNumD=1&pageSize=10">首页</a>
+
+        <!-- 上一页: 已经处于第一页,那么就不显示上一页 -->
+        {{if (pageNumD != 1)}}
+        <a href="/backstage/queryRecycle?pageNumD={{pageNumD-1}}&pageSize=10">上一页</a>
+        {{/if}}
+
+        <!-- 显示数值码 -->
+        <!-- 如果总页码小于等于5 -->
+        {{if (pageCountD <= 5)}}
+        <% for(var i = 1; i <= pageCountD; i++){ %>
+        <% if (i == pageNumD) { %>
+        <a href="/backstage/queryRecycle?pageNumD=<%= i %>&pageSize=10" class="active"><%= i %></a>
+        <% } else if (pageNumD != i) { %>
+        <a href="/backstage/queryRecycle?pageNumD=<%= i %>&pageSize=10"><%= i %></a>
+        <% } %>
+        <% } %>
+        {{/if}}
+
+        {{if (pageNumD <= 3 && pageCountD > 5) }}
+        <% for(var i = 1; i <= 5; i++){ %>
+        <% if (i == pageNumD) { %>
+        <a href="/backstage/queryRecycle?pageNumD=<%= i %>&pageSize=10" class="active"><%= i %></a>
+        <% } else if (pageNumD != i) { %>
+        <a href="/backstage/queryRecycle?pageNumD=<%= i %>&pageSize=10"><%= i %></a>
+        <% } %>
+        <% } %>
+        {{/if}}
+
+        {{if (pageNumD > 3 && (pageNumD+2 <= pageCountD)) }}
+        <% for(var i = pageNumD -2; i <= pageNumD + 2; i++){ %>
+        <% if (i == pageNumD) { %>
+        <a href="/backstage/queryRecycle?pageNumD=<%= i %>&pageSize=10" class="active"><%= i %></a>
+        <% } else if (pageNumD != i) { %>
+        <a href="/backstage/queryRecycle?pageNumD=<%= i %>&pageSize=10"><%= i %></a>
+        <% } %>
+        <% } %>
+        {{/if}}
+
+        {{if (pageNumD + 2 > pageCountD && pageCountD > 5)}}
+        <% for(var i = pageCountD - 4; i <= pageCountD; i++){ %>
+        <% if (i == pageNumD) { %>
+        <a href="/backstage/queryRecycle?pageNumD=<%= i %>&pageSize=10" class="active"><%= i %></a>
+        <% } else if (pageNumD != i) { %>
+        <a href="/backstage/queryRecycle?pageNumD=<%= i %>&pageSize=10"><%= i %></a>
+        <% } %>
+        <% } %>
+        {{/if}}
+
+        <!-- 下一页：已经处于最后一页,那么就不显示下一页 -->
+        {{if (pageNumD != pageCountD)}}
+        <a href="/backstage/queryRecycle?pageNumD={{pageNumD+1}}&pageSize=10">下一页</a>
+        {{/if}}
+
+        <!-- 尾页 -->
+        <a href="/backstage/queryRecycle?pageNumD={{pageCountD}}&pageSize=10">尾页</a>
+    </div>
+    <script>
+        // 如果当前页面没有数据，则给.active类元素加当前href
+        $(function () {
+            console.log($("#content .topic").length);
+            if ($("#content .topic").length == 0) {
+                location.href = $(".active").attr("href")
+            }
+        })
+    </script>
+</body>
+
+</html>

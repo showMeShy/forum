@@ -3,9 +3,18 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+// const topic = require('./routes/topic')
+
+var usersRouter = require('./routes/user');
+var askDetail = require('./routes/askDetail');
+var question = require('./routes/question');
+var amend = require('./routes/amend');
+const userCenter = require('./routes/userCenter')
+const backstage = require('./routes/backstage')
 const index = require('./routes/index')
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const topic = require('./routes/topic')
+const multerUpload = require('./routes/upload');
+
 
 var app = express();
 
@@ -19,7 +28,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static('public'))
 // app.use(express.static('uploads'))
-
+ 
 
 // 渲染引擎设置
 app.engine('art', require('express-art-template'));
@@ -35,9 +44,20 @@ app.use(express.json())
 app.use(express.urlencoded({
     extended: true
 }))
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', index);
+app.use('/user', usersRouter);
 app.use("/index",index)
+app.use("/question",question)
+app.use("/askDetail",askDetail)
+app.use("/amend",amend)
+app.use("/userCenter",userCenter)
+app.use('/backstage', backstage)
+// 首页
+app.use('/topic', topic)
+app.use('/upload', multerUpload);
+
+
+// app.use("/topic",topic)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

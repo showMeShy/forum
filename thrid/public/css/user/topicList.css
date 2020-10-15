@@ -1,0 +1,255 @@
+/* 头部导航部分 */
+nav {
+	background-color: #F2F2F2;
+	border-bottom: 1px solid #e9e8e8;
+	position: absolute;
+	height: 50px;
+	left: 0;
+	top: 0;
+	right: 0;
+}
+
+nav .box {
+	*zoom: 1;
+	height: 50px;
+	line-height: 51px;
+	width: 1210px;
+	margin: 0 auto
+}
+
+nav .box:before,
+nav .box:after {
+	clear: both;
+	display: table;
+	content: "";
+	line-height: 0
+}
+
+nav .box .logo {
+	float: left;
+	*margin-top: 2px;
+}
+
+nav .box .logo img {
+	width: 180px;
+	height: 40px;
+	vertical-align: middle;
+}
+
+nav .box .logo span {
+	font-size: 18px;
+	font-weight: bold;
+	vertical-align: middle;
+	margin-left: 20px;
+}
+
+nav .box .nav {
+	float: left;
+	margin-left: 16px
+}
+
+nav .box .nav ul li {
+	float: left
+}
+
+nav .box .nav ul li a {
+	display: block;
+	margin-left: 25px;
+	color: #2d2d2d;
+	font-size: 16px
+}
+
+nav .box .nav ul li a:hover {
+	color: #2196F3
+}
+
+.logged-out-wrapper {
+	color: #7d7d7d;
+	display: none;
+	float: left;
+	max-width: 70px;
+	position: relative;
+	cursor: pointer
+}
+
+nav .box .menu {
+	float: right;
+	margin-right: 8px
+}
+
+nav .box .menu ul li {
+	float: left
+}
+
+nav .box .menu ul li a {
+	display: block;
+	margin-left: 18px;
+	color: #363636;
+	font-size: 14px
+}
+
+nav .box .menu ul li a:hover {
+	color: #2196F3
+}
+
+nav .box .menu ul li .author {
+	position: relative;
+	color: #999
+}
+
+nav .box .menu ul li .author img {
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	left: -18px;
+	top: 9px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	display: block;
+	behavior: url(common/default/pc/js/css3pie/PIE.htc);
+	/*通知IE浏览器调用脚本作用于当前类*/
+}
+
+nav .box .head-search {
+	float: left;
+	margin-left: 20px;
+	position: relative;
+	line-height: 49px
+}
+
+nav .box .head-search form {
+	width: 220px;
+	height: 29px;
+	line-height: 29px;
+	background: #ededed;
+	border: 1px solid #e5e5e5;
+	border-radius: 3px;
+	float: left;
+	margin-top: 10px;
+	position: relative
+}
+
+nav .box .head-search form input {
+	width: 180px;
+	height: 20px;
+	line-height: 20px;
+	background: none;
+	border: none;
+	padding-left: 12px;
+	font-size: 14px;
+	margin-top: 5px
+}
+
+nav .box .head-search form input.sub-button {
+	width: 30px;
+	height: 29px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	text-indent: -999px;
+	cursor: pointer;
+	margin: 0px;
+	background: url(../images/search.png) no-repeat center;
+}
+/* 正文 */
+.main {
+	margin: 0 auto;
+	margin-top: 51px;
+	margin-bottom: 90px;
+}
+
+
+.wrap {
+	width: 1210px;
+}
+
+
+/** 服务导航 **/
+.serviceNav {
+	height: 44px;
+	background-color: #fcfcfc;
+	font-size: 14px;
+	color: #333;
+}
+
+.serviceNav .title {
+	float: left;
+	padding: 0 15px;
+	height: 44px;
+	line-height: 44px;
+	cursor: pointer;
+	position: relative;
+}
+
+.serviceNav .title a {}
+
+.serviceNav .title a:hover {
+	color: #2196F3;
+}
+
+.serviceNav .selected {
+	background-color: white;
+	cursor: default;
+	box-shadow: 4px 0 3px -4px rgba(0, 0, 0, .06), -4px 0 3px -4px rgba(0, 0, 0, .06);
+}
+
+.serviceNav .selected a {
+	color: #333;
+}
+
+.serviceNav .more {
+	color: #939499;
+}
+
+.serviceNav .more i {
+	margin-left: 5px;
+	position: relative;
+	top: 1px;
+}
+
+.serviceNav .hide:hover {
+	color: #26a2ff;
+}
+
+.serviceNav .hide:hover div {
+	display: block;
+}
+
+.serviceNav .nav-pop-list {
+	white-space: nowrap;
+	display: none;
+	background-color: #fff;
+	position: absolute;
+	top: 42px;
+	left: -8px;
+	z-index: 999;
+	box-shadow: 0 3px 10px rgba(0, 0, 0, .1);
+	z-index: 9999;
+	line-height: 1.5;
+}
+
+.serviceNav .nav-pop-list .ul-navlist {
+	font-size: 0
+}
+
+.serviceNav .nav-pop-list .ul-navlist li {
+	display: block;
+	font-size: 15px;
+	text-align: left;
+	padding: 8px 0px 8px 0px;
+	margin: 0;
+	color: #666;
+	width: 100%;
+	cursor: pointer;
+}
+
+.serviceNav .ul-navlist li:hover {
+	background: #eeeeee;
+
+}
+
+.serviceNav .nav-pop-list .ul-navlist li a {
+	margin-left: 20px;
+	margin-right: 20px;
+}

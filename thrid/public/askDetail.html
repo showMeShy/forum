@@ -1,0 +1,426 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/x-icon" href="http://127.0.0.1:3000/images/favicon.ico" media="screen">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://localhost:3000/css/askTopicDeiali.css" />
+</head>
+
+<body>
+    <div class="headerModule">
+        <div class="box">
+            <a href="" class="logo">
+                <img alt="LOGO" src="http://127.0.0.1:3000/images/logo.gif" />
+            </a>
+            <div class="nav">
+                <ul class="clearfix">
+                    <li><a href="index">首页</a></li>
+                    <li><a href="askList">问答</a></li>
+                    <li><a href="membershipCardList">会员卡</a></li>
+                </ul>
+            </div>
+            <div class="menu">
+                <ul class="clearfix">
+                    <li>
+                        <div class="author">
+                            <a href="user/control/home">
+                                <img src="http://127.0.0.1:3000/images/2.jpg" />
+                            </a>
+                        </div>
+                        <a href="user/control/home">测试会员</a>
+                    </li>
+                    <li>
+                        <a href="user/control/home">用户中心<span id="allMessage-badge" class="badge"
+                                style="position: absolute; margin-top: 14px; display: none"></span></a>
+                    </li>
+                    <li><a href="" onclick="javascript:document.getElementById('logout').submit();return false;">退出</a>
+                    </li>
+                    <form id="logout" action="logout.htm?token=74168cde0e6e4088a303329c46596ec8" method="post"></form>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="skeleton">
+        <div class="main wrap">
+            <div class="topicContentModule">
+                <div class="left">
+                    <div class="topic-wrap">
+
+                        <div class="topicTag">
+
+                            <a href="?tagId=26315816450947" class="tag">玩机技巧</a>
+
+                        </div>
+
+                        <div class="editTopic">
+
+                            <a href="user/editTopic?topicId=28"><i class="cms-pencil-alt"></i>编辑</a>
+
+                        </div>
+
+                        <div class="topicBox">
+
+                            <div class="title">求拍摄技巧。。</div>
+
+                            <div class="topicInfo clearfix">
+
+                                <div class="postTime">2018-05-05 18:47:41</div>
+
+                                <div class="viewTotal-icon"><i class="cms-view"></i></div>
+
+                                <div class="viewTotal">4343次阅读</div>
+
+                                <div class="comment-icon"><i class="cms-commentCount"></i></div>
+
+                                <div class="comment">6个评论</div>
+
+                            </div>
+
+                            <!-- topicId属性用来支持JS获取隐藏内容 -->
+
+                            <div class="topicContent" topicid="28">
+
+                                <p>各位大佬说说拍摄技巧啊。。。。</p>
+
+                                <p><br /></p>
+
+                                <p>看看别人拍摄的照片。。</p>
+
+                                <p><br /></p>
+
+                                <p><br /></p>
+
+                                <p><img src="http://127.0.0.1:3000/images/2.jpg"
+                                        alt="" /></p>
+
+                                <p><br /></p>
+
+                                <p><br /></p>
+
+                                <p><img src="http://127.0.0.1:3000/images/2.jpg"
+                                        alt="" /></p>
+
+                                <p><br /></p>
+
+                                <p><br /></p>
+
+                                <p><img src="http://127.0.0.1:3000/images/2.jpg"
+                                        alt="" /></p>
+
+                            </div>
+
+
+
+                            <div class="favorite-formModule">
+
+                                <span id="favoriteButton" class="numberButton" onclick="javascript:addFavorite()">
+
+                                    <span class="button">
+
+                                        <span id="favorite">已收藏</span>
+
+                                    </span>
+
+                                    <span id="favoriteCount" class="number">1</span>
+
+                                </span>
+
+
+
+                                <span id="likeButton" class="numberButton" onclick="javascript:addLike()">
+
+                                    <span class="button">
+
+                                        <span id="like">已赞</span>
+
+                                    </span>
+
+                                    <span id="likeCount" class="number">2</span>
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- 是否登录 -->
+
+                    <input type="hidden" id="unhide_isLogin" value="true" />
+
+
+
+                    <div class="commentModule">
+
+                        <ol class="commentList">
+
+                            <!-- #comment-## -->
+
+                            <div class="commentInfo" id="anchor_15">
+
+                                <div class="comment-author">
+
+                                    <a href="user/control/home?userName=test">
+
+                                        <img src="http://127.0.0.1:3000/images/2.jpg" />
+
+                                        <cite> </cite></a><a href="user/control/home?userName=test"> 测试会员 </a>
+
+                                    <span class="userRoleName">VIP</span>
+
+
+
+                                    <span class="master">作者</span>
+
+                                </div>
+
+                                <div class="commentTime">2018-07-04 09:11:35</div>
+
+                                <div class="commentContent">11111111111</div>
+
+                                <div class="clearfix"></div>
+
+                                <div class="replyList">
+
+                                    <ul class="box">
+
+                                        <li>
+
+                                            <div class="reply-top">
+
+                                                <a class="avatarBox" href="user/control/home?userName=test5">
+
+                                                    <img src="http://127.0.0.1:3000/images/2.jpg" />
+
+                                                </a>
+
+                                                <a class="userName" href="user/control/home?userName=test5"> test5 </a>
+
+
+
+                                                <span class="time"> 2018-09-05 20:51:18 </span>
+
+                                            </div>
+
+                                            <div style="clear: both; height: 0; line-height: 0; font-size: 0"></div>
+
+                                            <div id="editCommentReply-replyContent_5" class="replyContent">看看效果</div>
+
+                                            <div id="editCommentReply-post_5"></div>
+
+                                        </li>
+
+                                        <li>
+
+                                            <div class="reply-top">
+
+                                                <a class="avatarBox" href="user/control/home?userName=test4">
+
+                                                    <img src="http://127.0.0.1:3000/images/2.jpg" />
+
+                                                </a>
+
+                                                <a class="userName" href="user/control/home?userName=test4"> test4 </a>
+
+
+
+                                                <div class="userTag">
+
+                                                    <span class="userRoleName">VIP</span>
+
+                                                </div>
+
+                                                <span class="time"> 2018-09-05 20:52:40 </span>
+
+                                            </div>
+
+                                            <div style="clear: both; height: 0; line-height: 0; font-size: 0"></div>
+
+                                            <div id="editCommentReply-replyContent_6" class="replyContent">效果不好</div>
+
+                                            <div id="editCommentReply-post_6"></div>
+
+                                        </li>
+
+                                        <li>
+
+                                            <div class="reply-top">
+
+                                                <a class="avatarBox" href="user/control/home?userName=test">
+
+                                                    <img src="http://127.0.0.1:3000/images/2.jpg" />
+
+                                                </a>
+
+                                                <a class="userName" href="user/control/home?userName=test"> 测试会员 </a>
+
+
+
+                                                <div class="userTag">
+
+                                                    <span class="userRoleName">VIP</span>
+
+                                                </div>
+
+                                                <div class="userTag">
+
+                                                    <span class="master">作者</span>
+
+                                                </div>
+
+                                                <span class="time"> <a href="javascript:"
+                                                        onclick="editReplyLayer('7','测试会员');">编辑</a>&nbsp; 2018-09-06
+                                                    00:36:23 </span>
+
+                                            </div>
+
+                                            <div style="clear: both; height: 0; line-height: 0; font-size: 0"></div>
+
+                                            <div id="editCommentReply-replyContent_7" class="replyContent">还不错!</div>
+
+                                            <div id="editCommentReply-post_7"></div>
+
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+
+                                <div id="commentReply-post_15" class="commentReply-post"></div>
+
+                                <div id="quote-post_15" class="quote-post"></div>
+
+                                <div id="editComment-post_15" class="editComment-post"></div>
+
+                                <div class="tipBottom">
+
+                                    <span class="a-toolbar">
+
+                                        <a href="javascript:" onclick="editCommentLayer('15','测试会员');">编辑</a>&nbsp;| <a
+                                            href="javascript:" onclick="replyLayer('15','测试会员');">回复</a>&nbsp;|
+
+
+
+                                        <a href="javascript:" onclick="quoteLayer('15','测试会员')">引用</a>
+
+                                        <!-- 是否登录 -->
+
+                                        <input type="hidden" id="isLogin" value="true" />
+
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </ol>
+
+
+
+                    </div>
+
+                </div>
+
+                <div class="right">
+
+                    <div class="userInfo-wrap clearfix">
+
+                        <div class="userInfo">
+
+                            <div class="author">
+
+                                <a href="user/control/home?userName=test">
+
+                                    <img src="http://127.0.0.1:3000/images/2.jpg" />
+
+                                </a>
+
+                            </div>
+
+                            <p class="name">
+
+                                <a href="user/control/home?userName=test" target="_blank"> 测试会员 </a>
+
+                            </p>
+
+                            <div class="role">
+
+                                <i class="userRoleName">VIP</i>
+
+                            </div>
+
+                            <ul>
+
+                                <li>
+
+                                    <span id="answerCount">0</span>
+
+                                    <span>回答</span>
+
+                                </li>
+
+                                <li>
+
+                                    <span id="followerCount">2</span>
+
+                                    <span>粉丝</span>
+
+                                </li>
+
+                                <li>
+
+                                    <span id="followCount">2</span>
+
+                                    <span>关注</span>
+
+                                </li>
+
+                                <input type="hidden" id="_userName" value="test" />
+
+                            </ul>
+
+                            <div class="action-button">
+
+                                <span class="action-followBox">
+
+                                    <button id="action-follow" type="button" class="followButton" style="width: 80px"
+                                        onclick="javascript:addFollow()">关注</button>
+
+                                </span>
+
+
+
+                                <span class="privateMessageBox">
+
+                                    <button type="button" class="privateMessageButton"
+                                        onclick="javascript:window.location.href='http://bbs.diyhi.com/user/control/privateMessageChatList?friendUserName=test'">
+
+                                        发私信
+
+                                    </button>
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

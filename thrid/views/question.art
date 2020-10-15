@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/x-icon" href="http://127.0.0.1:3000/images/favicon.ico" media="screen">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="css/reset.css" /> -->
+    <link rel="stylesheet" href="http://127.0.0.1:3000/css/question.css" />
+</head>
+
+<body>
+    <div class="headerModule">
+        <div class="box">
+            <a href="" class="logo">
+                <img alt="LOGO" src="http://127.0.0.1:3000/images/logo.gif" />
+            </a>
+            <div class="nav">
+                <ul class="clearfix">
+                    <li><a href="index">首页</a></li>
+                    <li><a href="askList">问答</a></li>
+                    <li><a href="membershipCardList">会员卡</a></li>
+                </ul>
+            </div>
+
+            <div class="menu">
+                <ul class="clearfix">
+                    <li><a href="register">注册</a></li>
+                    <li><a href="login">登录</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="skeleton">
+        <div class="main wrap">
+            <div class="tabModule">
+                <div class="tab-box">
+                    <div id="tabNavigation" style="max-height: none">
+                        <a href="/question" class="tab_current">全部</a>
+                        {{each labelModulesName as modules }}
+                       <a href="/question/{{modules.labelId}}" class="tab" data=""> {{modules.labelName}} </a>
+                       {{/each}}
+                   
+                    </div>
+                </div>
+            </div>
+        
+            <div class="topicModule">
+                <div class="topic-box">
+                    {{each labelTipic as topics }}
+                    {{each topics.allData as topic}}
+                    <div class="topicList">
+                        <div class="topicItem">
+                            <div class="avatarBox">
+                                <a class="avatarLink" href="user/control/home?userName=test">
+                                    <img src="http://127.0.0.1:3000/images/2.jpg" />
+                                </a>
+                            </div>
+
+                            <div class="content clearfix">
+                                <ul class="info">
+                                    <li>
+                                        <span class="tag">综合</span>
+                                        <a class="userName" href="user/control/home?userName=test">{{topic.userName}} </a>
+                                        <span class="userRoleName">VIP</span>
+                                        <span class="postTime">发表时间：{{topic.topicTime}}</span>
+                                        <span class="lastReplyTime">最新回复：2020-07-24 02:00:50</span>
+                                    </li>
+                                </ul>
+                                <h2 class="title clearfix">
+                                    <a href="/askDetail/{{topics.topicId}}"> {{topic.topicTitle}} </a>
+
+                                </h2>
+                                <div class="clearfix"></div>
+
+                                <div class="detail">
+                                    <h2 class="summary">{{topic.topicContent}}</h2>
+                                </div>
+                            </div>
+
+                            <div class="statistic clearfix">
+                                <div class="viewTotal">
+                                    <i class="cms-view icon">44</i>
+                                    {{topic.visitedCount}}
+                                </div>
+
+                                <div class="commentTotal">
+                                    <i class="cms-commentCount icon"></i>
+                                    1
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                    {{/each}}
+                </div>
+           
+            </div>
+          
+            <div class="addAnswerModule">
+                <div class="addAnswer-wrap">
+                    <div class="respond">
+                        <p>
+                            请
+                            <a href="login">登录</a>
+                            后发表话题。没有帐号？
+                            <a href="register">注册</a> 一个。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="height: 10px"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>

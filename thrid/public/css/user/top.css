@@ -1,0 +1,448 @@
+/* 头部导航部分 */
+nav {
+	background-color: #F2F2F2;
+	border-bottom: 1px solid #e9e8e8;
+	position: absolute;
+	height: 50px;
+	left: 0;
+	top: 0;
+	right: 0;
+}
+
+nav .box {
+	*zoom: 1;
+	height: 50px;
+	line-height: 51px;
+	width: 1210px;
+	margin: 0 auto
+}
+
+nav .box:before,
+nav .box:after {
+	clear: both;
+	display: table;
+	content: "";
+	line-height: 0
+}
+
+nav .box .logo {
+	float: left;
+	*margin-top: 2px;
+}
+
+nav .box .logo img {
+	width: 180px;
+	height: 40px;
+	vertical-align: middle;
+}
+
+nav .box .logo span {
+	font-size: 18px;
+	font-weight: bold;
+	vertical-align: middle;
+	margin-left: 20px;
+}
+
+nav .box .nav {
+	float: left;
+	margin-left: 16px
+}
+
+nav .box .nav ul li {
+	float: left
+}
+
+nav .box .nav ul li a {
+	display: block;
+	margin-left: 25px;
+	color: #2d2d2d;
+	font-size: 16px
+}
+
+nav .box .nav ul li a:hover {
+	color: #2196F3
+}
+
+.logged-out-wrapper {
+	color: #7d7d7d;
+	display: none;
+	float: left;
+	max-width: 70px;
+	position: relative;
+	cursor: pointer
+}
+
+nav .box .menu {
+	float: right;
+	margin-right: 8px
+}
+
+nav .box .menu ul li {
+	float: left
+}
+
+nav .box .menu ul li a {
+	display: block;
+	margin-left: 18px;
+	color: #363636;
+	font-size: 14px
+}
+
+nav .box .menu ul li a:hover {
+	color: #2196F3
+}
+
+nav .box .menu ul li .author {
+	position: relative;
+	color: #999
+}
+
+nav .box .menu ul li .author img {
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	left: -18px;
+	top: 9px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	display: block;
+	behavior: url(common/default/pc/js/css3pie/PIE.htc);
+	/*通知IE浏览器调用脚本作用于当前类*/
+}
+
+nav .box .head-search {
+	float: left;
+	margin-left: 20px;
+	position: relative;
+	line-height: 49px
+}
+
+nav .box .head-search form {
+	width: 220px;
+	height: 29px;
+	line-height: 29px;
+	background: #ededed;
+	border: 1px solid #e5e5e5;
+	border-radius: 3px;
+	float: left;
+	margin-top: 10px;
+	position: relative
+}
+
+nav .box .head-search form input {
+	width: 180px;
+	height: 20px;
+	line-height: 20px;
+	background: none;
+	border: none;
+	padding-left: 12px;
+	font-size: 14px;
+	margin-top: 5px
+}
+
+nav .box .head-search form input.sub-button {
+	width: 30px;
+	height: 29px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	text-indent: -999px;
+	cursor: pointer;
+	margin: 0px;
+	background: url(../images/search.png) no-repeat center;
+}
+
+/* 中间的小模块部分 */
+.skeleton {
+	width: 100%;
+	min-height: 100%;
+	height: auto;
+	display: -webkit-box;
+	display: box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -o-box;
+	-webkit-box-pack: center;
+	-moz-box-pack: center;
+	-o-box-pack: center;
+	box-pack: center;
+	-ms-flex-pack: center
+}
+
+.main {
+	margin: 0 auto;
+	margin-top: 51px;
+	margin-bottom: 90px;
+}
+
+.wrap {
+	width: 1210px;
+}
+
+/* 用户中心 */
+.user-home-header {
+	background: red;
+	margin-top: 60px;
+	position: relative;
+	box-shadow: 0 0px 3px 0 rgba(0, 0, 0, .02), 0 4px 8px 0 rgba(0, 0, 0, .02);
+}
+
+.user-home-header .avatarRing {
+	width: 150px;
+	height: 100px;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 0px 3px 0 rgba(0, 0, 0, .02), 0 4px 8px 0 rgba(0, 0, 0, .02);
+	position: absolute;
+	left: 15px;
+	top: -40px
+}
+
+.user-home-header .inner {
+	height: 170px;
+	background: #fff;
+	position: relative;
+	padding-left: 180px;
+	border-right: 1px solid #EDEDED;
+	margin-right: 0;
+	border-right: 0
+}
+
+.user-home-header .avatar {
+	background: #fff;
+	border-radius: 4px;
+	position: absolute;
+	left: 20px;
+	top: -35px;
+	width: 140px
+}
+
+.user-home-header .avatar .img-box {
+	position: relative;
+	height: 140px
+}
+
+.user-home-header .avatar .img-box img {
+	max-height: 140px;
+	max-width: 140px;
+	border-radius: 2px;
+}
+
+.user-home-header .avatar .counts {
+	background: #fcfcfc;
+	text-align: center
+}
+
+.user-home-header .avatar .counts .point {
+	display: block;
+	float: left;
+	width: 70px;
+	height: 40px;
+	padding-top: 10px;
+	border-right: 1px solid #EDEDED;
+	text-decoration: none
+}
+
+.user-home-header .avatar .counts .follows {
+	display: block;
+	height: 40px;
+	padding-top: 10px;
+	text-decoration: none
+}
+
+.user-home-header .avatar .counts .num {
+	font-size: 16px;
+	font-weight: 400;
+	color: #444;
+	/**color: #ea3c1a;font-weight: bold;**/
+	line-height: 1;
+	margin-bottom: 5px
+}
+
+.user-home-header .avatar .counts .sub {
+	font-size: 12px;
+	line-height: 1;
+	color: #999
+}
+
+.user-home-header .avatar .counts a:hover div {
+	color: orange;
+}
+
+.user-home-header .head-line {
+	margin: 20px 0 10px;
+	line-height: 1;
+	position: relative
+}
+
+.user-home-header .head-line .name {
+	font-size: 24px;
+	font-weight: 400;
+	color: #444;
+	display: inline-block;
+	margin-top: 15px;
+}
+
+.user-home-header .head-line .grade {
+	display: inline-block;
+	background-color: #f0f0f0;
+	border-radius: 4px;
+	color: #999;
+	font-size: 14px;
+	padding: 3px 8px 3px 8px;
+	vertical-align: middle;
+	line-height: 20px;
+	height: 20px;
+	margin-top: -10px;
+	margin-left: 8px;
+
+}
+
+.user-home-header .nickname {
+	font-size: 16px;
+	color: #444;
+	display: inline-block;
+}
+
+.user-home-header .role {
+	margin-top: 10px;
+}
+
+.user-home-header .role .userRoleName {
+	white-space: nowrap;
+	color: #fff;
+	background-color: #ffcc00;
+	border-radius: 4px;
+	padding: 0 5px;
+	font-size: 14px;
+}
+
+.user-home-header .action-button {
+	position: absolute;
+	right: 20px;
+	top: 20px
+}
+
+.user-home-header .action-button .privateMessageBox {}
+
+.user-home-header .action-button .privateMessageBox .privateMessageButton {
+	color: #30aff7;
+	border-color: #30aff7;
+	outline: none;
+	display: inline-block;
+	padding: 0 16px;
+	font-size: 14px;
+	line-height: 32px;
+	text-align: center;
+	cursor: pointer;
+	background: none;
+	border: 1px solid;
+	border-radius: 3px;
+	margin: 0;
+
+}
+
+.user-home-header .action-button .privateMessageBox .privateMessageButton:hover {
+	background: #e2f2ff;
+}
+
+/* 服务 */
+.selfService {
+	margin-left: -5px;
+	margin-top: 10px;
+}
+
+.selfService .box {
+	overflow: hidden;
+	zoom: 1;
+	margin: 0 0px;
+}
+
+.selfService .box .ul {
+	padding-bottom: 10px;
+	overflow: hidden;
+	zoom: 1;
+	background-position: 0 0px;
+}
+
+.selfService .box .ul .item {
+	width: 19%;
+	position: relative;
+	float: left;
+	height: 130px;
+	border: 1px solid #fff;
+	padding: 10px 0 0;
+	margin: 5px 5px 5px 5px;
+	display: block;
+	background-color: #fff;
+	box-shadow: 0 0px 3px 0 rgba(0, 0, 0, .02), 0 4px 8px 0 rgba(0, 0, 0, .02);
+}
+
+
+.selfService .box .ul .item .a-pic {
+	width: 100px;
+	height: 100px;
+	text-align: center;
+}
+
+.selfService .box .ul .item .img {
+	font-size: 50px;
+	display: block;
+	margin-top: 15px;
+	
+}
+
+.selfService .box .ul .item .title {
+	width: 100%;
+	line-height: 40px;
+	font-size: 16px;
+	text-align: center;
+}
+
+.selfService .box .ul .item .title .a-title {
+	height: 40px;
+	overflow: hidden;
+	font-weight: normal;
+	display: block;
+	padding-top: 10px;
+}
+
+/* 设置小图标大小 */
+.selfService .item img{
+	width: 50px;
+	margin-left: 90px;
+	display: block;
+	margin-top: 15px;
+}
+
+/* 底部 */
+footer {
+	min-width: 990px;
+	background: #f7f6f6;
+	height: 90px;
+	margin-top: -90px;
+}
+
+footer .copyright {
+	width: 990px;
+	margin: 0 auto;
+	color: #999;
+	text-align: center;
+	margin-top: 18px;
+}
+
+footer .copyright .link {
+	font-family: Tahoma;
+	margin-left: 2px;
+	color: #999;
+	font-weight: bold;
+}
+
+footer .copyright a:hover {
+	text-decoration: underline;
+}
+
+footer .copyright span {
+	margin-left: 17px;
+}

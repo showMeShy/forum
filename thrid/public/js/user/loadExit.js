@@ -1,0 +1,1 @@
+var phone = window.localStorage.getItem("phone")

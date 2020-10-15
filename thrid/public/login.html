@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="images/icon.ico" type="image/x-icon">
+    <title>论坛-登录</title>
+    <script src="https://www.jq22.com/jquery/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/bootstrap-4.2.1.css">
+    <script src="https://www.jq22.com/jquery/bootstrap-4.2.1.js"></script>
+    <script src="./js/user/modal_dialog.js"></script>
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/font-awesome.4.7.0.css">
+    <link rel="stylesheet" type="text/css" href="css/user/login.css" />
+    <script src="js/user/jquery.min.js"></script>
+    <script src="js/user/layer.js"></script>
+    <style>
+        .icon {
+            font-family: FontAwesome;
+        }
+    </style>
+    <script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+    <script type="text/javascript">
+        // QQ登录
+        var qqWindow;
+        var wxWindow;
+
+        function toQzoneLogin() {
+            qqWindow = window.location.href = "QQ登录地址";
+        }
+
+        function closeqqWindow() {
+            qqWindow.close();
+            window.location.reload() //刷新页面
+        }
+
+        function toweChat() {
+            wxWindow = window.location.href = "微信登录地址";
+        }
+
+        function closewxWindow() {
+            wxWindow.close();
+            window.location.reload() //刷新页面
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="shadow bg-light rounded login-top">
+        <div class="head">
+            <a href="http://edu.newcapec.com.cn/"><img src="./images/logo.png"></a>
+            <span>
+                <h1>·</h1>欢迎登录
+            </span>
+        </div>
+    </div>
+    <div class="login-box">
+        <div class="tree">
+            <img src="./images/2.png" class="img-fluid">
+        </div>
+        <div class="slogan">
+            新开普教育<br><span class="yellow">NewCapec</span>EDU
+        </div>
+        <div id="earth" class="earth">
+            <img src="./images/1.png" class="img-fluid">
+        </div>
+        <!-- 登录 -->
+        <div class="login">
+            <div class="login-logo">
+                <img src="./images/logo.png" class="img-fluid">
+            </div>
+
+            <div class="login-form">
+                <form>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <span class="fa fa-user-circle-o text-success"></span>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" id="logphone" placeholder="手机号码">
+                    </div>
+                    <code class="check_log_phone"></code>
+
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <span class="fa fa-unlock text-success"></span>
+                            </span>
+                        </div>
+                        <input type="password" class="form-control" id="logpwd" placeholder="密码">
+                    </div>
+                    <code class="check_log_pwd"></code>
+
+                    <button type="button" id="login" class="btn btn-success btn-block"><a href="/userCenter/abc">登录</a></button>
+                </form>
+            </div>
+            <div class="login-regist">
+                没有帐号？<a href="reg.html">立即注册</a>
+            </div>
+            <div class="hr"><span>第三方登录</span></div>
+            <div class="login-other">
+                <div onclick='toQzoneLogin()'><img src="./images/icon/QQ-line.png"></div>
+                <div onclick='toweChat()'><img src="./images/icon/wx-line.png"></div>
+                <div><img src="./images/icon/sina-line.png"></div>
+            </div>
+
+        </div>
+    </div>
+    <div class="login-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center login-nav">
+                    <div class="foot">
+                        Copyright © 2000 - 2020 新开普电子股份有限公司. 　All Rights Reserved.　豫ICP备08102576号
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="./js/user/check.js"></script>
+    <script>
+        setTimeout('changeState()', 1000)
+            //地球动画
+        function changeState() {
+            // console.log('动画开始');
+            $('#earth').removeClass('earth');
+            $('#earth').addClass('move');
+        }
+
+
+        $(function() {
+            // 验证弹窗
+            // 点击按钮
+            var phoneLog = $('#logphone'); //登录手机对象
+            var pwdLog = $('#logpwd'); //登录密码对象
+            var login = $('#login'); //登录按钮对象
+            var regist = $('#regist'); //注册按钮对象
+
+
+            // 输入验证
+            // 登录验证
+            //手机号码验证
+            var phoneFlag = false;
+            phoneLog.blur(function() {
+                    let phone = $("#logphone").val() //手机号码
+                    let obj = $('.check_log_phone')
+                    phoneFlag = checkPhone({
+                        phone,
+                        obj,
+                    })
+                })
+                //密码验证
+            var pwdFlag = false;
+            pwdLog.blur(function() {
+                let pwd1 = $("#logpwd").val()
+                let obj1 = $('.check_log_pwd')
+                pwdFlag = checkPwd({
+                        obj1,
+                        pwd1,
+                    })
+                    // console.log(checkLogPwd)
+            })
+
+            //点击登录
+            login.click(function() {
+                if (phoneFlag && pwdFlag) {
+                    var phone = phoneLog.val();
+
+                    // 发送异步ajax
+                    $.ajax({
+                        type: "post",
+                        url: "user/login",
+
+                        data: {
+                            phone: phoneLog.val(),
+                            pwd: pwdLog.val()
+                        },
+                        success: function(data) {
+                            console.log("bbb")
+                            if (data.msg === '1') {
+                                $.ajax({
+                                    type: "get",
+                                    url: "userCenter",
+                                    data: {
+                                        phone: phone
+                                    },
+                                    success: function() {
+                                        console.log("aaa")
+                                        $(location).attr('href', 'user/userCenter');
+                                    }
+
+                                })
+
+
+                            } else {
+                                layer.alert('手机号或密码错误,请重试!', {
+                                    icon: 6
+                                });
+                            }
+                        }
+                    })
+                } else {
+                    layer.alert('手机号或密码格式错误', {
+                        icon: 6
+                    });
+                }
+
+            })
+
+
+            //登录函数
+            function loginCheck(timeout = 800) {
+                // console.log(timeout)
+                let phone = phoneLog.val()
+                let pwd = pwdLog.val()
+                let flagPhone = checkPhone({
+                    phone,
+                    obj: phoneLog
+                });
+                let flagPwd = checkPwd({
+                    obj1: pwdLog,
+                    pwd1: pwd
+                })
+                if (flagPhone && flagPwd) {
+                    login.text('登录中...')
+                    $.ajax({
+                        type: 'post',
+                        url: '',
+                        data: {
+                            phone,
+                            pwd
+                        },
+                        dataType: 'json',
+                        success: responce => {
+                            login.text('登录')
+                            let code = responce.code
+                            let msg = responce.msg
+                            if (code == 200) { //登录成功
+                                //取消登录按钮不可点击
+                                login.attr("disabled", false);
+                                setTimeout(() => {
+                                    message({
+                                        icon: 'success',
+                                        content: msg,
+                                    })
+                                }, timeout)
+                                window.location.href = "";
+                            } else { //登录成功
+                                login.attr("disabled", false);
+                                setTimeout(() => {
+                                    message({
+                                        icon: 'error',
+                                        content: msg,
+                                    })
+                                }, timeout)
+                            }
+                        },
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

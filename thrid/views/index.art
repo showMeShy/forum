@@ -2,96 +2,183 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>论坛-首页</title>
-    <!-- http://localhost:3000/css/index.css -->
-    <link href="/css/index.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="css/reset.css" /> -->
+    <link rel="stylesheet" href="/css/index/index.css" />
 </head>
 
 <body>
-    <div class="login-top" style="background: #fff;">
-        <div class="head">
-            <a href="http://edu.newcapec.com.cn/"><img src="./images/logo.png"></a>
-            <span>
-                · 论坛
-            </span>
-        </div>
-    </div>
-    <div class="index_bg">
+    <div class="headerModule">
+        <div class="box">
+            <a href="" class="logo">
+                <img alt="LOGO" src="/images/logo.gif" />
+            </a>
+            <div class="nav">
+                <ul class="clearfix">
+                    <li><a href="/index?pageNum=1&pageSize=10">首页</a></li>
+                    <li><a href="">问答</a></li>
+                    <li><a href="">会员卡</a></li>
+                    <li><a href="/topic/posted">发帖</a></li>
+                </ul>
+            </div>
 
-    </div>
-    <div class="case-container">
-        <div class="case-index-title">
-            <h2>班级模块</h2>
+            <div class="menu">
+                <ul class="clearfix">
+                    <li><a href="register">注册</a></li>
+                    <li><a href="login">登录</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="case-index-content">
-            <ul class="service-list">
-                {{each classesModules as module index}}
-                <li class="service-list-item service-bj{{index+1}}">
-                    <div class="service-title">
-                        <h3>{{module.moduleName}}</h3>
+    </div>
+
+    <div class="skeleton">
+        <div class="main wrap">
+            <div class="tabModule">
+                <div class="tab-box">
+                    <div id="tabNavigation" style="max-height: none">
+                        
+                        <a href="/index?pageNum=1&pageSize=10" class="tab_current">全部</a>
+                        {{each labels as label}}
+                        <a href="/index/{{label.labelId}}?pageNum=1&pageSize=10" class="tab" data=""> {{label.labelName}} </a>
+                        {{/each}}
+                        
                     </div>
-                    <div class="service-content">
-                        <ul class="service-content-list">
-                            {{each module.populars as topic}}
-                            <li>
-                                <a href="/topic/queryOne/{{topic._id}}">
-                                    <h4>{{topic.topicName}}</h4>
-                                    <p>{{topic.topicDes}}</p>
+                </div>
+            </div>
+
+            <div class="topicModule">
+                <div class="topic-box">
+                    <div class="topicList">
+                        {{each topics as topic}}
+                        {{each topic.topics as topic}}
+                        <div class="topicItem">
+                            <div class="avatarBox">
+                                <a class="avatarLink" href="">
+                                    <img src="/images/iu1.jpg" />
                                 </a>
-                            </li>
-                            {{/each}}
-                        </ul>
-                        <a href="/topic/queryAll/{{module.moduleId}}?pageNum=1&pageSize=2"
-                            class="service-list-more">查看更多</a>
-                    </div>
-                </li>
-                {{/each}}
-            </ul>
+                            </div>
 
+                            <div class="content clearfix">
+                              
+                                <ul class="info">
+                                    <li>
+                                        <span class="tag">{{topic.topicClassify}}</span>
+                                        <a class="userName" href=""> {{topic.userName}} </a>
+                                        <span class="userRoleName">VIP</span>
+                                        <span class="postTime">{{topic.topicTime}}</span>
+                                        <span class="lastReplyTime">最新回复：2020-07-24 02:00:50</span>
+                                    </li>
+                                </ul>
+                                <h2 class="title clearfix">
+                                    <a href="/topic/details/{{topic._id}}"> {{topic.topicTitle}} </a>
+
+                                </h2>
+                                <div class="clearfix"></div>
+
+                                <div class="detail">
+                                    <h2 class="summary">{{#topic.topicContent}}</h2>
+                                </div>
+                            </div>
+
+                            <div class="statistic clearfix">
+                                <div class="viewTotal">
+                                    <i class="cms-view icon">阅读</i>
+                                    {{topic.visitedCount}}
+                                </div>
+
+                                <div class="commentTotal">
+                                    <i class="cms-commentCount icon"></i>
+                                    1
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="pager">
+                <span>当前页: {{pageNum}} / {{pageCount}}</span>
+                <!-- 首页 -->
+                <a href="/index/{{preLabelId}}?pageNum=1&pageSize=10">首页</a>
+        
+                <!-- 上一页: 已经处于第一页,那么就不显示上一页 -->
+                {{if (pageNum != 1)}}
+                <a href="/index/{{preLabelId}}?pageNum={{pageNum-1}}&pageSize=10">上一页</a>
+                {{/if}}
+        
+                <!-- 显示数值码 -->
+                <!-- 如果总页码小于等于5 -->
+                {{if (pageCount <= 5)}}
+                <% for(var i = 1; i <= pageCount; i++){ %>
+                <% if (i == pageNum) { %>
+                <a href="/index/{{preLabelId}}?pageNum=<%= i %>&pageSize=10" class="active"><%= i %></a>
+                <% } else if (pageNum != i) { %>
+                <a href="/index/{{preLabelId}}?pageNum=<%= i %>&pageSize=10"><%= i %></a>
+                <% } %>
+                <% } %>
+                {{/if}}
+        
+                {{if (pageNum <= 3 && pageCount > 5) }}
+                <% for(var i = 1; i <= 5; i++){ %>
+                <% if (i == pageNum) { %>
+                <a href="/index/{{preLabelId}}?pageNum=<%= i %>&pageSize=10" class="active"><%= i %></a>
+                <% } else if (pageNum != i) { %>
+                <a href="/index/{{preLabelId}}?pageNum=<%= i %>&pageSize=10"><%= i %></a>
+                <% } %>
+                <% } %>
+                {{/if}}
+        
+                {{if (pageNum > 3 && (pageNum+2 <= pageCount)) }}
+                <% for(var i = pageNum -2; i <= pageNum + 2; i++){ %>
+                <% if (i == pageNum) { %>
+                <a href="/index/{{preLabelId}}?pageNum=<%= i %>&pageSize=10" class="active"><%= i %></a>
+                <% } else if (pageNum != i) { %>
+                <a href="/index/{{preLabelId}}?pageNum=<%= i %>&pageSize=10"><%= i %></a>
+                <% } %>
+                <% } %>
+                {{/if}}
+        
+                {{if (pageNum + 2 > pageCount && pageCount > 5)}}
+                <% for(var i = pageCount - 4; i <= pageCount; i++){ %>
+                <% if (i == pageNum) { %>
+                <a href="/index/{{preLabelId}}?pageNum=<%= i %>&pageSize=10" class="active"><%= i %></a>
+                <% } else if (pageNum != i) { %>
+                <a href="/index/{{preLabelId}}?pageNum=<%= i %>&pageSize=10"><%= i %></a>
+                <% } %>
+                <% } %>
+                {{/if}}
+        
+                <!-- 下一页：已经处于最后一页,那么就不显示下一页 -->
+                {{if (pageNum != pageCount)}}
+                <a href="/index/{{preLabelId}}?pageNum={{pageNum+1}}&pageSize=10">下一页</a>
+                {{/if}}
+        
+                <!-- 尾页 -->
+                <a href="/index/{{preLabelId}}?pageNum={{pageCount}}&pageSize=10">尾页</a>
+            </div>
+
+            <div class="addAnswerModule">
+                <div class="addAnswer-wrap">
+                    <div class="respond">
+                        <p>
+                            请
+                            <a href="login">登录</a>
+                            后发表话题。没有帐号？
+                            <a href="register">注册</a> 一个。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="height: 10px"></div>
         </div>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+
 </body>
 
 </html>

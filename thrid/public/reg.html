@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="images/icon.ico" type="image/x-icon">
+    <title>论坛-注册</title>
+    <script src="https://www.jq22.com/jquery/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/bootstrap-4.2.1.css">
+    <script src="https://www.jq22.com/jquery/bootstrap-4.2.1.js"></script>
+    <script src="./js/user/modal_dialog.js"></script>
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/font-awesome.4.7.0.css">
+    <link rel="stylesheet" type="text/css" href="css/user/login.css" />
+    <script src="js/user/jquery.min.js"></script>
+    <style>
+        .icon {
+            font-family: FontAwesome;
+        }
+    </style>
+    <script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+    <script type="text/javascript">
+        // QQ登录
+        var qqWindow;
+        var wxWindow;
+
+        function toQzoneLogin() {
+            qqWindow = window.location.href = "QQ登录地址";
+        }
+
+        function closeqqWindow() {
+            qqWindow.close();
+            window.location.reload() //刷新页面
+        }
+
+        function toweChat() {
+            wxWindow = window.location.href = "微信登录地址";
+        }
+
+        function closewxWindow() {
+            wxWindow.close();
+            window.location.reload() //刷新页面
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="shadow bg-light rounded login-top">
+        <div class="head">
+            <a href="http://edu.newcapec.com.cn/"><img src="./images/logo.png"></a>
+            <span>
+                <h1>·</h1>欢迎注册
+            </span>
+        </div>
+    </div>
+    <div class="login-box">
+        <div class="tree">
+            <img src="./images/2.png" class="img-fluid">
+        </div>
+        <div class="slogan">
+            新开普教育<br><span class="yellow">NewCapec</span>EDU
+        </div>
+        <div id="earth" class="earth">
+            <img src="./images/1.png" class="img-fluid">
+        </div>
+        <!-- 注册 -->
+        <div class="regist" style="display: block;">
+            <div class="regist-title">
+                手机注册<span><img src="./images/logo.png" height="40px"></span>
+            </div>
+            <div class="regist-form">
+                <form method="POST" action="">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <span class="fa fa-mobile text-success"></span>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" name="regphone" id="regphone" placeholder="手机号码">
+                    </div>
+                    <code class="check_reg_phone"></code>
+
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <span class="fa fa-unlock-alt text-success"></span>
+                            </span>
+                        </div>
+                        <input type="password" class="form-control" name="regpwd" id="regpwd" placeholder="密码">
+                    </div>
+                    <code class="check_reg_pwd"></code>
+
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <span class="fa fa-unlock-alt text-success"></span>
+                            </span>
+                        </div>
+                        <input type="password" class="form-control" id="regcheckpwd" placeholder="确认密码">
+                    </div>
+                    <code class="check_reg_pwd2"></code>
+
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="手机验证码" id="code" name="code">
+                        <div class="input-group-append">
+                            <button type="button" class="input-group-text text-success getcode">获取验证码</button>
+                        </div>
+                    </div>
+                    <code class="check_reg_code"></code>
+                    <button type="button" id="regist" class="btn btn-success btn-block">注册</button>
+                </form>
+            </div>
+            <div class="otherLogin">
+                <div class="qq">
+                    <img src="./images/icon/QQ.png" onclick='toQzoneLogin()' class="img-fluid">
+                </div>
+                <div class="wx">
+                    <img src="./images/icon/wx.png" onclick='toweChat()' class="img-fluid">
+                </div>
+            </div>
+            <div class="login-login">
+                <span id="otherLogin">快捷注册</span>
+                <span id="phoneLogin">手机注册</span>
+                <a href="login.html">返回登录</a>
+            </div>
+        </div>
+    </div>
+    <div class="login-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center login-nav">
+                    <div class="foot">
+                        Copyright © 2000 - 2020 新开普电子股份有限公司. 　All Rights Reserved.　豫ICP备08102576号
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="./js/user/check.js"></script>
+    <script>
+        setTimeout('changeState()', 1000)
+            //地球动画
+        function changeState() {
+            // console.log('动画开始');
+            $('#earth').removeClass('earth');
+            $('#earth').addClass('move');
+        }
+
+        // jQuery的页面加载完毕事件
+        $(function() {
+            // 验证弹窗
+            // 点击按钮
+            var regist = $('#regist'); //注册按钮对象
+            var phoneFlag //手机号码验证状态
+            var checkpwd1 //注册密码验证状态
+            var checkpwd2 //注册确认密码验证状态
+
+
+            //注册页面注册方式切换
+            $('#otherLogin').click(function() {
+                $('.regist-form').css('display', 'none')
+                $('.otherLogin').css('display', 'block')
+                $('#phoneLogin').css('display', 'block')
+                $('#otherLogin').css('display', 'none')
+                $('.regist-title').html('快捷注册')
+            })
+            $('#phoneLogin').click(function() {
+                $('.regist-form').css('display', 'block')
+                $('.otherLogin').css('display', 'none')
+                $('.regist-title').html('手机注册')
+                $('#phoneLogin').css('display', 'none')
+                $('#otherLogin').css('display', 'block')
+            })
+
+            //注册验证
+            //手机号码验证
+            $('#regphone').blur(function() {
+                let phone = $('#regphone').val()
+                let obj = $('.check_reg_phone')
+                phoneFlag = checkPhone({
+                        phone,
+                        obj,
+                    })
+                    // phoneFlag 正则校验格式,发送异步ajax请求去服务器,判断手机号是否存在
+                    // obj.html('手机号码格式错误')
+                if (phoneFlag) {
+                    $.ajax({
+                        type: "post",
+                        url: "user/checkPhoneUnique",
+                        data: {
+                            phone: phone
+                        },
+                        success: function(res) {
+                            if (res.msg === '1') {
+                                obj.html('手机号码已存在')
+                                phoneFlag = false;
+                            } else {
+                                obj.html('')
+                            }
+                        }
+                    })
+                }
+            })
+
+            //密码验证
+            $('#regpwd').blur(function() {
+                let pwd = $('#regpwd').val()
+                let obj = $('.check_reg_pwd')
+                checkpwd1 = checkPwd({
+                    obj1: obj,
+                    pwd1: pwd
+                })
+            })
+
+            //再次输入密码验证
+            $('#regcheckpwd').blur(function() {
+                let pwd1 = $('#regpwd').val()
+                let obj1 = $('.check_reg_pwd')
+                let pwd2 = $('#regcheckpwd').val()
+                let obj2 = $('.check_reg_pwd2')
+                checkpwd2 = checkPwd({
+                    obj1,
+                    obj2,
+                    pwd1,
+                    pwd2
+                })
+            })
+
+            //获取验证码
+            // $('.getcode').click(function () {
+            //     let phone = $('#regphone').val()
+
+            // })
+
+            //短信验证码验证
+            $('#code').blur(function() {
+                let code = $('#code').val();
+                let phone = $('#regphone').val();
+                if (code == '') {
+                    $('.check_reg_code').html('验证码不能为空')
+                } else {
+                    $('.check_reg_code').html('')
+
+                }
+            })
+
+
+            //点击注册
+            regist.click(function() {
+                console.log("注册");
+                // let check = phoneFlag && checkpwd1 && checkpwd2
+
+                if (true) {
+                    // 发送异步ajax
+                    $.ajax({
+                        type: "post",
+                        url: "user/reg",
+                        data: {
+                            phone: $('#regphone').val(),
+                            pwd: $('#regpwd').val()
+                        },
+                        success: function(data) {
+                            if (data.msg === 'regOk') {
+                                $(location).attr('href', 'http://127.0.0.1:3000/login.html');
+                            } else {
+                                alert("注册失败");
+                            }
+                        }
+                    })
+                } else {
+                    alert('手机号或密码格式错误', {
+                        icon: 6
+                    });
+                }
+            })
+
+        })
+    </script>
+</body>
+
+</html>
