@@ -41,7 +41,7 @@ function getUserCount(dbo) {
 
 // -------话题查询模块路由
 router.get("/queryAllTopic", function (req, res) {
-    console.log("管理员查询所有正常话题");
+    console.log("管理员查询所有问题帖子");
     // 获取得到页码和每页显示的条目数
     console.log(req.query);
     var pageNum = Number(req.query.pageNum);
@@ -53,31 +53,22 @@ router.get("/queryAllTopic", function (req, res) {
         // 查询总条目数
         var topicCount = await getTopicCount(dbo);
         console.log("所有帖子" + topicCount);
-        if (topicCount > 0) {
-            dbo.collection("topic").find({
-                topicStatus: 0
-            }).skip(skipValue).limit(pageSize).toArray(function (err, result) {
-                // 处理帖子id
-                for (var i = 0; i < result.length; i++) {
-                    result[i]._id = result[i]._id.toString();
-                }
 
-                // 结合populars.art渲染数据
-                res.render('topicList.art', {
-                    topiclist: result,
-                    pageNum: pageNum,
-                    pageCount: topicCount % pageSize == 0 ? topicCount / pageSize : parseInt(topicCount / pageSize) + 1
-                });
-            })
-        } else {
+        dbo.collection("topic").find({
+            topicStatus: 0
+        }).skip(skipValue).limit(pageSize).toArray(function (err, result) {
+            // 处理帖子id
+            for (var i = 0; i < result.length; i++) {
+                result[i]._id = result[i]._id.toString();
+            }
+
             // 结合populars.art渲染数据
             res.render('topicList.art', {
-                topiclist: 0,
-                pageNum: 0,
-                pageCount: 0
+                topiclist: result,
+                pageNum: pageNum,
+                pageCount: topicCount % pageSize == 0 ? topicCount / pageSize : parseInt(topicCount / pageSize) + 1
             });
-        }
-
+        })
     })
 })
 // 删除话题的路由
@@ -132,7 +123,6 @@ router.get("/deleteTopicById/:topicId", function (req, res) {
 // 新增话题
 router.post("/addTopic", function (req, res) {
     console.log("新增帖子");
-    req.body.topicStatus = Number(req.body.topicStatus);
     console.log(req.body);
     common.getMongoClient().then(function (client) {
         var dbo = client.db("forum");

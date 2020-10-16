@@ -28,11 +28,25 @@ router.get("/posted",function(req,res){
 
 // 新增帖子
 router.post("/addTopic", function (req, res) {
-    console.log("新增帖子");
-    console.log(req.body);
+    // console.log("新增帖子");
+    
+    req.body.userInfo = JSON.parse(req.body.userInfo)
+    console.log(req.body)
+    // console.log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv",addData.topicReply);
     common.getMongoClient().then(function (client) {
+        var addData=req.body;
+        addData.visitedCount=Number(addData.visitedCount);
+        addData.topicStatus=Number(addData.topicStatus);
+        addData.topicReply=[{
+                "userName": "不要问我是谁",
+                "replyContent": "这是一个回复",
+                "replyTime": "2020-10-15 18:38:39",
+                "replyId": "123"
+            }];
+        
         var dbo = client.db("forum");
-        dbo.collection("topic").insertOne(req.body, function (err, resDb) {
+        dbo.collection("topic").insertOne(addData, function (err, resDb) {
+            console.log("7777777777777777777777777",addData)
             if (err) throw err;
             // 通过res.insertedCount可以获取插入的数量
             console.log("文档插入成功", resDb);
@@ -84,22 +98,38 @@ router.post("/details/:topicId/addSecReply",function(req,res){
 //帖子详情
 router.get("/details/:topicId",function(req,res){
     var topicId = req.params.topicId;
-    common.getMongoClient().then(async function (client) {
-        var dbo = client.db("forum");
-        dbo.collection("topic").find({
-            _id:ObjectId(topicId)
-        }).toArray(function (err, result) {
-            var details=result[0];
-            var replys=details.topicReply;
-            console.log("cccccccccccccc",replys)
 
-            res.render("details.art",{
-                details:details,
-                replys:replys,
-                topicId:topicId
+    common.getMongoClient().then((client) => {
+        var dbo = client.db("forum"); // dbo就是指定的数据库对象
+
+        dbo.collection("topic").updateOne({
+            _id: ObjectId(topicId)
+        }, {
+            $inc: {
+                visitedCount: 1
+            }
+        }, function () {
+            common.getMongoClient().then(async function (client) {
+                var dbo = client.db("forum");
+                dbo.collection("topic").find({
+                    _id:ObjectId(topicId)
+                }).toArray(function (err, result) {
+
+                    var details=result[0];
+                    var replys=details.topicReply;
+                    console.log("cccccccccccccc",details)
+        
+                    res.render("details.art",{
+                        details:details,
+                        replys:replys,
+                        topicId:topicId
+                    })
+                })
             })
+            client.close();
         })
     })
+
     
 })
 

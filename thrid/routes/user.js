@@ -11,11 +11,14 @@ router.post("/login", function(req, res) {
         var dbo = client.db("forum"); // dbo就是指定的数据库对象
 
         dbo.collection("user").find(req.body).toArray(function(err, result) {
+            console.log(result)
+
             if (err) throw err;
             if (result.length > 0) {
                 res.json({
                     code: 3,
-                    msg: "1"
+                    msg: "1",
+                    userInfo:result[0]
                 });
             } else {
                 res.json({

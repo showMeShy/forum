@@ -20,16 +20,34 @@
                     <li><a href="/index?pageNum=1&pageSize=10">首页</a></li>
                     <li><a href="">问答</a></li>
                     <li><a href="">会员卡</a></li>
-                    <li><a href="/topic/posted">发帖</a></li>
+                    <li><a href="/topic/posted" id="post">发帖</a></li>
                 </ul>
             </div>
 
-            <div class="menu">
+            <div class="menu" id="one">
                 <ul class="clearfix">
-                    <li><a href="register">注册</a></li>
-                    <li><a href="login">登录</a></li>
+                    <li><a href="http://127.0.0.1:3000/reg.html">注册</a></li>
+                    <li><a href="http://127.0.0.1:3000/login.html" id="login">登录</a></li>
                 </ul>
             </div>
+
+            <div class="menu" id="two">
+          <ul class="clearfix">
+            <li>
+              <div class="author">
+                <a href="/userCenter">
+                  <img src="" id="userNameImg"/> <span id="userNameSpan"></span>
+                </a>
+              </div>
+             
+            </li>
+            <!-- <li>
+              <a href="/userCenter">用户中心<span id="allMessage-badge" class="badge" style="position: absolute; margin-top: 14px; display: none"></span></a>
+            </li> -->
+            <li><a href="" id="exit">退出</a></li>
+            <form id="logout" action="logout.htm?token=74168cde0e6e4088a303329c46596ec8" method="post"></form>
+          </ul>
+        </div>
         </div>
     </div>
 
@@ -56,7 +74,7 @@
                         <div class="topicItem">
                             <div class="avatarBox">
                                 <a class="avatarLink" href="">
-                                    <img src="/images/iu1.jpg" />
+                                    <img src="{{topic.userInfo.userImg}}" />
                                 </a>
                             </div>
 
@@ -65,7 +83,7 @@
                                 <ul class="info">
                                     <li>
                                         <span class="tag">{{topic.topicClassify}}</span>
-                                        <a class="userName" href=""> {{topic.userName}} </a>
+                                        <a class="userName" href=""> {{topic.userInfo.phone||topic.userInfo.userName}} </a>
                                         <span class="userRoleName">VIP</span>
                                         <span class="postTime">{{topic.topicTime}}</span>
                                         <span class="lastReplyTime">最新回复：2020-07-24 02:00:50</span>
@@ -180,5 +198,17 @@
     </div>
 
 </body>
+<script src="/js/jquery.js"></script>
+<script src="/js/comm.js"></script>
+
+<script>
+    window.onload = function(){
+        var userNameImg = document.getElementById("userNameImg");
+        userNameImg.src = localStorage.getItem("userImg");
+
+        var userNameSpan = document.getElementById("userNameSpan");
+        userNameSpan.innerHTML = localStorage.getItem("phone");
+    }
+</script>
 
 </html>

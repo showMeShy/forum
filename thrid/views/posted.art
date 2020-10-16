@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>无标题文档</title>
     <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
-    <link rel="stylesheet" href="/css/posted.css">
+    <link rel="stylesheet" href="/css/index/posted.css">
     <link href="/dist/summernote.css" rel="stylesheet" />
     <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
     <script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
@@ -106,24 +106,42 @@
                 var now = year + '-' + getNow(month) + "-" + getNow(date) + " " + getNow(h) + ':' +
                     getNow(m) + ":" + getNow(s);
                 console.log(submitHTML);
-                var replyArr=[{
-                            "userName": "不要问我是谁",
-                            "replyContent": "这是一个回复",
-                            "replyTime": "2020-10-15 18:38:39",
-                            "replyId": "123"
-                        }];
+                // var replyArr = [{
+                //     "userName": "不要问我是谁",
+                //     "replyContent": "这是一个回复",
+                //     "replyTime": "2020-10-15 18:38:39",
+                //     "replyId": "123"
+                // }];
+
+                var visitedCount = 0;
+                var topicStatus = 0;
+
+                // var arr = new Array();
+                // arr[0] = [{
+                //     "userName": "不要问我是谁",
+                //     "replyContent": "这是一个回复",
+                //     "replyTime": "2020-10-15 18:38:39",
+                //     "replyId": "123"
+                // }];
+
                 $.ajax({
                     url: "/topic/addTopic",
                     method: "post",
+                    traditional: true,
                     data: {
                         userName: "测试",
                         topicTitle: topicTitle,
                         topicContent: submitHTML,
-                        visitedCount: 0,
+                        visitedCount: visitedCount,
                         topicTime: now,
-                        topicReply: replyArr,
+                        topicReply: "",
                         topicClassify: topicClassify,
-                        topicStatus: 0,
+                        topicStatus: topicStatus,
+                        userInfo:JSON.stringify({
+                            userName:localStorage.getItem("userName"),
+                            userImg:localStorage.getItem("userImg"),
+                            phone:localStorage.getItem("phone")
+                        })
                     },
                     success: function () {
                         window.location.href =

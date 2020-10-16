@@ -57,8 +57,10 @@ function getTopic(dbo, topicClassify,skipValue,pageSize) {
 
 // 定义首页路由
 router.get("/index", function (req, res) {
-      var pageNum = Number(req.query.pageNum);
-      var pageSize = Number(req.query.pageSize);
+    
+      console.log(req.query)
+      var pageNum = req.query.pageNum?Number(req.query.pageNum):1;
+      var pageSize = req.query.pageSize?Number(req.query.pageSize):10;
       var skipValue = (pageNum - 1) * pageSize;
   // 当我们去渲染index.art的时候,这里面的data数据其实就是从数据库里面查询得到的数据
   var labels = [];
@@ -68,7 +70,7 @@ router.get("/index", function (req, res) {
     // 先查询所有的模块
     dbo.collection("label").find({}).toArray(async function (err, result) {
         var labelsArr = result;
-        console.log("所有的模块", result);
+        // console.log("所有的模块", result);
         // 根据每个模块的_id去populars中查询对应的文档
         for (var i = 0; i < labelsArr.length; i++) {
           // 每个模块的id
@@ -94,7 +96,7 @@ router.get("/index", function (req, res) {
         };
         topics.push(topicsObj);
 
-        console.log("*-------------", labels);
+        // console.log("*-------------", labels);
         console.log(topics);
 
         res.render("index.art", {
