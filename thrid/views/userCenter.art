@@ -76,7 +76,6 @@
                 <p>{{userName}}</p>
                 <p>{{famous}}</p>
             </div>
-            <p class="nickName">昵称：{{nickName}}</p>
             <p class="vip">vip</p>
         </div>
     </header>

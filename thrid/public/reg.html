@@ -263,7 +263,14 @@
                         url: "user/reg",
                         data: {
                             phone: $('#regphone').val(),
-                            pwd: $('#regpwd').val()
+                            pwd: $('#regpwd').val(),
+                            userName: $('#regphone').val(),
+                            grade: "初级",
+                            fans: 0,
+                            scores: 0,
+                            userStatus: 0,
+                            images: "/images/iu1.jpg"
+
                         },
                         success: function(data) {
                             if (data.msg === 'regOk') {
