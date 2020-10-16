@@ -1,17 +1,17 @@
-$(function(){
+$(function() {
 
-        var isLogin=localStorage.getItem("login");
-        if(isLogin==1){
-            console.log(123)
-            $("#two").css("display","");
-            $("#one").css("display","none");
-        }else{
-            $("#two").css("display","none");
-            $("#one").css("display","");
-        }
+    var isLogin = localStorage.getItem("login");
+    if (isLogin == 1) {
+        console.log(123)
+        $("#two").css("display", "");
+        $("#one").css("display", "none");
+    } else {
+        $("#two").css("display", "none");
+        $("#one").css("display", "");
+    }
 
-        $("#exit").click(function(){
-            localStorage.removeItem("login");
+    $("#exit").click(function() {
+            localStorage.clear();
         })
         // $("#post").click(function(){
         //     console.log(456)

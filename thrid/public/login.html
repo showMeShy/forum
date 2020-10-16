@@ -169,8 +169,6 @@
 
             //点击登录
             login.click(function() {
-                localStorage.setItem("login", "1")
-
                 if (phoneFlag && pwdFlag) {
                     var phone = phoneLog.val();
 
@@ -182,13 +180,19 @@
                         data: {
                             phone: phoneLog.val(),
                             pwd: pwdLog.val(),
-                            images: "/images/iu1.jpg"
+                            userImg: "/images/iu1.jpg",
+                            userName: phoneLog.val(),
+                            grade: "初级",
+                            fans: 0,
+                            scores: 0,
+                            userStatus: 0,
                         },
                         success: function(data) {
                             console.log(data)
                             for (var key in data.userInfo) {
                                 localStorage.setItem(key, data.userInfo[key])
                             }
+                            localStorage.setItem("login", "1")
 
 
                             if (data.msg === '1') {

@@ -27,8 +27,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static('public'))
-// app.use(express.static('uploads'))
- 
+    // app.use(express.static('uploads'))
+
 
 // 渲染引擎设置
 app.engine('art', require('express-art-template'));
@@ -40,19 +40,19 @@ app.set('view engine', 'art');
 
 // 用来解析 application/json
 app.use(express.json())
-// 用来解析 application/x-www-form-urlencoded
+    // 用来解析 application/x-www-form-urlencoded
 app.use(express.urlencoded({
     extended: true
 }))
 app.use('/', index);
 app.use('/user', usersRouter);
-app.use("/index",index)
-app.use("/question",question)
-app.use("/askDetail",askDetail)
-app.use("/amend",amend)
-app.use("/userCenter",userCenter)
+app.use("/index", index)
+app.use("/question", question)
+app.use("/askDetail", askDetail)
+app.use("/amend", amend)
+app.use("/userCenter", userCenter)
 app.use('/backstage', backstage)
-// 首页
+    // 首页
 app.use('/topic', topic)
 app.use('/upload', multerUpload);
 
