@@ -1,0 +1,44 @@
+.topStatus li{
+    color: #555;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+    cursor: default;
+    border-color: #fff;
+    cursor: default;
+    box-shadow: 4px 0 3px -4px rgba(0,0,0,.06) , /*左边阴影*/ /*0 4px 3px -4px #fff, 顶部阴影*/ 0 -4px 3px -4px rgba(0,0,0,.06) , /*底部阴影*/ -4px 0 3px -4px rgba(0,0,0,.06);
+    position: relative;
+    display: block;
+    float: left;
+    margin-bottom: -1px;
+}
+.topStatus li>a{
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    border-radius: 3px 3px 0 0;
+    font-size: 15px;
+   }
+.toPost{
+    display: block;
+    font-size: 15px;
+    line-height: 3;
+    width: 70px;
+    padding-left: 25px;
+    float: right;
+    color: #409eff;
+    /* background-color: black; */
+    border: 1px solid #b3d8ff;
+}
+.toPost:hover{
+    color: white;
+    background-color: #2196F3;
+    border: 1px solid #b3d8ff;
+}
+.isHide{
+    display: none;
+}
+

@@ -4,32 +4,62 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" type="image/x-icon" href="http://127.0.0.1:3000/images/favicon.ico" media="screen">
     <title>Document</title>
     <!-- <link rel="stylesheet" href="css/reset.css" /> -->
-    <link rel="stylesheet" href="http://127.0.0.1:3000/css/question.css" />
+    <link rel="stylesheet" href="/css/question/question.css" />
+    <link rel="stylesheet" href="/css/question/add.css" />
+    <style>
+        .reward{
+            background-color: #FCF3E6;
+            color: #E2B46D;
+            
+        }
+        .reward .amount{
+            color: #CCA558;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
-<body>
+<body> 
     <div class="headerModule">
         <div class="box">
             <a href="" class="logo">
-                <img alt="LOGO" src="http://127.0.0.1:3000/images/logo.gif" />
+                <img alt="LOGO" src="/images/logo.gif" />
             </a>
             <div class="nav">
                 <ul class="clearfix">
-                    <li><a href="index">首页</a></li>
-                    <li><a href="askList">问答</a></li>
-                    <li><a href="membershipCardList">会员卡</a></li>
+                    <li><a href="/index?pageNum=1&pageSize=10">首页</a></li>
+                    <li><a href="/question">问答</a></li>
+                    <li><a href="">会员卡</a></li>
+                    <li><a href="/topic/posted" id="post">发帖</a></li>
                 </ul>
             </div>
 
-            <div class="menu">
+            <div class="menu" id="one">
                 <ul class="clearfix">
-                    <li><a href="register">注册</a></li>
-                    <li><a href="login">登录</a></li>
+                    <li><a href="http://127.0.0.1:3000/reg.html">注册</a></li>
+                    <li><a href="http://127.0.0.1:3000/login.html" id="login">登录</a></li>
                 </ul>
             </div>
+
+            <div class="menu" id="two">
+          <ul class="clearfix">
+            <li>
+              <div class="author">
+                <a href="/userCenter">
+                  <img src="" id="userNameImg"/> <span id="userNameSpan"></span>
+                </a>
+              </div>
+             
+            </li>
+            <!-- <li>
+              <a href="/userCenter">用户中心<span id="allMessage-badge" class="badge" style="position: absolute; margin-top: 14px; display: none"></span></a>
+            </li> -->
+            <li><a href="" id="exit">退出</a></li>
+            <form id="logout" action="logout.htm?token=74168cde0e6e4088a303329c46596ec8" method="post"></form>
+          </ul>
+        </div>
         </div>
     </div>
 
@@ -38,52 +68,70 @@
             <div class="tabModule">
                 <div class="tab-box">
                     <div id="tabNavigation" style="max-height: none">
-                        <a href="/question" class="tab_current">全部</a>
-                        {{each labelModulesName as modules }}
-                       <a href="/question/{{modules.labelId}}" class="tab" data=""> {{modules.labelName}} </a>
-                       {{/each}}
-                   
+                        <a href="/question?pageNum=1&pageSize=10" class="tab_current ">全部</a>
+                        {{each quetionLabels as label index}}
+                        <a href="/question/questionList/{{label.labelId}}?pageNum=1&pageSize=10" class="tab" id="label{{index}}" data=""> {{label.labelName}}</a>
+                        {{/each}}
+                        
                     </div>
                 </div>
             </div>
-        
+            <div style="margin-top: 10px;">
+                <ul class="topStatus">
+                    <li class="active"><a href="askList">最新</a></li>
+                    <li><a href="askList?filterCondition=20">未解决</a></li>
+                    <li><a href="askList?filterCondition=30">已解决</a></li>
+                    <li><a href="askList?filterCondition=40">积分悬赏</a></li>
+                   
+                    
+               </ul>
+            </div>
+            <a href="/question/posted" class="toPost"><i class="cms-pencil-alt"></i> 提问题</a>
+           <div style="clear: both;"></div>
+       
             <div class="topicModule">
                 <div class="topic-box">
-                    {{each labelTipic as topics }}
-                    {{each topics.allData as topic}}
                     <div class="topicList">
+                        {{each questions as questions}}
+                        {{each questions.question as question}}
                         <div class="topicItem">
                             <div class="avatarBox">
-                                <a class="avatarLink" href="user/control/home?userName=test">
-                                    <img src="http://127.0.0.1:3000/images/2.jpg" />
+                                <a class="avatarLink" href="">
+                                    <img src="{{question.userInfo.userImg}}" />
                                 </a>
                             </div>
 
                             <div class="content clearfix">
-                                <ul class="info">
+                              
+                                <ul class="info"> 
                                     <li>
-                                        <span class="tag">综合</span>
-                                        <a class="userName" href="user/control/home?userName=test">{{topic.userName}} </a>
+                                        <span class="tag">{{question.questionClassify}}</span>
+                                        <a class="userName" href=""> {{question.userInfo.phone||question.userInfo.userName}} </a>
                                         <span class="userRoleName">VIP</span>
-                                        <span class="postTime">发表时间：{{topic.topicTime}}</span>
+                                        <span class="postTime">{{question.questionTime}}</span>
                                         <span class="lastReplyTime">最新回复：2020-07-24 02:00:50</span>
+                                        <span class="reward">
+						                	<span class="rewardInfo">
+						                		悬赏积分:<span class="symbol"></span><span class="amount">{{question.questionScores}}</span> 
+						                	</span>
+						                </span>
                                     </li>
                                 </ul>
                                 <h2 class="title clearfix">
-                                    <a href="/askDetail/{{topics.topicId}}"> {{topic.topicTitle}} </a>
+                                    <a href="/questionDetails/{{question._id}}"> {{question.questionTitle}} </a>
 
                                 </h2>
                                 <div class="clearfix"></div>
 
-                                <div class="detail">
-                                    <h2 class="summary">{{topic.topicContent}}</h2>
+                                <div class="detail" style="max-height: 150px; overflow: hidden;" >
+                                    <h2 class="summary">{{#question.questionContent}}</h2>
                                 </div>
                             </div>
 
                             <div class="statistic clearfix">
                                 <div class="viewTotal">
-                                    <i class="cms-view icon">44</i>
-                                    {{topic.visitedCount}}
+                                    <i class="cms-view icon">阅读</i>
+                                    {{question.visitedCount}}
                                 </div>
 
                                 <div class="commentTotal">
@@ -92,13 +140,75 @@
                                 </div>
                             </div>
                         </div>
+                        {{/each}}
+                        {{/each}}
                     </div>
-                    {{/each}}
-                    {{/each}}
                 </div>
-           
             </div>
-          
+
+
+            <div id="pager">
+                <span>当前页: {{pageNum}} / {{pageCount}}</span>
+                <!-- 首页 -->
+                <a href="/question/{{preLabelId}}?pageNum=1&pageSize=10">首页</a>
+        
+                <!-- 上一页: 已经处于第一页,那么就不显示上一页 -->
+                {{if (pageNum != 1)}}
+                <a href="/question/{{preLabelId}}?pageNum={{pageNum-1}}&pageSize=10">上一页</a>
+                {{/if}}
+        
+                <!-- 显示数值码 -->
+                <!-- 如果总页码小于等于5 -->
+                {{if (pageCount <= 5)}}
+                <% for(var i = 1; i <= pageCount; i++){ %>
+                <% if (i == pageNum) { %>
+                <a href="/question/{{preLabelId}}?pageNum=<%= i %>&pageSize=10" class="active"><%= i %></a>
+                <% } else if (pageNum != i) { %>
+                <a href="/question/{{preLabelId}}?pageNum=<%= i %>&pageSize=10"><%= i %></a>
+                <% } %>
+                <% } %>
+                {{/if}}
+        
+                {{if (pageNum <= 3 && pageCount > 5) }}
+                <% for(var i = 1; i <= 5; i++){ %>
+                <% if (i == pageNum) { %>
+                <a href="/question/{{preLabelId}}?pageNum=<%= i %>&pageSize=10" class="active"><%= i %></a>
+                <% } else if (pageNum != i) { %>
+                <a href="/question/{{preLabelId}}?pageNum=<%= i %>&pageSize=10"><%= i %></a>
+                <% } %>
+                <% } %>
+                {{/if}}
+        
+                {{if (pageNum > 3 && (pageNum+2 <= pageCount)) }}
+                <% for(var i = pageNum -2; i <= pageNum + 2; i++){ %>
+                <% if (i == pageNum) { %>
+                <a href="/question/{{preLabelId}}?pageNum=<%= i %>&pageSize=10" class="active"><%= i %></a>
+                <% } else if (pageNum != i) { %>
+                <a href="/question/{{preLabelId}}?pageNum=<%= i %>&pageSize=10"><%= i %></a>
+                <% } %>
+                <% } %>
+                {{/if}}
+        
+                {{if (pageNum + 2 > pageCount && pageCount > 5)}}
+                <% for(var i = pageCount - 4; i <= pageCount; i++){ %>
+                <% if (i == pageNum) { %>
+                <a href="/question/{{preLabelId}}?pageNum=<%= i %>&pageSize=10" class="active"><%= i %></a>
+                <% } else if (pageNum != i) { %>
+                <a href="/question/{{preLabelId}}?pageNum=<%= i %>&pageSize=10"><%= i %></a>
+                <% } %>
+                <% } %>
+                {{/if}}
+        
+                <!-- 下一页：已经处于最后一页,那么就不显示下一页 -->
+                {{if (pageNum != pageCount)}}
+                <a href="/question/{{preLabelId}}?pageNum={{pageNum+1}}&pageSize=10">下一页</a>
+                {{/if}}
+        
+                <!-- 尾页 -->
+                <a href="/question/{{preLabelId}}?pageNum={{pageCount}}&pageSize=10">尾页</a>
+            </div>
+
+         <div id="isShow">
             <div class="addAnswerModule">
                 <div class="addAnswer-wrap">
                     <div class="respond">
@@ -111,11 +221,44 @@
                     </div>
                 </div>
             </div>
+         </div>
 
             <div style="height: 10px"></div>
         </div>
     </div>
 
 </body>
+<script src="/js/jquery.js"></script>
+<script src="/js/comm.js"></script>
+<script src="/js/comm/comm.js"></script>
+
+<script>
+    window.onload = function(){
+        var userNameImg = document.getElementById("userNameImg");
+        userNameImg.src = localStorage.getItem("userImg");
+        loginStatus = localStorage.getItem("login");
+
+        var userNameSpan = document.getElementById("userNameSpan");
+        userNameSpan.innerHTML = localStorage.getItem("phone");
+
+        // 根据登陆状态选择显示不显示提示登录信息
+        if(loginStatus=="1"){
+            $("#isShow").addClass("isHide")
+     
+        }
+
+
+        $(".toPost").click(()=>{
+            if(loginStatus=="1"){
+                $(location).attr('href', '/posted');
+            }else{
+                alert("请先登录");
+                return false
+            }
+        })
+
+    }
+  
+</script>
 
 </html>
