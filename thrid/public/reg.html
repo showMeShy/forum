@@ -263,9 +263,18 @@
                         url: "user/reg",
                         data: {
                             phone: $('#regphone').val(),
-                            pwd: $('#regpwd').val()
+                            pwd: $('#regpwd').val(),
+                            userName: $('#regphone').val(),
+                            grade: "初级",
+                            fans: 0,
+                            scores: 0,
+                            userStatus: 0,
+                            userImg: "/images/iu1.jpg"
+
                         },
                         success: function(data) {
+                            console.log("进到success")
+                            console.log("aaaa", data)
                             if (data.msg === 'regOk') {
                                 $(location).attr('href', 'http://127.0.0.1:3000/login.html');
                             } else {

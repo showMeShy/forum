@@ -68,19 +68,16 @@ header .fans p:nth-child(2) {
 
 header>div:nth-child(2) {
     padding-left: 30px;
-    margin-top: 50px;
-}
-
-header .userName {
-    display: flex;
+    margin-top: 10px;
 }
 
 header .userName p:nth-child(1) {
-    width: 82px;
+    display: inline-block;
+    width: 200px;
     height: 30px;
     line-height: 30px;
     color: #444;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 400;
 }
 

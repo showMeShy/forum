@@ -36,7 +36,7 @@
             <li>
               <div class="author">
                 <a href="/userCenter">
-                  <img src="" id="userNameImg"/> <span id="userNameSpan"></span>
+                <img src="" id="userNameImg"/><span id="userNameSpan"></span>
                 </a>
               </div>
              
@@ -204,7 +204,7 @@
 <script>
     window.onload = function(){
         var userNameImg = document.getElementById("userNameImg");
-        userNameImg.src = localStorage.getItem("userImg");
+        userNameImg.src = localStorage.getItem("images");
 
         var userNameSpan = document.getElementById("userNameSpan");
         userNameSpan.innerHTML = localStorage.getItem("phone");

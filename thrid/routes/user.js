@@ -18,7 +18,7 @@ router.post("/login", function(req, res) {
                 res.json({
                     code: 3,
                     msg: "1",
-                    userInfo:result[0]
+                    userInfo: result[0]
                 });
             } else {
                 res.json({
@@ -31,7 +31,7 @@ router.post("/login", function(req, res) {
 })
 
 
- 
+
 
 // 定义判断手机号唯一
 router.post("/checkPhoneUnique", function(req, res) {
@@ -58,6 +58,45 @@ router.post("/checkPhoneUnique", function(req, res) {
     })
 
 })
+
+// 定义用户修改
+router.post("/amend", function(req, res) {
+    console.log("222");
+    console.log(req.body);
+    // 把手机号和密码存储到数据库里面去
+    common.getMongoClient().then((client) => {
+        // 通过client对象链接到指定的数据库
+        var dbo = client.db("forum"); // dbo就是指定的数据库对象
+        dbo.collection("user").updateOne({ "phone": req.body.phone }, {
+            $set: {
+                "userName": req.body.userName,
+                "pwd": req.body.newPassword
+            }
+        }, function(err, dbRes) {
+            if (err) throw err;
+            // dbRes是数据库给予我们的响应,dbRes对象的insertedCount属性表示插入了几条数据
+
+            if (dbRes.insertedCount > 0) {
+                console.log("更新数据成功")
+                res.json({
+                    code: 1,
+                    msg: "regOk"
+                });
+            } else {
+                res.json({
+                    code: 1,
+                    msg: "regError"
+                });
+            }
+
+            // 关闭客户端
+            client.close();
+
+        });
+    })
+
+})
+
 
 // 定义用户注册
 router.post("/reg", function(req, res) {
@@ -90,5 +129,6 @@ router.post("/reg", function(req, res) {
     })
 
 })
+
 
 module.exports = router

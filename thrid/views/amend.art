@@ -7,6 +7,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="http://127.0.0.1:3000/images/favicon.ico" media="screen">
     <title>修改会员资料</title>
     <link rel="stylesheet" href="http://127.0.0.1:3000/css/common.css" />
+    <script src="js/jquery.js"></script>
 </head>
 
 <body>
@@ -33,14 +34,13 @@
                 <ul class="clearfix">
                     <li>
                         <div class="author">
-                            <a href="user/control/home">
-                                <img src="images/2.jpg">
+                            <a href="/userCenter">
+                                <img id="userNameImg" src="">
                             </a>
                         </div>
-                        <a href="user/control/home">测试会员</a>
+                        <a href="/userCenter" id="userNameSpan"></a>
                     </li>
-                    <li><a href="user/control/home">用户中心<span id="allMessage-badge" class="badge" style="position: absolute; margin-top: 14px; display: none;"></span></a></li>
-                    <li><a href="" onclick="javascript:document.getElementById('logout').submit();return false;">退出</a></li>
+                    <li><a href="/login.html" id="exit" >退出</a></li>
                     <form id="logout" action="logout.htm?token=97dbeeb72d9e42a19e24987b3a7ceafa" method="post"></form>
               
 
@@ -101,18 +101,14 @@
                                 <div id="updateAvatarLink" class="change" style="display: none;"><span>更换头像</span></div>
                             </a>
 
-                            <img src="images/2.jpg">
+                            <img src="" id="imageBig">
                         </div>
                         <table class="blankTable" border="0" cellspacing="2" cellpadding="0" width="100%">
                             <tbody>
                                 <tr>
-                                    <td width="160px" align="right">用户名： </td>
-                                    <td align="left"><input type="text" id="userName" value="{{userAllInfo.userName}}"></td>
-                                </tr>
-                                <tr>
-                                    <td align="right">呢称： </td>
+                                    <td align="right">用户名： </td>
                                     <td align="left">
-                                        {{userAllInfo.nickName}}
+                                        <input type="text" id="userName" name="oldPassword" class="formText" autocomplete="off" size="25" maxlength="20" >
                                     </td>
                                 </tr>
                                 <tr>
@@ -152,28 +148,21 @@
                                 <tr>
                                     <td align="right">旧密码： </td>
                                     <td align="left">
-                                        <input type="password" id="oldPassword" name="oldPassword" class="formText" autocomplete="off" size="25" maxlength="20" ">
+                                        <input type="password" id="oldPassword" name="oldPassword" class="formText" autocomplete="off" size="25" maxlength="20" >
                                         <span id="oldPassword_error" class="error"></span>
                                         <span class="help">不修改密码请留空</span>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="right">密码： </td>
+                                    <td align="right">新密码： </td>
                                     <td>
-                                        <input type="password" id="password" name="password" class="formText" autocomplete="off" size="25" maxlength="20" ">
+                                        <input type="password" id="password" name="password" class="formText" autocomplete="off" size="25" maxlength="20" >
                                         <span id="password_error" class="error"></span>
                                         <span class="help">不修改请留空</span>
                                     </td>
 
                                 </tr>
-                                <tr>
-                                    <td align="right">确认密码：</td>
-                                    <td align="left">
-                                        <input type="password" id="confirmPassword" class="formText" autocomplete="off" size="25" maxlength="20" ">
-                                        <span id="confirmPassword_error" class="error"></span>
-                                        <span class="help">不修改请留空</span>
-                                    </td>
-                                </tr>
+                              
                                 <tr>
 
                                     <!-- 用户自定义注册功能项 -->
@@ -181,11 +170,7 @@
                                 <tr>
                                     <td></td>
                                     <td>
-                                        <span class="submitButton"><input type="button" value="提交" onclick="javascript:sureSubmit();"></span>
-
-                                        <!-- 
-								<span class="submitButton"><INPUT type="button" value="ajax提交" onClick="javascript:ajaxSubmit();"></span>
-								  -->
+                                        <span class="submitButton"><input type="button" value="提交" id="submit" ></span>
                                         <span id="token_error" class="error"></span>
                                     </td>
                                 </tr>
@@ -263,16 +248,94 @@
 
     <div id="qb-sougou-search" style="display: none; opacity: 0;">
         <p>搜索</p>
-        <p class="last-btn">复制</p><iframe src=""></iframe></div>
+        <p class="last-btn">复制</p>
+        <iframe src=""></iframe>
+    </div>
         <script>
-            window.onload(function(){
-         
-             
-              
+            window.onload=function(){
+                var  userPhone = localStorage.getItem("phone");
+                console.log(userPhone)
+                
+                var  userName = localStorage.getItem("userName");
+                $("#userName").val(userName)
+
+                var userNameImg = document.getElementById("userNameImg");
+                userNameImg.src = localStorage.getItem("userImg");
 
                 var userNameSpan = document.getElementById("userNameSpan");
                 userNameSpan.innerHTML = localStorage.getItem("phone");
-            })
+
+                var imageBig = document.getElementById("imageBig");
+                imageBig.src = localStorage.getItem("userImg");
+
+                var srorageUserName=localStorage.getItem("userName");
+                var userPhone=localStorage.getItem("phone");
+             
+                var oldPassword = document.getElementById("oldPassword");
+                storagePassword=localStorage.getItem("pwd");
+                oldPassword.onchange=function(){
+                   var oldPassword=$("#oldPassword").val()
+                   console.log(oldPassword)
+                    if(oldPassword!=storagePassword){
+                        if(oldPassword==""){
+                            console.log("没事")
+                        }
+                        else{
+                            alert("原始密码错误")
+                        }
+                    }
+                }
+
+                var password=document.getElementById("password");
+                
+                var newPassword;
+                password.onchange=function(){
+                 
+                      newPassword=$("#password").val();
+                    if(storagePassword==newPassword){
+                        alert("新密码和旧密码不能一样")
+                    }else{
+                        console.log("没问题")
+                       
+                      
+                    }
+
+    
+                }
+                
+
+                //  console.log("-------------------",newPassword)
+                
+                
+                var submit=document.getElementById("submit");
+               
+                submit.onclick=function(){
+                    $.ajax({
+                       
+                        type: "post",
+                        url: "user/amend",
+                        data: {
+                           userName:$("#userName").val(),
+                           newPassword:newPassword,
+                           phone:userPhone
+                        },
+                    
+                        success: function(data) {
+                           console.log("-----------------------")
+                           localStorage.setItem("userName",  $("#userName").val()),
+                           localStorage.setItem("pwd", newPassword),
+                           $(location).attr('href', '/userCenter')
+                        }
+                    })
+
+                }
+
+                var exitDiv=document.getElementById("exit")
+                exitDiv.onclick=function(){
+                    console.log("aaa")
+                    $(location).attr('href', '/login.html')
+                }
+            }
         </script>
 
         

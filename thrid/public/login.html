@@ -169,8 +169,6 @@
 
             //点击登录
             login.click(function() {
-                localStorage.setItem("login","1")
-                
                 if (phoneFlag && pwdFlag) {
                     var phone = phoneLog.val();
 
@@ -181,14 +179,21 @@
 
                         data: {
                             phone: phoneLog.val(),
-                            pwd: pwdLog.val()
+                            pwd: pwdLog.val(),
+                            userImg: "/images/iu1.jpg",
+                            userName: phoneLog.val(),
+                            grade: "初级",
+                            fans: 0,
+                            scores: 0,
+                            userStatus: 0,
                         },
                         success: function(data) {
                             console.log(data)
-                            for(var key in data.userInfo){
-                                localStorage.setItem(key,data.userInfo[key])
+                            for (var key in data.userInfo) {
+                                localStorage.setItem(key, data.userInfo[key])
                             }
-                            
+                            localStorage.setItem("login", "1")
+
 
                             if (data.msg === '1') {
                                 $.ajax({
@@ -199,20 +204,20 @@
                                     },
                                     success: function() {
                                         console.log("aaa")
-                                        
+
                                         $(location).attr('href', '/index');
                                     }
 
                                 })
 
 
-                            // } else {
-                            //     layer.alert('手机号或密码错误,请重试!', {
-                            //         icon: 6
-                            //     });
-                            // }
+                                // } else {
+                                //     layer.alert('手机号或密码错误,请重试!', {
+                                //         icon: 6
+                                //     });
+                                // }
+                            }
                         }
-                    }
                     })
                 } else {
                     layer.alert('手机号或密码格式错误', {

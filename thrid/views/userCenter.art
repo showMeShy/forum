@@ -14,7 +14,6 @@
 </head>
 
 <body>
-    <div>{{images}}</div>
     <!-- 头部导航条 -->
     <nav class="navbar navbar-default">
         <div class="container">
@@ -45,9 +44,10 @@
                 </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#"><img src={{images}}>{{phone}}</a>
+                        <a href="/userCenter">
+                            <img src="" id="userNameImg"/><span id="userNameSpan"></span>
+                        </a>
                     </li>
-                    <li><a href="#">用户中心</a></li>
                     <li><a href="/login.html">退出</a></li>
 
                 </ul>
@@ -59,24 +59,23 @@
     <header class="container">
         <div>
             <div>
-                <img src={{images}} >
+                <img id="userNameLittle" src="" >
             </div>
             <div class="scores">
-                <p>{{scores}}</p>
+                <p id="userScores"></p>
                 <p>积分</p>
             </div>
             <div class="fans">
-                <p>{{fans}}</p>
+                <p id="userFans"></p>
                 <p>粉丝</p>
             </div>
 
         </div>
         <div class="userDetails">
             <div class="userName">
-                <p>{{userName}}</p>
-                <p>{{famous}}</p>
+                <p id="userNameName"></p>
+                <p id="userNameGrade"></p>
             </div>
-            <p class="nickName">昵称：{{nickName}}</p>
             <p class="vip">vip</p>
         </div>
     </header>
@@ -115,7 +114,30 @@
         <p>Powered by diyhi</p>
         <p>联系我们</p>
     </footer>
-    
+    <script>
+    window.onload = function(){
+        var userNameImg = document.getElementById("userNameImg");
+        userNameImg.src = localStorage.getItem("userImg");
+
+        var userNameSpan = document.getElementById("userNameSpan");
+        userNameSpan.innerHTML = localStorage.getItem("phone");
+
+        var userNameLittle = document.getElementById("userNameLittle");
+        userNameLittle.src = localStorage.getItem("userImg");
+
+        var userScores = document.getElementById("userScores");
+        userScores.innerHTML= localStorage.getItem("scores");
+
+        var userFans = document.getElementById("userFans");
+        userFans.innerHTML= localStorage.getItem("fans");
+
+        var userNameName = document.getElementById("userNameName");
+        userNameName.innerText= "用户名:"+localStorage.getItem("userName");
+
+        var userNameGrade = document.getElementById("userNameGrade");
+        userNameGrade.innerHTML= localStorage.getItem("grade");
+    }
+    </script>
 </body>
 
 </html>
