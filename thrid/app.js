@@ -53,17 +53,17 @@ app.use("/question", question)
 app.use("/askDetail", askDetail)
 app.use("/amend", amend)
 app.use("/userCenter", userCenter)
-app.use('/backstage', backstage)
-<<<<<<< HEAD
-app.use('/questionDetails', questionDetails)
+app.use('/backstage', backstage) <<
+
+    app.use('/questionDetails', questionDetails)
 app.use('/questionUpload', questionUpload)
-// 首页
+    // 首页
 app.use('/topic', topic)
 app.use('/upload', multerUpload);
 
 module.exports = app;
-=======
-    // 首页
+
+// 首页
 app.use('/topic', topic)
 app.use('/upload', multerUpload);
 
@@ -86,4 +86,3 @@ app.use('/upload', multerUpload);
 // });
 
 module.exports = app;
->>>>>>> acb1d2886a1aa12935d55f407fe604cf9bc88a59

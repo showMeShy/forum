@@ -102,6 +102,7 @@ router.post("/amend", function(req, res) {
 router.post("/reg", function(req, res) {
     console.log("222");
     console.log(req.body);
+    req.body.userStatus = Number(req.body.userStatus);
     // 把手机号和密码存储到数据库里面去
     common.getMongoClient().then((client) => {
         // 通过client对象链接到指定的数据库
