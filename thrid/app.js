@@ -14,6 +14,8 @@ const backstage = require('./routes/backstage')
 const index = require('./routes/index')
 const topic = require('./routes/topic')
 const multerUpload = require('./routes/upload');
+const questionDetails = require('./routes/questionDetails');
+const questionUpload = require('./routes/questionUpload');
 
 
 var app = express();
@@ -52,6 +54,15 @@ app.use("/askDetail", askDetail)
 app.use("/amend", amend)
 app.use("/userCenter", userCenter)
 app.use('/backstage', backstage)
+<<<<<<< HEAD
+app.use('/questionDetails', questionDetails)
+app.use('/questionUpload', questionUpload)
+// 首页
+app.use('/topic', topic)
+app.use('/upload', multerUpload);
+
+module.exports = app;
+=======
     // 首页
 app.use('/topic', topic)
 app.use('/upload', multerUpload);
@@ -75,3 +86,4 @@ app.use('/upload', multerUpload);
 // });
 
 module.exports = app;
+>>>>>>> acb1d2886a1aa12935d55f407fe604cf9bc88a59
