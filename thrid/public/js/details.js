@@ -7,6 +7,7 @@ $(function () {
   //第一次回复
   $("#subBtn").click(function () {
     var topicId = $("#topicId").html();
+    console.log(topicId)
     if ($("#replyInp").val() != "") {
       var replyContent=$("#replyInp").val();
 
@@ -25,11 +26,15 @@ $(function () {
         url: "/topic/details/" + topicId + "/addReply",
         method: "post",
         data: {
-          userName: "测试",
+          reply:1,
           replyContent: replyContent,
           replyTime: now,
-          replyId:123,
-          secondReplay:[]
+          // secondReplay:"",
+          userInfo:JSON.stringify({
+            userName:localStorage.getItem("userName"),
+            userImg:localStorage.getItem("userImg"),
+            phone:localStorage.getItem("phone")
+        })
         },
         success: function () {
           $("#replyInp").val("");
@@ -50,31 +55,41 @@ $(function () {
     $($(".SecReplyBox")[num]).css("display", "none");
   });
 
-  // $(".SecSubBtn").click(function () {
-  //   var topicId = $("#topicId").html();
+  $(".SecSubBtn").click(function () {
+    var topicId = $("#topicId").html();
+    
+    var num = $(this).index(".SecSubBtn");
+    var SecReplyVal = $($(".SecReplyInp")[num]).val();
+    var replyUserName = $($(".replyUserName")[num]).html();
+    var FirstReplyTime = $($(".replyTime")[num]).html();
 
-  //   var num = $(this).index(".SecSubBtn");
-  //   var SecReplyVal = $($(".SecReplyInp")[num]).val();
-  //   var myDate = new Date();
+    var myDate = new Date();
 
-  //   var year = myDate.getFullYear(); //获取当前年
-  //   var month = myDate.getMonth() + 1; //获取当前月
-  //   var date = myDate.getDate(); //获取当前日
+    var year = myDate.getFullYear(); //获取当前年
+    var month = myDate.getMonth() + 1; //获取当前月
+    var date = myDate.getDate(); //获取当前日
 
-  //   var h = myDate.getHours(); //获取当前小时数(0-23)
-  //   var m = myDate.getMinutes(); //获取当前分钟数(0-59)
-  //   var s = myDate.getSeconds();
+    var h = myDate.getHours(); //获取当前小时数(0-23)
+    var m = myDate.getMinutes(); //获取当前分钟数(0-59)
+    var s = myDate.getSeconds();
 
-  //   var now = year + "-" + getNow(month) + "-" + getNow(date) + " " + getNow(h) + ":" + getNow(m) + ":" + getNow(s);
-  //   $.ajax({
-  //     url: "/topic/details/" + topicId + "/addSecReply",
-  //     method: "post",
-  //     data: {
-  //       userName: "测试",
-  //       replyContent: SecReplyVal,
-  //       replyTime: now,
-  //     },
-  //     success: function (data) {},
-  //   });
-  // });
+    var now = year + "-" + getNow(month) + "-" + getNow(date) + " " + getNow(h) + ":" + getNow(m) + ":" + getNow(s);
+    $.ajax({
+      url: "/topic/details/" + topicId + "/addSecReply",
+      method: "post",
+      data: {
+        replyUserName:replyUserName,
+        FirstReplyTime:FirstReplyTime,
+        replyContent: SecReplyVal,
+        replyTime: now,
+        userInfo:JSON.stringify({
+          userName:localStorage.getItem("userName"),
+          userImg:localStorage.getItem("userImg"),
+          phone:localStorage.getItem("phone")
+      })
+        
+      },
+      success: function (data) {},
+    });
+  });
 });

@@ -11,7 +11,7 @@ $(function(){
         }
 
         $("#exit").click(function(){
-            localStorage.removeItem("login");
+            localStorage.clear();
         })
         // $("#post").click(function(){
         //     console.log(456)

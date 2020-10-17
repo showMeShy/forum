@@ -69,8 +69,10 @@
             <div class="topicModule">
                 <div class="topic-box">
                     <div class="topicList">
-                        {{each topics as topic}}
-                        {{each topic.topics as topic}}
+                        
+                        {{each topics as topic}}  
+                        {{each topic.topics as topic}}   
+                        
                         <div class="topicItem">
                             <div class="avatarBox">
                                 <a class="avatarLink" href="">
@@ -108,12 +110,15 @@
 
                                 <div class="commentTotal">
                                     <i class="cms-commentCount icon"></i>
-                                    1
+                                   
+                                       评论{{topic.replayCount}}
+                                   
                                 </div>
                             </div>
                         </div>
-                        {{/each}}
-                        {{/each}}
+                        {{/each}}  
+                        {{/each}}  
+                        
                     </div>
                 </div>
             </div>
@@ -204,7 +209,7 @@
 <script>
     window.onload = function(){
         var userNameImg = document.getElementById("userNameImg");
-        userNameImg.src = localStorage.getItem("images");
+        userNameImg.src = localStorage.getItem("userImg");
 
         var userNameSpan = document.getElementById("userNameSpan");
         userNameSpan.innerHTML = localStorage.getItem("phone");

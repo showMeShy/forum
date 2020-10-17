@@ -129,12 +129,12 @@
                     method: "post",
                     traditional: true,
                     data: {
-                        userName: "测试",
                         topicTitle: topicTitle,
                         topicContent: submitHTML,
                         visitedCount: visitedCount,
                         topicTime: now,
                         topicReply: "",
+                        secondReplay:"",
                         topicClassify: topicClassify,
                         topicStatus: topicStatus,
                         userInfo:JSON.stringify({
