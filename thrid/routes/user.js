@@ -106,7 +106,7 @@ router.post("/reg", function(req, res) {
     common.getMongoClient().then((client) => {
         // 通过client对象链接到指定的数据库
         var dbo = client.db("forum"); // dbo就是指定的数据库对象
-        dbo.collection("user").find(req.body, function(err, dbRes) {
+        dbo.collection("user").insertOne(req.body, function(err, dbRes) {
             if (err) throw err;
             // dbRes是数据库给予我们的响应,dbRes对象的insertedCount属性表示插入了几条数据
             console.log(req.body)

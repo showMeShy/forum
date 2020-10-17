@@ -255,7 +255,9 @@
             window.onload=function(){
                 var  userPhone = localStorage.getItem("phone");
                 console.log(userPhone)
-                $("#userName").val(userPhone)
+                
+                var  userName = localStorage.getItem("userName");
+                $("#userName").val(userName)
 
                 var userNameImg = document.getElementById("userNameImg");
                 userNameImg.src = localStorage.getItem("userImg");
@@ -306,8 +308,8 @@
                 
                 
                 var submit=document.getElementById("submit");
-               submit.onclick=function(){
-                     console.log(newPassword)
+               
+                submit.onclick=function(){
                     $.ajax({
                        
                         type: "post",
@@ -319,8 +321,10 @@
                         },
                     
                         success: function(data) {
-                            console.log("-----------------------")
-                            console.log(data)
+                           console.log("-----------------------")
+                           localStorage.setItem("userName",  $("#userName").val()),
+                           localStorage.setItem("pwd", newPassword),
+                           $(location).attr('href', '/userCenter')
                         }
                     })
 
