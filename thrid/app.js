@@ -14,6 +14,8 @@ const backstage = require('./routes/backstage')
 const index = require('./routes/index')
 const topic = require('./routes/topic')
 const multerUpload = require('./routes/upload');
+const questionDetails = require('./routes/questionDetails');
+const questionUpload = require('./routes/questionUpload');
 
 
 var app = express();
@@ -27,8 +29,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static('public'))
-// app.use(express.static('uploads'))
- 
+    // app.use(express.static('uploads'))
+
 
 // 渲染引擎设置
 app.engine('art', require('express-art-template'));
@@ -40,19 +42,28 @@ app.set('view engine', 'art');
 
 // 用来解析 application/json
 app.use(express.json())
-// 用来解析 application/x-www-form-urlencoded
+    // 用来解析 application/x-www-form-urlencoded
 app.use(express.urlencoded({
     extended: true
 }))
 app.use('/', index);
 app.use('/user', usersRouter);
-app.use("/index",index)
-app.use("/question",question)
-app.use("/askDetail",askDetail)
-app.use("/amend",amend)
-app.use("/userCenter",userCenter)
+app.use("/index", index)
+app.use("/question", question)
+app.use("/askDetail", askDetail)
+app.use("/amend", amend)
+app.use("/userCenter", userCenter)
 app.use('/backstage', backstage)
+<<<<<<< HEAD
+app.use('/questionDetails', questionDetails)
+app.use('/questionUpload', questionUpload)
 // 首页
+app.use('/topic', topic)
+app.use('/upload', multerUpload);
+
+module.exports = app;
+=======
+    // 首页
 app.use('/topic', topic)
 app.use('/upload', multerUpload);
 
@@ -75,3 +86,4 @@ app.use('/upload', multerUpload);
 // });
 
 module.exports = app;
+>>>>>>> acb1d2886a1aa12935d55f407fe604cf9bc88a59

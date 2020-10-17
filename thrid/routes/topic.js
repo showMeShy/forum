@@ -29,7 +29,6 @@ router.get("/posted",function(req,res){
 // 新增帖子
 router.post("/addTopic", function (req, res) {
     // console.log("新增帖子");
-    
     req.body.userInfo = JSON.parse(req.body.userInfo)
     console.log(req.body)
     // console.log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv",addData.topicReply);
@@ -80,7 +79,7 @@ router.post("/details/:topicId/addReply",function(req,res){
             client.close();
         })
     })
-})
+}) 
 
 //帖子二次回复
 router.post("/details/:topicId/addSecReply",function(req,res){

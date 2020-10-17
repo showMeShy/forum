@@ -1,0 +1,17 @@
+.reward{
+    margin: 20px  0px;
+}
+.reward >.info{
+    width: 100%;
+    background-color: #FCF3E6;
+    height: 55px;
+    font-size: 16px;
+    line-height: 55px;
+    padding-left: 5px;
+    color: #E2B46D;
+}
+.reward >.info .amount{
+    color: #CCA558;
+    font-size: 18px;
+    font-weight: bolder;
+}

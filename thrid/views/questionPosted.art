@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>提问题</title>
+    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
+    <link rel="stylesheet" href="/css/question/posted.css">
+    <link href="/dist/summernote.css" rel="stylesheet" />
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+    <script src="/dist/summernote.js"></script>
+    <script src="/dist/lang/summernote-zh-CN.js"></script> <!-- 中文-->
+
+    <style>
+        .m {
+            width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #userScores{
+            margin-bottom: 10px;
+            margin-right: 10px;
+        }
+        #nowScores{
+            font-style: normal;
+            color: red;
+        }
+    </style>
+    <script>
+        $(function () {
+            $('.summernote').summernote({
+                height: 200,
+                tabsize: 2,
+                lang: 'zh-CN'
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <div class="m">
+        <h1>发布问题:</h1>
+       
+        <select name="" id="topicClassify" >
+            <option selected hidden disabled value="">选择模块</option>
+            {{each quetionLabels as label}}
+            <option value="{{label.quetionLabelsName}}">{{label.quetionLabelsName}}</option>
+            {{/each}}
+        </select><br>
+        <input type="text" id="topicTitle" placeholder="标题"><br>
+        <input type="text" id="userScores" placeholder="悬赏积分">现有积分: <i id="nowScores"></i> <br>
+        
+        <div class="summernote"></div>
+        <button id="topicSubmit">提交</button>
+    </div>
+
+
+    <script>
+        var nowScores=localStorage.getItem("scores")
+        $(function () {
+            $("#nowScores").text(nowScores)
+            $(".note-video-url").attr({
+                "type": "file",
+                name: "singleFile",
+                id: "singleFile"
+            });
+
+            $(".note-video-btn").click(function () {
+                var fileList = $('#singleFile')[0].files;
+                console.log(fileList);
+                // FormData它是用来异步文件上传的
+                var formData = new FormData();
+                //此处文件名必须为 singleFile ，因为后台设置仅接口此文件名
+                formData.append('singleFile', fileList[0]);
+
+                $.ajax({ 
+                    url: '/questionUpload/single',
+                    type: 'post',
+                    // 不让jQuery去处理数据,而是让XMLHttpRequest去处理数据
+                    processData: false,
+                    contentType: false, //使用multer配合ajax时无需配置multipart/form-data，multer将自动配置，手动配置将报错，boundary not found
+                    data: formData,
+                    success: function (data) {
+                        console.log(data)
+                        $(".note-video-clip").attr("src", data.path);
+                    }
+                })
+            })
+
+
+            $("#topicSubmit").click(function () {
+                var submitHTML = $(".note-editable").html();
+                var topicTitle = $("#topicTitle").val();
+                var topicClassify = $("#topicClassify").val();
+                var userScores = $("#userScores").val();
+                // console.log(userScores)
+                //判断是否在前面加0
+                function getNow(s) {
+                    return s < 10 ? '0' + s : s;
+                }
+
+                var myDate = new Date();
+
+                var year = myDate.getFullYear(); //获取当前年
+                var month = myDate.getMonth() + 1; //获取当前月
+                var date = myDate.getDate(); //获取当前日
+
+
+                var h = myDate.getHours(); //获取当前小时数(0-23)
+                var m = myDate.getMinutes(); //获取当前分钟数(0-59)
+                var s = myDate.getSeconds();
+
+                var now = year + '-' + getNow(month) + "-" + getNow(date) + " " + getNow(h) + ':' +
+                    getNow(m) + ":" + getNow(s);
+            
+
+                var visitedCount = 0;
+                var topicStatus = 0;
+
+             
+
+                $.ajax({
+                    url: "/question/addQuestionTopic",
+                    method: "post",
+                    traditional: true,
+                    data: {
+                        
+                        questionTitle: topicTitle,
+                        questionContent: submitHTML,
+                        visitedCount: visitedCount,
+                        questionTime: now,
+                        questionReply: "",
+                        questionClassify: topicClassify,
+                        questionScores:userScores,
+                        questionStatus: topicStatus,
+                        userInfo:JSON.stringify({
+                            userName:localStorage.getItem("userName"),
+                            userImg:localStorage.getItem("userImg"),
+                            phone:localStorage.getItem("phone")
+                        })
+                    },
+                    success: function () {
+                        var succScores=Number(nowScores)-Number(userScores);
+                        localStorage.setItem("scores",succScores)
+                        window.location.href =
+                            "http://127.0.0.1:3000/question?pageNum=1&pageSize=10"
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>
