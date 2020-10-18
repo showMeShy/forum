@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="shortcut icon" href="/images/icon.ico" type="image/x-icon">
+    <title>问答模块</title>
     <!-- <link rel="stylesheet" href="css/reset.css" /> -->
     <link rel="stylesheet" href="/css/question/question.css" />
     <link rel="stylesheet" href="/css/question/add.css" />
@@ -138,7 +139,7 @@
 
                                 <div class="commentTotal">
                                     <i class="cms-commentCount icon">评论</i>
-                                    1
+                                    {{question.replayCount}}
                                 </div>
                             </div>
                         </div>
@@ -242,7 +243,7 @@
         loginStatus = localStorage.getItem("login");
 
         var userNameSpan = document.getElementById("userNameSpan");
-        userNameSpan.innerHTML = localStorage.getItem("phone");
+        userNameSpan.innerHTML = localStorage.getItem("userName");
 
         // 根据登陆状态选择显示不显示提示登录信息
         if(loginStatus=="1"){

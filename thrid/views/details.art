@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="shortcut icon" href="/images/icon.ico" type="image/x-icon">
+    <title>帖子详情</title>
     <link rel="stylesheet" href="/css/index/details.css" />
   </head>
 
@@ -16,7 +17,7 @@
         <div class="nav">
           <ul class="clearfix">
             <li><a href="/index?pageNum=1&pageSize=10">首页</a></li>
-            <li><a href="">问答</a></li>
+            <li><a href="/question">问答</a></li>
             <li><a href="">会员卡</a></li>
 
           </ul>
@@ -26,7 +27,7 @@
           <ul class="clearfix">
             <li>
               <div class="author">
-                <a href="">
+                <a href="/userCenter">
                   <img src="" id="userNameImg"/><span id="userNameSpan"></span>
                 </a>
               </div>

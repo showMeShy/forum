@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>标签页列表</title>
+    <link rel="shortcut icon" href="images/icon.ico" type="image/x-icon">
+    <title>问答模块</title>
     <link href="/css/backstage/index.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="/css//backstage/populars.css">
     <script src="/lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>

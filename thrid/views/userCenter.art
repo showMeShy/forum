@@ -3,13 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="images/icon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>用户中心</title>
     <link rel="stylesheet" href="css/user/reset.css">
     <link rel="stylesheet" href="css/user/bootstrap.min.css">
     <script src="js/user/jquery.min.js"></script>
     <script src="js/user/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/user/userCenter.css">
+    <link rel="stylesheet" href="/css/user/userCenter.css">
     <script src="js/user/loadExit.js"></script>
 </head>
 
@@ -25,23 +26,19 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><img src="images/logo.gif" alt=""></a>
+                <a class="navbar-brand" href="/index"><img src="images/logo.gif" alt=""></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="font-size: 16px;">
                 <ul class="nav navbar-nav">
 
-                    <li><a href="#">首页</a></li>
-                    <li><a href="#">问答</a></li>
+                    <li><a href="/index">首页</a></li>
+                    <li><a href="/question">问答</a></li>
                     <li><a href="#">会员卡</a></li>
 
                 </ul>
-                <form class="navbar-form navbar-left">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="搜索">
-                    </div>
-                </form>
+             
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="/userCenter">
@@ -110,17 +107,14 @@
 
         </ul>
     </article>
-    <footer>
-        <p>Powered by diyhi</p>
-        <p>联系我们</p>
-    </footer>
+  
     <script>
     window.onload = function(){
         var userNameImg = document.getElementById("userNameImg");
         userNameImg.src = localStorage.getItem("userImg");
 
         var userNameSpan = document.getElementById("userNameSpan");
-        userNameSpan.innerHTML = localStorage.getItem("phone");
+        userNameSpan.innerHTML = localStorage.getItem("userName");
 
         var userNameLittle = document.getElementById("userNameLittle");
         userNameLittle.src = localStorage.getItem("userImg");

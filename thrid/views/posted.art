@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <title>无标题文档</title>
+    <title>发布新帖</title>
+    <link rel="shortcut icon" href="images/icon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
     <link rel="stylesheet" href="/css/index/posted.css">
     <link href="/dist/summernote.css" rel="stylesheet" />

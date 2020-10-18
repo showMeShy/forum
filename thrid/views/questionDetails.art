@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="shortcut icon" href="/images/icon.ico" type="image/x-icon">
+    <title>问答详情</title>
     <link rel="stylesheet" href="/css/question/details.css" />
     <link rel="stylesheet" href="/css/question/addDetails.css" />
   </head>
@@ -19,7 +20,6 @@
             <li><a href="/index?pageNum=1&pageSize=10">首页</a></li>
             <li><a href="/question">问答</a></li>
             <li><a href="">会员卡</a></li>
-            <li><a href="/topic/posted" id="">发帖</a></li>
           </ul>
         </div>
 
@@ -31,11 +31,9 @@
                   <img src="/images/iu1.jpg" />
                 </a>
               </div>
-              <a href="">{{questionDetails.userInfo.userName || questionDetails.userInfo.phone}}</a>
+              <a href="/userCenter">{{questionDetails.userInfo.userName || questionDetails.userInfo.phone}}</a>
             </li>
-            <li>
-              <a href="/amend">用户中心<span id="allMessage-badge" class="badge" style="position: absolute; margin-top: 14px; display: none"></span></a>
-            </li>
+           
             <li><a href="" id="exit">退出</a></li>
             <form id="logout" action="logout.htm?token=74168cde0e6e4088a303329c46596ec8" method="post"></form>
           </ul>

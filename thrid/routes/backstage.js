@@ -185,6 +185,7 @@ router.post("/addTopic", function (req, res) {
     common.getMongoClient().then(function (client) {
         var dbo = client.db("forum");
         dbo.collection("topic").insertOne(req.body, function (err, resDb) {
+            console.log("resDb",resDb)
             if (err) throw err;
             // 通过res.insertedCount可以获取插入的数量
             console.log("文档插入成功", resDb);

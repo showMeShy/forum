@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>提问题</title>
+    <link rel="shortcut icon" href="images/icon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
     <link rel="stylesheet" href="/css/question/posted.css">
     <link href="/dist/summernote.css" rel="stylesheet" />
@@ -139,7 +140,8 @@
                             userName:localStorage.getItem("userName"),
                             userImg:localStorage.getItem("userImg"),
                             phone:localStorage.getItem("phone")
-                        })
+                        }),
+                        solve:"未解决"
                     },
                     success: function () {
                         var succScores=Number(nowScores)-Number(userScores);

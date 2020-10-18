@@ -109,6 +109,11 @@ router.get("/", function (req, res) {
         // console.log("topicCount",topicCount)
         var topicData = await getQuestionData(dbo,skipValue,pageSize);// 获得每一个帖子的信息
         // console.log("topicData",topicData)
+        for(var j=0;j<topicData.length;j++){
+          topicData[j].replayCount =topicData[j].questionReply.length;
+         
+        }
+        
         var questionObj = {
           question: topicData,
         };
@@ -167,6 +172,9 @@ router.get("/questionList/:preLabelId", function (req, res) {
               var questionCount = await getTopicCount(dbo, questionClassify);
               // console.log(questionCount)
               var question = await getTopic(dbo, questionClassify,skipValue,pageSize);
+              for(var j=0;j<question.length;j++){
+                question[j].replayCount =question[j].questionReply.length;
+              }
               // console.log(question)
               // popData是数组
               var questionObj = {
@@ -312,12 +320,8 @@ router.post("/addQuestionTopic", function (req, res) {
       // console.log("addData",addData)
       addData.visitedCount=Number(addData.visitedCount);
       addData.questionStatus=Number(addData.questionStatus);
-      addData.questionReply=[{
-              "userName": "不要问我是谁",
-              "replyContent": "这是一个回复",
-              "replyTime": "2020-10-15 18:38:39",
-              "replyId": "123"
-          }];
+      addData.questionReply=[];
+      addData.SecondReplay=[];
       
       var dbo = client.db("forum");
       dbo.collection("question").insertOne(addData, function (err, resDb) {
@@ -340,6 +344,9 @@ router.post("/addQuestionTopic", function (req, res) {
       });
   })
 })
+
+
+
 
 
 module.exports = router;
