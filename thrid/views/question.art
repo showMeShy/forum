@@ -25,14 +25,14 @@
     <div class="headerModule">
         <div class="box">
             <a href="" class="logo">
-                <img alt="LOGO" src="/images/logo.gif" />
+                <img alt="LOGO" src="/images/logo.gif" style="height: 42px;" />
             </a>
             <div class="nav">
                 <ul class="clearfix">
                     <li><a href="/index?pageNum=1&pageSize=10">首页</a></li>
                     <li><a href="/question">问答</a></li>
                     <li><a href="">会员卡</a></li>
-                    <li><a href="/topic/posted" id="post">发帖</a></li>
+                    
                 </ul>
             </div>
 
@@ -68,21 +68,22 @@
             <div class="tabModule">
                 <div class="tab-box">
                     <div id="tabNavigation" style="max-height: none">
-                        <a href="/question?pageNum=1&pageSize=10" class="tab_current ">全部</a>
+                        <a href="/question?pageNum=1&pageSize=10" class="tab">全部</a>
                         {{each quetionLabels as label index}}
-                        <a href="/question/questionList/{{label.labelId}}?pageNum=1&pageSize=10" class="tab" id="label{{index}}" data=""> {{label.labelName}}</a>
+                        <a href="/question/questionList/{{label.labelId}}?pageNum=1&pageSize=10" class="tab" id="{{label.labelId}}"  data=""> {{label.labelName}}</a>
                         {{/each}}
+                        <i style="display: none;" id="preLabelId">{{preLabelId}}</i>
+                        
                         
                     </div>
                 </div>
             </div>
             <div style="margin-top: 10px;">
-                <ul class="topStatus">
-                    <li class="active"><a href="askList">最新</a></li>
-                    <li><a href="askList?filterCondition=20">未解决</a></li>
-                    <li><a href="askList?filterCondition=30">已解决</a></li>
-                    <li><a href="askList?filterCondition=40">积分悬赏</a></li>
-                   
+                <ul class="topStatus" id="quesSol">
+                    <li class="active"><a href="/question">全部</a></li>
+                    <li><a href="/question/questionList/{{preLabelId}}/未解决">未解决</a></li>
+                    <li><a href="/question/questionList/{{preLabelId}}/已解决" >已解决</a></li>
+                    <li><a href="">积分悬赏</a></li>
                     
                </ul>
             </div>
@@ -114,7 +115,8 @@
 						                	<span class="rewardInfo">
 						                		悬赏积分:<span class="symbol"></span><span class="amount">{{question.questionScores}}</span> 
 						                	</span>
-						                </span>
+                                        </span>
+                                        <span style="background-color: red;color: yellow;">{{question.solve}}</span>
                                     </li>
                                 </ul>
                                 <h2 class="title clearfix">
@@ -135,7 +137,7 @@
                                 </div>
 
                                 <div class="commentTotal">
-                                    <i class="cms-commentCount icon"></i>
+                                    <i class="cms-commentCount icon">评论</i>
                                     1
                                 </div>
                             </div>
@@ -233,6 +235,7 @@
 <script src="/js/comm/comm.js"></script>
 
 <script>
+   
     window.onload = function(){
         var userNameImg = document.getElementById("userNameImg");
         userNameImg.src = localStorage.getItem("userImg");
@@ -256,6 +259,24 @@
                 return false
             }
         })
+      
+        var labelId=$("#preLabelId").html();
+       
+        // alert("1")
+        var label=$("#tabNavigation a")
+  
+        $(label[0]).attr("class","tab_current tab")
+        for(var i=0;i<label.length;i++){
+            var labelIdCr=$(label[i]).attr("id")
+
+            if(labelIdCr==labelId){
+                $(label[i]).attr("class","tab_current tab")
+                $(label[0]).attr("class","tab")
+            }else{
+            //  alert("1")
+            }
+        }
+        
 
     }
   
