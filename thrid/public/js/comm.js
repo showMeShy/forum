@@ -10,11 +10,9 @@ $(function() {
         $("#one").css("display", "");
     }
 
-<<<<<<< HEAD
-        $("#exit").click(function(){
-=======
+
     $("#exit").click(function() {
->>>>>>> f771a72eb50f911363c503c26ce01fa24f30bbcd
+
             localStorage.clear();
         })
         // $("#post").click(function(){
