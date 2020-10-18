@@ -7,10 +7,9 @@ $(function () {
   //第一次回复
   $("#subBtn").click(function () {
     var topicId = $("#topicId").html();
-    console.log(topicId)
+    console.log($("#replyInp").val())
     if ($("#replyInp").val() != "") {
       var replyContent=$("#replyInp").val();
-
       var myDate = new Date();
       var year = myDate.getFullYear(); //获取当前年
       var month = myDate.getMonth() + 1; //获取当前月
@@ -36,11 +35,15 @@ $(function () {
             phone:localStorage.getItem("phone")
         })
         },
-        success: function () {
-          $("#replyInp").val("");
-         
+        success: function(){
+          // $("#replyInp").val("");
+          // $(location).attr("href","http://127.0.0.1:3000/topic/details/"+topicId)
+          
         },
+
       });
+
+      location.reload()
     }
   });
 
@@ -58,7 +61,7 @@ $(function () {
 
   $(".SecSubBtn").click(function () {
     var topicId = $("#topicId").html();
-    
+    if ($("#SecReplyInp").val() != "") {
     var num = $(this).index(".SecSubBtn");
     var SecReplyVal = $($(".SecReplyInp")[num]).val();
     var replyUserName = $($(".replyUserName")[num]).html();
@@ -92,5 +95,8 @@ $(function () {
       },
       success: function (data) {},
     });
+    }
+
+    location.reload()
   });
 });

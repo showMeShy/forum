@@ -561,8 +561,8 @@ html,body{
     position:relative;
 }
 .tabModule .tab-box .tab:hover {
-    background-color: #ebebeb;
-    color: #555;
+    background-color: #1198FF;
+    color: #fff;
     text-decoration: none;
 }
 .tabModule .tab-box .tab_current:link,
@@ -574,16 +574,17 @@ html,body{
     padding: 5px 8px 5px 8px;
     margin-right: 5px;
     border-radius: 3px;
-    background-color: #334;;
+    background-color: #11A8FF;
     color: #fff;
     position:relative;
     behavior: url(common/default/pc/js/css3pie/PIE.htc);  /*通知IE浏览器调用脚本作用于当前类*/
 }
 .tabModule .tab-box .tab_current:hover {
-    background-color: #445;
+    background-color: #1198FF;
     color: #fff;
     text-decoration: none;
 }
+
 .tabModule .tab-box .tab .icon{
 	margin-right: 2px;
 	position: relative;
@@ -986,4 +987,21 @@ html,body{
 #pager .active {
     background: #4E6EF2;
     color: white;
+}
+
+
+#postSpan >i{
+	text-align: center;
+	float: right;
+	font-size: 15px;
+	vertical-align: middle;
+	color: #409eff;
+	border: 1px solid #b3d8ff;
+	line-height: 3;
+	width: 70px;
+}
+#postSpan >i:hover{
+	cursor: pointer;
+	background: #409eff;
+	color: #fff;
 }

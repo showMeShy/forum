@@ -10,15 +10,15 @@
   <body>
     <div class="headerModule">
       <div class="box">
-        <a href="" class="logo">
-          <img alt="LOGO" src="/images/logo.gif" />
+        <a href="/index" class="logo">
+          <img alt="LOGO" src="/images/logo.gif" style="height: 42px;"/>
         </a>
         <div class="nav">
           <ul class="clearfix">
             <li><a href="/index?pageNum=1&pageSize=10">首页</a></li>
             <li><a href="">问答</a></li>
             <li><a href="">会员卡</a></li>
-            <li><a href="/topic/posted" id="">发帖</a></li>
+
           </ul>
         </div>
 
@@ -95,9 +95,9 @@
               <ol class="commentList">
                 <!-- #comment-## -->
                 {{each all as allData}}
-                {{each allData as eachData}}
+                
                 <div class="commentInfo" id="">
-                  
+                  {{each allData as eachData}}
                   <div class="comment-author">
                     <a href="">
                       {{if (eachData.reply==1)}}
@@ -121,10 +121,10 @@
                     <ul class="box">
                       <li>
                         <div class="reply-top">
-                          <a class="avatarBox" href="user/control/home?userName=test5">
+                          <a class="avatarBox" href="">
                             <img src="{{secondReplay.userInfo.userImg}}" />
                           </a>
-                          <a class="userName" href="user/control/home?userName=test5"> {{secondReplay.userInfo.userName}} </a>
+                          <a class="userName" href=""> {{secondReplay.userInfo.userName}} </a>
 
                           <span class="time"> {{secondReplay.replyTime}}</span>
                         </div>
@@ -155,9 +155,9 @@
                     </span>
                   </div>
                   {{/if}}
-                  
+                  {{/each}}
                 </div>
-                {{/each}}
+                
                 {{/each}}
               </ol>
             

@@ -28,7 +28,7 @@ function getTopicData(dbo,skipValue,pageSize) {
     dbo.collection("topic").find({
       topicStatus:0
       }).sort({
-        count: -1,
+        visitedCount: -1,
       }).skip(skipValue).limit(pageSize).toArray(function (err, topicResult) {
         // console.log(popResult);
         for (var i = 0; i < topicResult.length; i++) {
@@ -44,6 +44,8 @@ function getTopic(dbo, topicClassify,skipValue,pageSize) {
     dbo.collection("topic").find({
       topicClassify: topicClassify,
       topicStatus:0
+    }).sort({
+      visitedCount: -1,
     }).skip(skipValue).limit(pageSize).toArray(function(err,result){
     var topicResult=result;
     for (var i = 0; i < topicResult.length; i++) {
@@ -120,7 +122,6 @@ router.get("/index", function (req, res) {
   });
 });
 
-//查询所有的标签
 
 //根据不同的标签显示不同的帖子
 router.get("/index/:preLabelId", function (req, res) {
@@ -152,17 +153,14 @@ router.get("/index/:preLabelId", function (req, res) {
             console.log("111111111",topicClassify)
             // 查询总条目数
             var topicCount = await getTopicCount(dbo, topicClassify);
-            var Topics = await getTopic(dbo, topicClassify,skipValue,pageSize);
-            console.log("++++++++++++++++++++++",Topics)
-
-            var readNum=[];
-            for(var j=0;j<Topics.length;j++){
-              var eachNum=Topics[j].topicReply.length+Topics[j].secondReplay.length;
-              readNum.push(eachNum)
+            var topicData = await getTopic(dbo, topicClassify,skipValue,pageSize);
+            
+            for(var j=0;j<topicData.length;j++){
+              topicData[j].replayCount =topicData[j].topicReply.length+topicData[j].secondReplay.length;
             }
              // popData是数组
             var topicsObj = {
-              topics: Topics,
+              topics: topicData,
             };
             topics.push(topicsObj);
             
@@ -184,12 +182,10 @@ router.get("/index/:preLabelId", function (req, res) {
           topics: topics,
           preLabelId:preLabelId,
           pageNum: pageNum,
-          readNum:readNum,
+     
           pageCount: topicCount % pageSize == 0 ? topicCount / pageSize : parseInt(topicCount / pageSize) + 1
 
         });
-        // res.send(readNum)
-
         client.close();
       });
   });

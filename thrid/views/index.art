@@ -12,15 +12,15 @@
 <body>
     <div class="headerModule">
         <div class="box">
-            <a href="" class="logo">
-                <img alt="LOGO" src="/images/logo.gif" />
+            <a href="/index" class="logo">
+                <img alt="LOGO" src="/images/logo.gif" style="height: 42px;"/>
             </a>
             <div class="nav">
                 <ul class="clearfix">
                     <li><a href="/index?pageNum=1&pageSize=10">首页</a></li>
                     <li><a href="/question">问答</a></li>
                     <li><a href="">会员卡</a></li>
-                    <li><a href="/topic/posted" id="post">发帖</a></li>
+                    
                 </ul>
             </div>
 
@@ -45,7 +45,7 @@
               <a href="/userCenter">用户中心<span id="allMessage-badge" class="badge" style="position: absolute; margin-top: 14px; display: none"></span></a>
             </li> -->
             <li><a href="" id="exit">退出</a></li>
-            <form id="logout" action="logout.htm?token=74168cde0e6e4088a303329c46596ec8" method="post"></form>
+            <!-- <form id="logout" action="logout.htm?token=74168cde0e6e4088a303329c46596ec8" method="post"></form> -->
           </ul>
         </div>
         </div>
@@ -57,11 +57,15 @@
                 <div class="tab-box">
                     <div id="tabNavigation" style="max-height: none">
                         
-                        <a href="/index?pageNum=1&pageSize=10" class="tab_current">全部</a>
+                        <a href="/index?pageNum=1&pageSize=10" class="tab">全部</a>
                         {{each labels as label}}
-                        <a href="/index/{{label.labelId}}?pageNum=1&pageSize=10" class="tab" data=""> {{label.labelName}} </a>
+                        <a href="/index/{{label.labelId}}?pageNum=1&pageSize=10" class="tab" id="{{label.labelId}}" data=""> {{label.labelName}} </a>
                         {{/each}}
+
+                        <i style="display: none;" id="labelId">{{preLabelId}}</i>
                         
+                        <span id="postSpan"><i href="" id="post">发帖</i></span>
+
                     </div>
                 </div>
             </div>
@@ -88,7 +92,7 @@
                                         <a class="userName" href=""> {{topic.userInfo.phone||topic.userInfo.userName}} </a>
                                         <span class="userRoleName">VIP</span>
                                         <span class="postTime">{{topic.topicTime}}</span>
-                                        <span class="lastReplyTime">最新回复：2020-07-24 02:00:50</span>
+                                        <!-- <span class="lastReplyTime">最新回复：2020-07-24 02:00:50</span> -->
                                     </li>
                                 </ul>
                                 <h2 class="title clearfix">
@@ -188,12 +192,7 @@
             <div class="addAnswerModule">
                 <div class="addAnswer-wrap">
                     <div class="respond">
-                        <p>
-                            请
-                            <a href="login">登录</a>
-                            后发表话题。没有帐号？
-                            <a href="register">注册</a> 一个。
-                        </p>
+                        
                     </div>
                 </div>
             </div>
@@ -213,6 +212,22 @@
 
         var userNameSpan = document.getElementById("userNameSpan");
         userNameSpan.innerHTML = localStorage.getItem("phone");
+
+
+        var labelId=$("#labelId").html();
+        
+        
+        var label=$("#tabNavigation a")
+        $(label[0]).attr("class","tab_current tab")
+        for(var i=0;i<label.length;i++){
+            var labelIdCr=$(label[i]).attr("id")
+
+            if(labelIdCr==labelId){
+                $(label[i]).attr("class","tab_current tab")
+                $(label[0]).attr("class","tab")
+            }
+        }
+
     }
 </script>
 
