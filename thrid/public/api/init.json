@@ -5,35 +5,35 @@
   },
   "logoInfo": {
     "title": "新开普教育",
-    "image": "images/logo.png",
+    "image": "images/backLogo.png",
     "href": ""
   },
   "menuInfo": [{
       "title": "内容管理",
-      "icon": "fa fa-address-book",
+      "icon": "fa fa-edit",
       "href": "",
       "target": "_self",
       "child": [{
           "title": "话题管理",
           "href": "",
-          "icon": "fa fa-window-maximize",
+          "icon": "fa fa-edit",
           "target": "_self",
           "child": [{
               "title": "话题列表",
               "href": "/backstage/queryAllTopic?pageSize=10&pageNum=1",
-              "icon": "fa fa-list-alt",
+              "icon": "fa fa-comment-o",
               "target": "_self"
             },
             {
-              "title": "标签列表",
-              "href": "page/table1.html",
-              "icon": "fa fa-navicon",
+              "title": "话题标签",
+              "href": "/backstage/queryAllLabel?pageSize=10&pageNumL=1",
+              "icon": "fa fa-tags",
               "target": "_self"
             },
             {
-              "title": "全部待审核话题",
-              "href": "page/table2.html",
-              "icon": "fa fa-navicon",
+              "title": "待审核",
+              "href": "",
+              "icon": "fa fa-warning",
               "target": "_self"
             }
           ]
@@ -41,24 +41,24 @@
         {
           "title": "问答管理",
           "href": "",
-          "icon": "fa fa-window-maximize",
+          "icon": "fa fa-question-circle",
           "target": "_self",
           "child": [{
               "title": "问题列表",
               "href": "/backstage/queryAllQuestion?pageSize=10&pageNumQ=1",
-              "icon": "fa fa-list-alt",
+              "icon": "fa fa-comment-o",
               "target": "_self"
             },
             {
-              "title": "标签列表",
-              "href": "",
-              "icon": "fa fa-list-alt",
+              "title": "问题标签",
+              "href": "/backstage/queryAllQuestionLabel?pageSize=10&pageNumQL=1",
+              "icon": "fa fa-tags",
               "target": "_self"
             },
             {
-              "title": "全部待审核问题",
+              "title": "待审核",
               "href": "",
-              "icon": "fa fa-list-alt",
+              "icon": "fa fa-warning",
               "target": "_self"
             }
           ]
@@ -66,37 +66,37 @@
         {
           "title": "留言管理",
           "href": "",
-          "icon": "fa fa-gears",
+          "icon": "fa fa-pencil-square-o",
           "target": "_self"
         },
         {
           "title": "友情链接",
           "href": "",
-          "icon": "fa fa-file-text",
+          "icon": "fa fa-smile-o",
           "target": "_self"
         }
       ]
     },
     {
       "title": "会员管理",
-      "icon": "fa fa-lemon-o",
+      "icon": "fa fa-user",
       "href": "",
       "target": "_self",
       "child": [{
           "title": "会员管理",
           "href": "",
-          "icon": "fa fa-dot-circle-o",
+          "icon": "fa fa-user",
           "target": "_self",
           "child": [{
               "title": "会员列表",
               "href": "/backstage/queryAllUser?pageSize=10&pageNumU=1",
-              "icon": "fa fa-dot-circle-o",
+              "icon": "fa fa-navicon",
               "target": "_self"
             },
             {
               "title": "会员等级",
               "href": "",
-              "icon": "fa fa-dot-circle-o",
+              "icon": "fa fa-mortar-board",
               "target": "_self"
             }
           ]
@@ -104,26 +104,7 @@
         {
           "title": "员工管理",
           "href": "",
-          "icon": "fa fa-adn",
-          "target": "_self"
-        }
-      ]
-    },
-    {
-      "title": "页面管理",
-      "icon": "fa fa-slideshare",
-      "href": "",
-      "target": "_self",
-      "child": [{
-          "title": "模板管理",
-          "href": "",
-          "icon": "fa fa-meetup",
-          "target": ""
-        },
-        {
-          "title": "在线帮助",
-          "href": "",
-          "icon": "fa fa-superpowers",
+          "icon": "fa fa-street-view",
           "target": "_self"
         }
       ]

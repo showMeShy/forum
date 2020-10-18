@@ -10,33 +10,43 @@
     <script src="/lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="/css/backstage/public.css" media="all">
+
+    <style>
+        .header button {
+            border: none;
+            margin-left: 20px;
+        }
+    </style>
 </head>
 
 <body>
-    <button type="button"><a href="/posted.html">添加话题</a> </button>
-    <button type="button"><a href="/backstage/queryRecycle?pageNumD=1&pageSize=10">回收站</a></button>
+    <div class="header">
+        <button type="button"><a href="/posted.html">添加话题</a> </button>
+        <button type="button"><a href="/backstage/queryRecycle?pageNumD=1&pageSize=10">回收站</a></button>
+    </div>
+
     <div id="content" style="background: #fff;" class="content">
         <div class="head">
             <div>话题</div>
-            <div>用户</div>
+            <div>发帖人</div>
             <div>发帖时间</div>
             <div>操作</div>
         </div>
         {{each topiclist as topic}}
         <div class="topic">
             <div>
-                <a href="/topic/queryOne/{{topic._id}}">{{topic.topicTitle}}</a>
+                <a href="">{{topic.topicTitle}}</a>
             </div>
             <div>
-                <a href=""><a href="">{{topic.userName}}</a></a>
+                <a href="">{{topic.userInfo.userName}}</a>
             </div>
             <div>
-                <a href=""><a href="">{{topic.topicTime}}</a></a>
+                <a href="">{{topic.topicTime}}</a>
             </div>
             <div>
                 <a href="/backstage/deleteTopicById/{{topic._id}}?pageNum={{pageNum}}&pageSize=10">删除</a>
                 <span>|</span>
-                <a href="">查看</a>
+                <a href="/backstage/queryOneById/{{topic._id}}">查看</a>
 
             </div>
         </div>

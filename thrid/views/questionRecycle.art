@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>回收站</title>
+    <title>问题回收站</title>
     <link href="/css/backstage/index.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="/css/backstage/populars.css">
     <script src="/lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
@@ -66,92 +66,94 @@
 
 <body>
     <div class="header">
-        <button type="button"><a href="/backstage/queryAlltopic?pageSize=10&pageNum=1">返回</a></button>
+        <button type="button"><a href="/backstage/queryAllQuestion?pageSize=10&pageNumQ=1">返回</a></button>
     </div>
+
     <div id="content" style="background: #fff;" class="content">
         <div class="head">
-            <div>话题</div>
-            <div>用户</div>
+            <div>问题</div>
+            <div>用户名</div>
             <div>状态</div>
             <div>操作</div>
         </div>
-        {{each recylelist as topic}}
+        {{each questionRecycle as topic}}
         <div class="topic">
             <div>
-                <a href="">{{topic.topicTitle}}</a>
+                <a href="">{{topic.questionTitle}}</a>
             </div>
             <div>
-                <a href=""><a href="">{{topic.userInfo.userName}}</a></a>
+                <a href=""><a
+                        href="">{{topic.userInfo.userName == true?topic.userInfo.userName:topic.userInfo.phone}}</a></a>
             </div>
             <div>
-                <a href=""><a href="">{{topic.topicStatus}}</a></a>
+                <a href=""><a href="">{{topic.questionStatus}}</a></a>
             </div>
             <div>
-                <a href="/backstage/recoverById/{{topic._id}}?pageNumD={{pageNumD}}&pageSize=10">恢复</a>
+                <a href="/backstage/recoverQuestionById/{{topic._id}}?pageNumQR={{pageNumQR}}&pageSize=10">恢复</a>
             </div>
         </div>
         {{/each}}
     </div>
 
     <div id="pager" class="pagerController">
-        <span>当前页: {{pageNumD}} / {{pageCountD}}</span>
+        <span>当前页: {{pageNumQR}} / {{pageCountQR}}</span>
         <!-- 首页 -->
-        <a href="/backstage/queryRecycle?pageNumD=1&pageSize=10">首页</a>
+        <a href="/backstage/queryQuestionRecycle?pageNumQR=1&pageSize=10">首页</a>
 
         <!-- 上一页: 已经处于第一页,那么就不显示上一页 -->
-        {{if (pageNumD != 1)}}
-        <a href="/backstage/queryRecycle?pageNumD={{pageNumD-1}}&pageSize=10">上一页</a>
+        {{if (pageNumQR != 1)}}
+        <a href="/backstage/queryQuestionRecycle?pageNumQR={{pageNumQR-1}}&pageSize=10">上一页</a>
         {{/if}}
 
         <!-- 显示数值码 -->
         <!-- 如果总页码小于等于5 -->
-        {{if (pageCountD <= 5)}}
-        <% for(var i = 1; i <= pageCountD; i++){ %>
-        <% if (i == pageNumD) { %>
-        <a href="/backstage/queryRecycle?pageNumD=<%= i %>&pageSize=10" class="active"><%= i %></a>
-        <% } else if (pageNumD != i) { %>
-        <a href="/backstage/queryRecycle?pageNumD=<%= i %>&pageSize=10"><%= i %></a>
+        {{if (pageCountQR <= 5)}}
+        <% for(var i = 1; i <= pageCountQR; i++){ %>
+        <% if (i == pageNumQR) { %>
+        <a href="/backstage/queryQuestionRecycle?pageNumQR=<%= i %>&pageSize=10" class="active"><%= i %></a>
+        <% } else if (pageNumQR != i) { %>
+        <a href="/backstage/queryQuestionRecycle?pageNumQR=<%= i %>&pageSize=10"><%= i %></a>
         <% } %>
         <% } %>
         {{/if}}
 
-        {{if (pageNumD <= 3 && pageCountD > 5) }}
+        {{if (pageNumQR <= 3 && pageCountQR > 5) }}
         <% for(var i = 1; i <= 5; i++){ %>
-        <% if (i == pageNumD) { %>
-        <a href="/backstage/queryRecycle?pageNumD=<%= i %>&pageSize=10" class="active"><%= i %></a>
-        <% } else if (pageNumD != i) { %>
-        <a href="/backstage/queryRecycle?pageNumD=<%= i %>&pageSize=10"><%= i %></a>
+        <% if (i == pageNumQR) { %>
+        <a href="/backstage/queryQuestionRecycle?pageNumQR=<%= i %>&pageSize=10" class="active"><%= i %></a>
+        <% } else if (pageNumQR != i) { %>
+        <a href="/backstage/queryQuestionRecycle?pageNumQR=<%= i %>&pageSize=10"><%= i %></a>
         <% } %>
         <% } %>
         {{/if}}
 
-        {{if (pageNumD > 3 && (pageNumD+2 <= pageCountD)) }}
-        <% for(var i = pageNumD -2; i <= pageNumD + 2; i++){ %>
-        <% if (i == pageNumD) { %>
-        <a href="/backstage/queryRecycle?pageNumD=<%= i %>&pageSize=10" class="active"><%= i %></a>
-        <% } else if (pageNumD != i) { %>
-        <a href="/backstage/queryRecycle?pageNumD=<%= i %>&pageSize=10"><%= i %></a>
+        {{if (pageNumQR > 3 && (pageNumQR+2 <= pageCountQR)) }}
+        <% for(var i = pageNumQR -2; i <= pageNumQR + 2; i++){ %>
+        <% if (i == pageNumQR) { %>
+        <a href="/backstage/queryQuestionRecycle?pageNumQR=<%= i %>&pageSize=10" class="active"><%= i %></a>
+        <% } else if (pageNumQR != i) { %>
+        <a href="/backstage/queryQuestionRecycle?pageNumQR=<%= i %>&pageSize=10"><%= i %></a>
         <% } %>
         <% } %>
         {{/if}}
 
-        {{if (pageNumD + 2 > pageCountD && pageCountD > 5)}}
-        <% for(var i = pageCountD - 4; i <= pageCountD; i++){ %>
-        <% if (i == pageNumD) { %>
-        <a href="/backstage/queryRecycle?pageNumD=<%= i %>&pageSize=10" class="active"><%= i %></a>
-        <% } else if (pageNumD != i) { %>
-        <a href="/backstage/queryRecycle?pageNumD=<%= i %>&pageSize=10"><%= i %></a>
+        {{if (pageNumQR + 2 > pageCountQR && pageCountQR > 5)}}
+        <% for(var i = pageCountQR - 4; i <= pageCountQR; i++){ %>
+        <% if (i == pageNumQR) { %>
+        <a href="/backstage/queryQuestionRecycle?pageNumQR=<%= i %>&pageSize=10" class="active"><%= i %></a>
+        <% } else if (pageNumQR != i) { %>
+        <a href="/backstage/queryQuestionRecycle?pageNumQR=<%= i %>&pageSize=10"><%= i %></a>
         <% } %>
         <% } %>
         {{/if}}
 
         <!-- 下一页：已经处于最后一页,那么就不显示下一页 -->
-        {{if (pageNumD != pageCountD)}}
-        <a href="/backstage/queryRecycle?pageNumD={{pageNumD+1}}&pageSize=10">下一页</a>
+        {{if (pageNumQR != pageCountQR)}}
+        <a href="/backstage/queryQuestionRecycle?pageNumQR={{pageNumQR+1}}&pageSize=10">下一页</a>
         {{/if}}
 
         <!-- 尾页 -->
-        <a href="/backstage/queryRecycle?pageNumD={{pageCountD}}&pageSize=10">尾页</a>
+        <a href="/backstage/queryQuestionRecycle?pageNumQR={{pageCountQR}}&pageSize=10">尾页</a>
     </div>
     <script>
         // 如果当前页面没有数据，则给.active类元素加当前href

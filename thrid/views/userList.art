@@ -10,39 +10,109 @@
     <script src="/lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="/css/backstage/public.css" media="all">
+
+    <style>
+        .head>div:nth-child(1) {
+            width: 40%;
+            float: left;
+            border-right: 1px solid #0c0f13;
+        }
+
+        .head>div:nth-child(2) {
+            width: 20%;
+            float: left;
+            border-right: 1px solid #0c0f13;
+        }
+
+        .head>div:nth-child(3) {
+            width: 20%;
+            float: left;
+            border-right: 1px solid #0c0f13;
+        }
+
+        .head>div:nth-child(4) {
+            width: 10%;
+            float: left;
+            border-right: 1px solid #0c0f13;
+        }
+
+        .head>div:nth-child(5) {
+            width: 10%;
+            float: right;
+        }
+
+        div.topic>div:nth-child(1) {
+            width: 40%;
+            float: left;
+            border-right: 1px solid #0c0f13;
+        }
+
+        div.topic>div:nth-child(2) {
+            width: 20%;
+            float: left;
+            border-right: 1px solid #0c0f13;
+        }
+
+        div.topic>div:nth-child(3) {
+            width: 20%;
+            float: left;
+            border-right: 1px solid #0c0f13;
+        }
+
+        div.topic>div:nth-child(4) {
+            width: 10%;
+            float: left;
+            border-right: 1px solid #0c0f13;
+        }
+
+        div.topic>div:nth-child(5) {
+            width: 10%;
+            float: right;
+        }
+    </style>
 </head>
 
 <body>
-    <button type="button">添加用户</button>
-    <button type="button">小黑屋</button>
+
     <div id="content" style="background: #fff;" class="content">
         <div class="head">
             <div>用户名</div>
             <div>手机号</div>
-            <div>积分</div>
+            <div>注册时间</div>
+            <div>状态</div>
             <div>操作</div>
         </div>
         {{each userlist as topic}}
         <div class="topic">
             <div>
-                <a href="/topic/queryOne/{{topic._id}}">{{topic.userName}}</a>
+                <a href="">{{topic.userName}}</a>
             </div>
             <div>
                 <a href=""><a href="">{{topic.phone}}</a></a>
             </div>
             <div>
-                <a href=""><a href="">{{topic.scores}}</a></a>
+                <a href=""><a href="">{{topic.regTime}}</a></a>
             </div>
             <div>
-                <a href="/backstage/deleteUserById/{{topic._id}}?pageNumU={{pageNumU}}&pageSize=10">删除</a>
-                <span>|</span>
-                <a href="">查看</a>
-
+                <% if (topic.userStatus == 0) { %>
+                正常
+                <% } else if (topic.userStatus == 1) { %>
+                已禁用
+                <% } %>
             </div>
+            <div>
+                <% if (topic.userStatus == 0) { %>
+                <a href="/backstage/deleteUserById/{{topic._id}}/1?pageNumU={{pageNumU}}&pageSize=10">禁用</a>
+                <% } else if (topic.userStatus == 1) { %>
+                <a href="/backstage/deleteUserById/{{topic._id}}/0?pageNumU={{pageNumU}}&pageSize=10">解禁</a>
+                <% } %>
+                <!-- <span>|</span>
+                <a href="/topic/queryOne/{{topic._id}}">查看</a> -->
+            </div>
+
         </div>
         {{/each}}
     </div>
-
     <div id="pager" class="pagerController">
         <span>当前页: {{pageNumU}} / {{pageCountU}}</span>
         <!-- 首页 -->

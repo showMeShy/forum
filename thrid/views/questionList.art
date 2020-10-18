@@ -4,39 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>标签页列表</title>
     <link href="/css/backstage/index.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="/css/backstage/populars.css">
+    <link rel="stylesheet" href="/css//backstage/populars.css">
     <script src="/lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="/css/backstage/public.css" media="all">
+    <style>
+        .header button {
+            border: none;
+            margin-left: 20px;
+        }
+    </style>
 </head>
 
 <body>
-    <button type="button">添加话题</button>
-    <button type="button">回收站</button>
+    <div class="header">
+        <button type="button" class="addbtn"><a
+                href="/backstage/queryQuestionRecycle?pageNumQR=1&pageSize=10">回收站</a></button>
+    </div>
+
     <div id="content" style="background: #fff;" class="content">
         <div class="head">
             <div>问题</div>
             <div>用户</div>
-            <div>发表时间</div>
+            <div>发帖时间</div>
             <div>操作</div>
         </div>
         {{each questionlist as topic}}
         <div class="topic">
             <div>
-                <a href="/topic/queryOne/{{topic._id}}">{{topic.topicTitle}}</a>
+                <a href="">{{topic.questionTitle}}</a>
             </div>
             <div>
-                <a href=""><a href="">{{topic.userName}}</a></a>
+                <a href=""><a href="">{{topic.userInfo.userName}}</a></a>
             </div>
             <div>
-                <a href=""><a href="">{{topic.topicTime}}</a></a>
+                <a href=""><a href="">{{topic.questionTime}}</a></a>
             </div>
             <div>
                 <a href="/backstage/deleteQuestionById/{{topic._id}}?pageNumQ={{pageNumQ}}&pageSize=10">删除</a>
                 <span>|</span>
-                <a href="">查看</a>
+                <a href="/backstage/queryOneQusetionById/{{topic._id}}">查看</a>
 
             </div>
         </div>
