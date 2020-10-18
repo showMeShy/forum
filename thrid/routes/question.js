@@ -51,6 +51,22 @@ function getTopic(dbo, topicClassify,skipValue,pageSize) {
   })
   });
 }
+//问题状态
+//获取不同标签的不同帖子并分页
+function getQuestionSolve(dbo, queSolve,skipValue,pageSize,topicClassify) {
+  return new Promise(function (resolve, reject) {
+    dbo.collection("question").find({
+      solve: queSolve,
+      questionClassify: topicClassify,
+    }).skip(skipValue).limit(pageSize).toArray(function(err,result){
+    var topicResult=result;
+    for (var i = 0; i < topicResult.length; i++) {
+      topicResult[i]._id = topicResult[i]._id.toString();
+    }
+    resolve(topicResult);
+  })
+  });
+}
 
 
 
@@ -75,8 +91,8 @@ router.get("/", function (req, res) {
         // console.log("所有的模块", result);
         // 根据每个模块的_id去populars中查询对应的文档
         for (var i = 0; i < labelsArr.length; i++) {
-        
-          // var topicClassify = labelsArr[i].quetionLabelsName;
+          if(labelsArr[i].labelStatus=="0"){
+               // var topicClassify = labelsArr[i].quetionLabelsName;
           // 每个模块的id
           var labelId = labelsArr[i]._id.toString();
           // 模块的ID和模块名
@@ -86,6 +102,7 @@ router.get("/", function (req, res) {
           };
          
           quetionLabels.push(quetionLabelsObj);
+          }
           
         }
         var topicCount = await getAllQuestionCount(dbo);//获得全部问题的数量
@@ -134,25 +151,101 @@ router.get("/questionList/:preLabelId", function (req, res) {
     // 先查询所有的模块
     dbo.collection("questionLabels").find({}).toArray(async function (err, result) {
         var labelsArr = result;
-      
-     
         // 根据每个模块的_id去populars中查询对应的文档
         for (var i = 0; i < labelsArr.length; i++) {
+          if(labelsArr[i].labelStatus=="0"){
+            // 每个模块的模块名
+            var questionClassify = labelsArr[i].quetionLabelsName;
+            // console.log("questionClassify",questionClassify)
+            // 每个模块的ID
+            var questionlabelId = labelsArr[i]._id.toString();
+                // console.log("questionlabelId",questionlabelId)
+            if (questionlabelId == preLabelId) {
+              // await 等待,等待异步执行完成
+            
+              // 查询总条目数
+              var questionCount = await getTopicCount(dbo, questionClassify);
+              // console.log(questionCount)
+              var question = await getTopic(dbo, questionClassify,skipValue,pageSize);
+              // console.log(question)
+              // popData是数组
+              var questionObj = {
+                question: question,
+              };
+              questions.push(questionObj);
+              // console.log("questions",questions[0])
+            }
+
+            var questionLabelsObj = {
+              labelName: labelsArr[i].quetionLabelsName,
+              class: labelsArr[i].class,
+              questionlabelId: questionlabelId,
+              labelId: questionlabelId
+            };
+
+            quetionLabels.push(questionLabelsObj);
+            // console.log("quetionLabels",quetionLabels)
+          }
+        
+        }
+        res.render("question.art", {
+          quetionLabels: quetionLabels,
+          questions: questions,
+          preLabelId:preLabelId,
+          pageNum: pageNum,
+          pageCount: questionCount % pageSize == 0 ? questionCount / pageSize : parseInt(questionCount / pageSize) + 1
+          // cssClass:cssClass
+        });
+
+        client.close();
+      });
+  });
+});
+
+router.get("/questionList/:preLabelId/:solve", function (req, res) {
+    // 获取solve
+    var solve=req.params.solve;
+    console.log(solve)
+    var preLabelId = req.params.preLabelId;
+    console.log("preLabelId",preLabelId)
+    // 获取得到页码和每页显示的条目数
+    var pageNum = req.query.pageNum?Number(req.query.pageNum):1;
+    var pageSize = req.query.pageSize?Number(req.query.pageSize):10;
+    var skipValue = (pageNum - 1) * pageSize;
+
+//根据标签id查询标签的标签名
+var quetionLabels = [];
+var questions = [];
+common.getMongoClient().then((client) => {
+  var dbo = client.db("forum"); // dbo就是指定的数据库对象
+  // 先查询所有的模块
+  dbo.collection("questionLabels").find({}).toArray(async function (err, result) {
+      var labelsArr = result;
+      // 根据每个模块的_id去populars中查询对应的文档
+      for (var i = 0; i < labelsArr.length; i++) {
+    
+    
+        if(labelsArr[i].labelStatus=="0"){
+      
           // 每个模块的模块名
           var questionClassify = labelsArr[i].quetionLabelsName;
           // console.log("questionClassify",questionClassify)
           // 每个模块的ID
           var questionlabelId = labelsArr[i]._id.toString();
               // console.log("questionlabelId",questionlabelId)
+          // var questionSolve = await getQuestionSolve(dbo, solve,skipValue,pageSize);
+          // console.log(questionSolve)
+        
           if (questionlabelId == preLabelId) {
             // await 等待,等待异步执行完成
-          
+           
             // 查询总条目数
             var questionCount = await getTopicCount(dbo, questionClassify);
             // console.log(questionCount)
-            var question = await getTopic(dbo, questionClassify,skipValue,pageSize);
+           
+            var question = await getQuestionSolve(dbo, solve,skipValue,pageSize,questionClassify);
             // console.log(question)
-             // popData是数组
+            // popData是数组
             var questionObj = {
               question: question,
             };
@@ -170,34 +263,40 @@ router.get("/questionList/:preLabelId", function (req, res) {
           quetionLabels.push(questionLabelsObj);
           // console.log("quetionLabels",quetionLabels)
         }
-        res.render("question.art", {
-          quetionLabels: quetionLabels,
-          questions: questions,
-          preLabelId:preLabelId,
-          pageNum: pageNum,
-          pageCount: questionCount % pageSize == 0 ? questionCount / pageSize : parseInt(questionCount / pageSize) + 1
-          // cssClass:cssClass
-        });
-
-        client.close();
+      
+      }
+      res.render("question.art", {
+        quetionLabels: quetionLabels,
+        questions: questions,
+        preLabelId:preLabelId,
+        pageNum: pageNum,
+        pageCount: questionCount % pageSize == 0 ? questionCount / pageSize : parseInt(questionCount / pageSize) + 1
+        // cssClass:cssClass
       });
-  });
+
+      client.close();
+    });
 });
 
+})
 
 
 //渲染发帖页
 router.get("/posted",function(req,res){
-
+  var arr=[];
   common.getMongoClient().then(async function (client) {
       var dbo = client.db("forum");
 
       dbo.collection("questionLabels").find({}).toArray(function (err, result) {
-          
-          // console.log("result",result)
-          // 结合populars.art渲染数据
+          var resultArr=result;
+          for(var i =0 ;i<resultArr.length;i++){
+            if(resultArr[i].labelStatus=="0"){
+              arr.push(resultArr[i])
+            }
+          }
+         
           res.render('questionPosted.art', {
-            quetionLabels:result
+            quetionLabels:arr
           });
       })
   })

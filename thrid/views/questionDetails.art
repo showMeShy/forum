@@ -12,12 +12,12 @@
     <div class="headerModule">
       <div class="box">
         <a href="" class="logo">
-          <img alt="LOGO" src="/images/logo.gif" />
+          <img alt="LOGO" src="/images/logo.gif"  style="height: 42px;"/>
         </a>
         <div class="nav">
           <ul class="clearfix">
             <li><a href="/index?pageNum=1&pageSize=10">首页</a></li>
-            <li><a href="">问答</a></li>
+            <li><a href="/question">问答</a></li>
             <li><a href="">会员卡</a></li>
             <li><a href="/topic/posted" id="">发帖</a></li>
           </ul>

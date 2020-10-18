@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>questionLabelList</title>
+    <link href="/css/backstage/index.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/css/backstage/populars.css">
+    <script src="/lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="/css/backstage/public.css" media="all">
+    <style>
+        .header {
+            padding-left: 20px;
+        }
+
+        .head>div:nth-child(1) {
+            width: 40%;
+            float: left;
+            border-right: 1px solid #0c0f13;
+        }
+
+        .head>div:nth-child(2) {
+            width: 30%;
+            float: left;
+            border-right: 1px solid #0c0f13;
+        }
+
+        .head>div:nth-child(3) {
+            width: 30%;
+            float: left;
+            border-right: 1px solid #0c0f13;
+        }
+
+        div.topic>div:nth-child(1) {
+            width: 40%;
+            float: left;
+            border-right: 1px solid #0c0f13;
+        }
+
+        div.topic>div:nth-child(2) {
+            width: 30%;
+            float: left;
+            border-right: 1px solid #0c0f13;
+        }
+
+        div.topic>div:nth-child(3) {
+            width: 30%;
+            float: left;
+            border-right: 1px solid #0c0f13;
+        }
+
+        .header .addTop {
+            display: block;
+            width: 100px;
+            height: 40px;
+        }
+
+        .addbtn:hover {
+            background: #28333e;
+            color: white;
+            cursor: pointer;
+        }
+
+        .addbtn {
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid #0c0f13;
+            border-radius: 5px;
+        }
+
+        .header button {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="layuimini-notice header">
+        <div class="layuimini-notice-title"><button type="button" class="addbtn">添加标签</button></div>
+        <div class="layuimini-notice-extra"></div>
+        <div class="layuimini-notice-content layui-hide">
+            <input type="text" class="addTop">
+        </div>
+    </div>
+    <div id="content" style="background: #fff;" class="content">
+        <div class="head">
+            <div>标签名</div>
+            <div>状态</div>
+            <div>操作</div>
+        </div>
+        {{each questionLabelList as topic}}
+        <div class="topic">
+            <div>
+                <a href="">{{topic.quetionLabelsName}}</a>
+            </div>
+            <div>
+                <% if (topic.labelStatus == 0) { %>
+                正常
+                <% } else if (topic.labelStatus == 1) { %>
+                已禁用
+                <% } %>
+            </div>
+            <div>
+                <% if (topic.labelStatus == 0) { %>
+                <a href="/backstage/deleteQuestionLabelById/{{topic._id}}/1?pageNumQL={{pageNumQL}}&pageSize=10">禁用</a>
+                <% } else if (topic.labelStatus == 1) { %>
+                <a href="/backstage/deleteQuestionLabelById/{{topic._id}}/0?pageNumQL={{pageNumQL}}&pageSize=10">解禁</a>
+                <% } %>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+
+    <div id="pager" class="pagerController">
+        <span>当前页: {{pageNumQL}} / {{pageCountQL}}</span>
+        <!-- 首页 -->
+        <a href="/backstage/queryAllQuestionLabel?pageNumQL=1&pageSize=10">首页</a>
+
+        <!-- 上一页: 已经处于第一页,那么就不显示上一页 -->
+        {{if (pageNumQL != 1)}}
+        <a href="/backstage/queryAllQuestionLabel?pageNumQL={{pageNumQL-1}}&pageSize=10">上一页</a>
+        {{/if}}
+
+        <!-- 显示数值码 -->
+        <!-- 如果总页码小于等于5 -->
+        {{if (pageCountQL <= 5)}}
+        <% for(var i = 1; i <= pageCountQL; i++){ %>
+        <% if (i == pageNumQL) { %>
+        <a href="/backstage/queryAllQuestionLabel?pageNumQL=<%= i %>&pageSize=10" class="active"><%= i %></a>
+        <% } else if (pageNumQL != i) { %>
+        <a href="/backstage/queryAllQuestionLabel?pageNumQL=<%= i %>&pageSize=10"><%= i %></a>
+        <% } %>
+        <% } %>
+        {{/if}}
+
+        {{if (pageNumQL <= 3 && pageCountQL > 5) }}
+        <% for(var i = 1; i <= 5; i++){ %>
+        <% if (i == pageNumQL) { %>
+        <a href="/backstage/queryAllQuestionLabel?pageNumQL=<%= i %>&pageSize=10" class="active"><%= i %></a>
+        <% } else if (pageNumQL != i) { %>
+        <a href="/backstage/queryAllQuestionLabel?pageNumQL=<%= i %>&pageSize=10"><%= i %></a>
+        <% } %>
+        <% } %>
+        {{/if}}
+
+        {{if (pageNumQL > 3 && (pageNumQL+2 <= pageCountQL)) }}
+        <% for(var i = pageNumQL -2; i <= pageNumQL + 2; i++){ %>
+        <% if (i == pageNumQL) { %>
+        <a href="/backstage/queryAllQuestionLabel?pageNumQL=<%= i %>&pageSize=10" class="active"><%= i %></a>
+        <% } else if (pageNumQL != i) { %>
+        <a href="/backstage/queryAllQuestionLabel?pageNumQL=<%= i %>&pageSize=10"><%= i %></a>
+        <% } %>
+        <% } %>
+        {{/if}}
+
+        {{if (pageNumQL + 2 > pageCountQL && pageCountQL > 5)}}
+        <% for(var i = pageCountQL - 4; i <= pageCountQL; i++){ %>
+        <% if (i == pageNumQL) { %>
+        <a href="/backstage/queryAllQuestionLabel?pageNumQL=<%= i %>&pageSize=10" class="active"><%= i %></a>
+        <% } else if (pageNumQL != i) { %>
+        <a href="/backstage/queryAllQuestionLabel?pageNumQL=<%= i %>&pageSize=10"><%= i %></a>
+        <% } %>
+        <% } %>
+        {{/if}}
+
+        <!-- 下一页：已经处于最后一页,那么就不显示下一页 -->
+        {{if (pageNumQL != pageCountQL)}}
+        <a href="/backstage/queryAllQuestionLabel?pageNumQL={{pageNumQL+1}}&pageSize=10">下一页</a>
+        {{/if}}
+
+        <!-- 尾页 -->
+        <a href="/backstage/queryAllQuestionLabel?pageNumQL={{pageCountQL}}&pageSize=10">尾页</a>
+    </div>
+    <script src="../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+    <script src="../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+    <script>
+        // 如果当前页面没有数据，则给.active类元素加当前href
+        $(function () {
+            console.log($("#content .topic").length);
+            if ($("#content .topic").length == 0) {
+                location.href = $(".active").attr("href")
+            }
+        })
+        layui.use(['layer', 'miniTab', 'echarts'], function () {
+            var $ = layui.jquery,
+                layer = layui.layer,
+                miniTab = layui.miniTab,
+                echarts = layui.echarts;
+
+            miniTab.listen();
+
+            /**
+             * 添加标题
+             **/
+            $('body').on('click', '.addbtn', function () {
+                layer.prompt({
+                    title: '输入标签名，并确认',
+                    formType: 2
+                }, function (pass, index) {
+                    layer.close(index);
+                    // layer.prompt({
+                    //     title: '随便写点啥，并确认',
+                    //     formType: 2
+                    // }, function (text, index) {
+                    //     layer.close(index);
+                    //     
+                    // });
+                    $.ajax({
+                        url: "/backstage/addQuestionLabel",
+                        method: "post",
+                        data: {
+                            quetionLabelsName: pass,
+                            labelStatus: 0
+                        },
+                        success: function (data) {
+                            layer.msg('添加' + pass + '成功！');
+                            location.href =
+                                '/backstage/queryAllQuestionLabel?pageSize=10&pageNumQL=1';
+                        },
+                        error: function (data) {
+                            layer.msg('添加' + pass + '失败！');
+                        }
+                    });
+                });
+
+            });
+
+        });
+    </script>
+</body>
+
+</html>
