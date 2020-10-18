@@ -60,6 +60,7 @@
         .addbtn:hover {
             background: #28333e;
             color: white;
+            cursor: pointer;
         }
 
         .addbtn {
@@ -195,7 +196,7 @@
             /**
              * 添加标题
              **/
-            $('body').on('click', '.layuimini-notice-title', function () {
+            $('body').on('click', '.addbtn', function () {
                 layer.prompt({
                     title: '输入标签名，并确认',
                     formType: 2

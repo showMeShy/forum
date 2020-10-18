@@ -68,10 +68,7 @@
             line-height: 30px;
             border: 1px solid #0c0f13;
             border-radius: 5px;
-        }
-
-        .header button {
-            margin-left: 20px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -195,7 +192,7 @@
             /**
              * 添加标题
              **/
-            $('body').on('click', '.layuimini-notice-title', function () {
+            $('body').on('click', '.addbtn', function () {
                 layer.prompt({
                     title: '输入标签名，并确认',
                     formType: 2
