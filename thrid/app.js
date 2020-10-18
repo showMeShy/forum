@@ -53,17 +53,27 @@ app.use("/question", question)
 app.use("/askDetail", askDetail)
 app.use("/amend", amend)
 app.use("/userCenter", userCenter)
+<<<<<<< HEAD
 app.use('/backstage', backstage)
 
 app.use('/questionDetails', questionDetails)
+=======
+app.use('/backstage', backstage) <<
+
+    app.use('/questionDetails', questionDetails)
+>>>>>>> 92b21530bf1ad66f518eda6c368a8f7b298ce44f
 app.use('/questionUpload', questionUpload)
-// 首页
+    // 首页
 app.use('/topic', topic)
 app.use('/upload', multerUpload);
 
 module.exports = app;
 
+<<<<<<< HEAD
     // 首页
+=======
+// 首页
+>>>>>>> 92b21530bf1ad66f518eda6c368a8f7b298ce44f
 app.use('/topic', topic)
 app.use('/upload', multerUpload);
 
@@ -85,5 +95,9 @@ app.use('/upload', multerUpload);
 //   res.render('error');
 // });
 
+<<<<<<< HEAD
 module.exports = app;
 
+=======
+module.exports = app;
+>>>>>>> 92b21530bf1ad66f518eda6c368a8f7b298ce44f
