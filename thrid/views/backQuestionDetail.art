@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>questionDetail</title>
+  <style>
+    /* 高度百分百骨架 */
+    .skeleton {
+      width: 100%;
+      min-height: 100%;
+
+      height: auto;
+      display: -webkit-box;
+      /** display: box;和prism.js插件代码行高垂直对齐有冲突 **/
+      display: box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -o-box;
+
+      -webkit-box-pack: center;
+      -moz-box-pack: center;
+      -o-box-pack: center;
+      box-pack: center;
+      -ms-flex-pack: center
+    }
+
+
+    .topicContentModule {
+      margin: 10px auto auto auto;
+    }
+
+    .topicContentModule .left {
+      float: left;
+      width: 900px;
+      height: auto;
+      padding-bottom: 10px;
+    }
+
+    .topicContentModule .left .topic-wrap {
+      background: #fff;
+      box-shadow: 0 0px 3px 0 rgba(0, 0, 0, .02), 0 4px 8px 0 rgba(0, 0, 0, .02);
+      position: relative;
+    }
+
+    .topicContentModule .left .topic-wrap .topicTag {
+      padding-top: 15px;
+      margin-left: 15px;
+    }
+
+    .topicContentModule .left .topic-wrap .topicTag .tag {
+      display: inline-block;
+      font-size: 14px;
+      line-height: 14px;
+      padding: 6px 8px 6px 8px;
+      margin-right: 5px;
+      border-radius: 3px;
+      color: #555;
+      background-color: #f5f5f5;
+      position: relative;
+    }
+
+    .topicContentModule .left .topic-wrap .topicTag .tag:hover {
+      background-color: #ebebeb;
+      color: #555;
+      text-decoration: none;
+    }
+
+    .topicContentModule .left .topic-wrap .editTopic {
+      position: absolute;
+      right: 5px;
+      top: 20px;
+    }
+
+    .topicContentModule .left .topic-wrap .editTopic i {
+      font-size: 13px;
+      margin-right: 2px;
+    }
+
+    .topicContentModule .left .topic-wrap .editTopic a {
+      font-size: 15px;
+      margin-right: 8px;
+    }
+
+    .topicContentModule .left .topic-wrap .topicBox {
+      height: auto;
+
+
+      padding: 15px 15px 15px 15px;
+    }
+
+    .topicContentModule .left .topic-wrap .topicBox .title {
+      color: #333;
+      font-size: 24px;
+      border: none;
+      line-height: 34px;
+      margin: 9px 0 18px 0;
+    }
+
+    .topicContentModule .left .topic-wrap .topicBox .topicInfo {
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    .topicContentModule .left .topic-wrap .topicBox .topicInfo .postTime {
+      float: left;
+    }
+
+    .topicContentModule .left .topic-wrap .topicBox .topicInfo .viewTotal-icon {
+      float: left;
+      margin-left: 20px;
+      margin-top: 4px;
+    }
+
+    .topicContentModule .left .topic-wrap .topicBox .topicInfo .viewTotal {
+      float: left;
+      margin-left: 3px;
+    }
+
+    .topicContentModule .left .topic-wrap .topicBox .topicInfo .comment-icon {
+      float: left;
+      margin-left: 20px;
+      margin-top: 4px;
+    }
+
+    .topicContentModule .left .topic-wrap .topicBox .topicInfo .comment {
+      float: left;
+      margin-left: 3px;
+    }
+
+    .topicContentModule .left .topic-wrap .topicBox .topicContent .lastUpdateTime {
+      text-align: center;
+      line-height: 40px;
+      padding-bottom: 30px;
+      color: #939499;
+    }
+
+    .topicContentModule .left .topic-wrap .topicBox .topicContent {
+      border-top: 1px solid #f1f1f1;
+      margin-top: 5px;
+      padding: 20px 0px;
+      color: #333;
+      font-size: 16px;
+      line-height: 28px;
+      word-wrap: break-word;
+      min-height: 100px;
+    }
+
+    .topicContentModule .left .topic-wrap .topicBox .topicContent a {
+      color: #26a2ff;
+    }
+
+    .topicContentModule .left .topic-wrap .topicBox .topicContent p {
+      font-size: 16px;
+      word-wrap: break-word
+    }
+
+    .topicContentModule .left .topic-wrap .topicBox .topicContent img {
+      max-width: 100%;
+      height: auto;
+      border: none;
+      background: none;
+      margin: 0;
+      padding: 0;
+      cursor: -webkit-zoom-in;
+      cursor: zoom-in;
+    }
+
+    .topicContentModule .left .topic-wrap .topicBox .topicContent iframe {
+      width: 100%;
+      height: 550px;
+      padding: 10px 0px;
+    }
+
+    /* 隐藏标签 IE8以下浏览器不支持自定义标签，需要在页头<head>标签内执行document.createElement('player') */
+    .topicContentModule .left .topic-wrap .topicBox .topicContent player {
+      width: 100%;
+      height: 576px;
+      display: block;
+      margin-top: 10px;
+    }
+
+    /* 隐藏标签 IE8以下浏览器不支持自定义标签，需要在页头<head>标签内执行document.createElement('hide') */
+    .topicContentModule .left .topic-wrap .topicBox .topicContent hide {
+      display: block;
+      background: #fbfbfb;
+      min-height: 100px;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-top: 17px;
+      margin-bottom: 15px;
+      border: 3px dashed #eeeeee;
+      border-radius: 5px;
+
+    }
+
+    .topicContentModule .left .topic-wrap .topicBox .topicContent hide .hide-box {
+      margin: 5px;
+      position: relative;
+      text-align: center;
+    }
+
+    .topicContentModule .left .topic-wrap .topicBox .topicContent hide .background-image {
+      margin: auto;
+      margin-top: 12px;
+      background: url(../images/lock.png) no-repeat;
+      width: 48px;
+      height: 48px;
+      opacity: 0.25;
+      filter: alpha(opacity=25);
+    }
+
+    .topicContentModule .left .topic-wrap .topicBox .topicContent hide .background-prompt {
+      margin-top: 2px;
+      color: #999999;
+      font-size: 16px;
+    }
+
+    .topicContentModule .left .topic-wrap .topicBox .topicContent hide .highlight {
+      font-weight: bold;
+    }
+
+    /*border:#a9a9a9 solid 2px;  边框#b2b5bc #777777*/
+    .topicContentModule .left .topic-wrap .topicBox .topicContent hide .input-box {
+      margin: auto;
+      margin-top: 10px;
+      margin-bottom: 18px;
+      border: #888888 solid 2px;
+      width: 226px;
+      height: 26px;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+
+    .topicContentModule .left .topic-wrap .topicBox .topicContent hide .input-box .text {
+      width: 145px;
+      height: 26px;
+      line-height: 26px;
+      border: 0;
+      float: left;
+      font-size: 14px;
+      color: #4f4f4f;
+      text-indent: 6px;
+      vertical-align: middle;
+      outline: none;
+      background: #f7f8fa;
+    }
+
+    .topicContentModule .left .topic-wrap .topicBox .topicContent hide .input-box .button {
+      width: 79px;
+      *width: 76px;
+      height: 26px;
+      line-height: 28px;
+      border: 0;
+      background: #888888;
+      font-size: 16px;
+      color: #fff;
+      float: right;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      outline: none
+    }
+
+    .topicContentModule .left .topic-wrap .topicBox .topicContent hide .input-box .button:hover {
+      background: #808080;
+    }
+
+    /*background:#606060;*/
+    .topicContentModule .left .topic-wrap .topicBox .topicContent hide .submit-box {
+      margin: auto;
+      margin-top: 10px;
+      margin-bottom: 18px;
+      border: #888888 solid 2px;
+      width: 96px;
+      height: 26px;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+
+    .topicContentModule .left .topic-wrap .topicBox .topicContent hide .submit-box .button {
+      width: 96px;
+      height: 26px;
+      line-height: 28px;
+      border: 0;
+      background: #888888;
+      font-size: 16px;
+      color: #fff;
+      float: right;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      outline: none
+    }
+
+    .topicContentModule .left .topic-wrap .topicBox .topicContent hide .submit-box .button:hover {
+      background: #808080;
+    }
+
+    /* 自动换行 */
+    .topicContentModule .left .topic-wrap .topicBox .topicContent pre {
+      white-space: pre-wrap;
+    }
+
+
+    .topicContentModule .right {
+      float: right;
+      width: 300px;
+      height: auto;
+      padding-bottom: 10px;
+    }
+
+    .topicContentModule .right .userInfo-wrap {
+      background: #fff;
+      box-shadow: 0 0px 3px 0 rgba(0, 0, 0, .02), 0 4px 8px 0 rgba(0, 0, 0, .02);
+    }
+
+    .topicContentModule .right .userInfo-wrap .userInfo {
+      padding: 20px 0 20px 0;
+      margin-left: 8px;
+      margin-right: 8px;
+      height: auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .topicContentModule .right .userInfo-wrap .userInfo .author {
+      text-align: center;
+    }
+
+    .topicContentModule .right .userInfo-wrap .userInfo .author img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+
+    }
+
+    .topicContentModule .right .userInfo-wrap .userInfo .name {
+      font-size: 18px;
+      font-weight: 600;
+      text-align: center;
+      color: #333333;
+      margin: 14px 0 4px 0;
+    }
+
+    .topicContentModule .right .userInfo-wrap .userInfo .role {
+      text-align: center;
+    }
+
+    .topicContentModule .right .userInfo-wrap .userInfo .role .userRoleName {
+      white-space: nowrap;
+      color: #e2b46e;
+      background-color: #f8e7c4;
+      border-radius: 4px;
+      padding: 1px 5px;
+      font-size: 13px;
+    }
+
+    .topicContentModule .right .userInfo-wrap .userInfo .role .staff {
+      white-space: nowrap;
+      color: #15d327;
+      background-color: #cafcc7;
+      border-radius: 4px;
+      padding: 1px 5px;
+      font-size: 13px;
+    }
+
+    .topicContentModule .right .userInfo-wrap .userInfo ul {
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+      padding: 15px 0 18px 0;
+      border-top: 1px solid #f1f1f1;
+      margin-top: 20px;
+    }
+
+    .topicContentModule .right .userInfo-wrap .userInfo ul li {
+      float: left;
+      width: 33%;
+    }
+
+    .topicContentModule .right .userInfo-wrap .userInfo ul li span {
+      display: block;
+      text-align: center;
+    }
+
+    .topicContentModule .right .userInfo-wrap .userInfo ul li span a {
+      color: #333;
+      margin-bottom: 0px;
+    }
+
+    .topicContentModule .right .userInfo-wrap .userInfo ul li span:nth-child(1) {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333333;
+    }
+
+    .topicContentModule .right .userInfo-wrap .userInfo ul li span:nth-child(2) {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .topicContentModule .right .userInfo-wrap .userInfo ul li span:nth-child(2) a {
+      color: #666;
+    }
+
+    .topicContentModule .right .userInfo-wrap .userInfo .action-button {
+      text-align: center;
+    }
+
+    .topicContentModule .right .userInfo-wrap .userInfo .action-button .privateMessageBox {}
+
+    .topicContentModule .right .userInfo-wrap .userInfo .action-button .privateMessageBox .privateMessageButton {
+      color: #30aff7;
+      border-color: #30aff7;
+      outline: none;
+      display: inline-block;
+      padding: 0 16px;
+      font-size: 14px;
+      line-height: 32px;
+      text-align: center;
+      cursor: pointer;
+      background: none;
+      border: 1px solid;
+      border-radius: 3px;
+      margin: 0;
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="skeleton">
+    <div class="main wrap">
+      <div class="topicContentModule">
+        <div class="left">
+          <div class="topic-wrap">
+            <div class="topicTag">
+              <a href="" class="tag">{{detail.questionClassify}}</a>
+            </div>
+
+            <div class="topicBox">
+              <div class="title">{{detail.questionTitle}}</div>
+              <div class="topicInfo clearfix">
+                <div class="postTime">{{detail.questionTime}}</div>
+                <div class="viewTotal-icon"><i class="cms-view"></i></div>
+                <div class="comment-icon"><i class="cms-commentCount"></i></div>
+                <div class="comment">6个评论</div>
+              </div>
+              <!-- topicId属性用来支持JS获取隐藏内容 -->
+              <div class="topicContent" topicid="28">
+                <h2 class="Summary">
+                  {{#detail.questionContent}}
+                </h2>
+              </div>
+            </div>
+          </div>
+
+          <!-- 是否登录 -->
+          <input type="hidden" id="unhide_isLogin" value="true" />
+          <div id="replyBox">
+
+            <button id="" type="button" class="followButton" style="width: 80px"><a
+                href="/backstage/queryAllQuestion?pageSize=10&pageNumQ=1">返回</a></button>
+          </div>
+
+        </div>
+        <div class="right">
+          <div class="userInfo-wrap clearfix">
+            <div class="userInfo">
+              <div class="author">
+                <a href="">
+                  <img src="{{detail.userInfo.userImg}}" />
+                </a>
+              </div>
+              <p class="name">
+                <a href="" target=""> {{detail.userInfo.userName}}</a>
+              </p>
+              <div class="role">
+                <i class="userRoleName">VIP</i>
+              </div>
+              <ul>
+                <li>
+                  <span id="answerCount">0</span>
+                  <span>回答</span>
+                </li>
+                <li>
+                  <span id="followerCount">2</span>
+                  <span>粉丝</span>
+                </li>
+                <li>
+                  <span id="followCount">2</span>
+                  <span>关注</span>
+                </li>
+                <input type="hidden" id="_userName" value="test" />
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="/js/jquery.js"></script>
+<script src="/js/details.js"></script>
+
+</html>

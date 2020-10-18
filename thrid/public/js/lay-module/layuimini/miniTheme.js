@@ -16,8 +16,7 @@ layui.define(["jquery", "layer"], function (exports) {
          * @returns {{headerLogo, menuLeftHover, headerRight, menuLeft, headerRightThis, menuLeftThis}|*|*[]}
          */
         config: function (bgcolorId) {
-            var bgColorConfig = [
-                {
+            var bgColorConfig = [{
                     headerRightBg: '#ffffff', //头部右侧背景色
                     headerRightBgThis: '#e4e4e4', //头部右侧选中背景色,
                     headerRightColor: 'rgba(107, 107, 107, 0.7)', //头部右侧字体颜色,
@@ -307,7 +306,7 @@ layui.define(["jquery", "layer"], function (exports) {
                 '/**头部右侧下拉字体颜色 headerRightChildColor */\n' +
                 '.layui-layout-admin .layui-header .layui-nav .layui-nav-item .layui-nav-child a {\n' +
                 '    color:  ' + bgcolorData.headerRightChildColor + '!important;\n' +
-                '}\n'+
+                '}\n' +
                 '\n' +
                 '/*头部右侧鼠标选中 headerRightColorThis */\n' +
                 '.layui-header .layuimini-menu-header-pc.layui-nav .layui-nav-item a:hover, .layui-header .layuimini-header-menu.layuimini-pc-show.layui-nav .layui-this a {\n' +
@@ -419,7 +418,10 @@ layui.define(["jquery", "layer"], function (exports) {
          */
         listen: function (options) {
             $('body').on('click', '[data-bgcolor]', function () {
-                var loading = layer.load(0, {shade: false, time: 2 * 1000});
+                var loading = layer.load(0, {
+                    shade: false,
+                    time: 2 * 1000
+                });
                 var clientHeight = (document.documentElement.clientHeight) - 60;
                 var bgColorHtml = miniTheme.buildBgColorHtml(options);
                 var html = '<div class="layuimini-color">\n' +
@@ -430,9 +432,6 @@ layui.define(["jquery", "layer"], function (exports) {
                     '<ul>\n' + bgColorHtml + '</ul>\n' +
                     '</div>\n' +
                     '<div class="more-menu-list">\n' +
-                    '<a class="more-menu-item" href="http://layuimini.99php.cn/docs/index.html" target="_blank"><i class="layui-icon layui-icon-read" style="font-size: 19px;"></i> 开发文档</a>\n' +
-                    '<a class="more-menu-item" href="https://github.com/zhongshaofa/layuimini" target="_blank"><i class="layui-icon layui-icon-tabs" style="font-size: 16px;"></i> 开源地址</a>\n' +
-                    '<a class="more-menu-item" href="http://layuimini.99php.cn" target="_blank"><i class="layui-icon layui-icon-theme"></i> 官方网站</a>\n' +
                     '</div>' +
                     '</div>';
                 layer.open({
@@ -446,8 +445,7 @@ layui.define(["jquery", "layer"], function (exports) {
                     area: ['340px', clientHeight + 'px'],
                     offset: 'rb',
                     content: html,
-                    success: function (index, layero) {
-                    },
+                    success: function (index, layero) {},
                     end: function () {
                         $('.layuimini-select-bgcolor').removeClass('layui-this');
                     }
@@ -470,5 +468,4 @@ layui.define(["jquery", "layer"], function (exports) {
 
     exports("miniTheme", miniTheme);
 
-})
-;
+});

@@ -234,16 +234,16 @@
                                             <div class="layui-col-xs3 layuimini-qiuck-module">
                                                 <a href="javascript:;"
                                                     layuimini-content-href="/backstage/queryAllTopic?pageSize=10&pageNum=1"
-                                                    data-title="话题管理" data-icon="fa fa-window-maximize">
-                                                    <i class="fa fa-window-maximize"></i>
+                                                    data-title="话题管理" data-icon="fa fa-edit">
+                                                    <i class="fa fa-edit"></i>
                                                     <cite>话题管理</cite>
                                                 </a>
                                             </div>
                                             <div class="layui-col-xs3 layuimini-qiuck-module">
                                                 <a href="javascript:;"
                                                     layuimini-content-href="/backstage/queryAllQuestion?pageSize=10&pageNumQ=1"
-                                                    data-title="问题管理" data-icon="fa fa-file-text">
-                                                    <i class="fa fa-file-text"></i>
+                                                    data-title="问题管理" data-icon="fa fa-question-circle">
+                                                    <i class="fa fa-question-circle"></i>
                                                     <cite>问题管理</cite>
                                                 </a>
                                             </div>
@@ -251,8 +251,8 @@
                                             <div class="layui-col-xs3 layuimini-qiuck-module">
                                                 <a href="javascript:;"
                                                     layuimini-content-href="/backstage/queryAllUser?pageSize=10&pageNumU=1"
-                                                    data-title="会员管理" data-icon="fa fa-dot-circle-o">
-                                                    <i class="fa fa-dot-circle-o"></i>
+                                                    data-title="会员管理" data-icon="fa fa-user">
+                                                    <i class="fa fa-user"></i>
                                                     <cite>会员管理</cite>
                                                 </a>
                                             </div>
@@ -279,7 +279,6 @@
                         <div class="layui-card-body layui-text">
                             <div class="layuimini-notice">
                                 <div class="layuimini-notice-title">欢迎</div>
-                                <div class="layuimini-notice-extra">2019-07-11 23:06</div>
                                 <div class="layuimini-notice-content layui-hide">
                                     <br>
                                     欢迎登录新开普教育论坛后台管理系统
@@ -287,7 +286,6 @@
                             </div>
                             <div class="layuimini-notice">
                                 <div class="layuimini-notice-title">这是一条重要通知，请查看</div>
-                                <div class="layuimini-notice-extra">2020 14:46</div>
                                 <div class="layuimini-notice-content layui-hide">
                                     你好<br>
                                 </div>
@@ -316,10 +314,6 @@
                                         <td>v1.0.0</td>
                                     </tr>
                                     <tr>
-                                        <td>主要特色</td>
-                                        <td>零门槛 / 响应式 / 清爽 / 极简</td>
-                                    </tr>
-                                    <tr>
                                         <td>新开普地址</td>
                                         <td>
                                             河南省郑州市中原区
@@ -328,8 +322,7 @@
                                     <tr>
                                         <td>联系我们</td>
                                         <td>
-                                            邮箱
-                                            手机号
+                                            客服：115354847775
                                         </td>
                                     </tr>
                                 </tbody>
