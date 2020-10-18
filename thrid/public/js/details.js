@@ -38,6 +38,7 @@ $(function () {
         },
         success: function () {
           $("#replyInp").val("");
+         
         },
       });
     }

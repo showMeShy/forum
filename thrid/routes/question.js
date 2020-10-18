@@ -69,7 +69,7 @@ router.get("/", function (req, res) {
   common.getMongoClient().then((client) => {
     var dbo = client.db("forum"); // dbo就是指定的数据库对象
     // 先查询所有的模块
-    dbo.collection("quetionLabels").find({}).toArray(async function (err, result) {
+    dbo.collection("questionLabels").find({}).toArray(async function (err, result) {
         var labelsArr = result;
        
         // console.log("所有的模块", result);
@@ -132,7 +132,7 @@ router.get("/questionList/:preLabelId", function (req, res) {
   common.getMongoClient().then((client) => {
     var dbo = client.db("forum"); // dbo就是指定的数据库对象
     // 先查询所有的模块
-    dbo.collection("quetionLabels").find({}).toArray(async function (err, result) {
+    dbo.collection("questionLabels").find({}).toArray(async function (err, result) {
         var labelsArr = result;
       
      
@@ -192,7 +192,7 @@ router.get("/posted",function(req,res){
   common.getMongoClient().then(async function (client) {
       var dbo = client.db("forum");
 
-      dbo.collection("quetionLabels").find({}).toArray(function (err, result) {
+      dbo.collection("questionLabels").find({}).toArray(function (err, result) {
           
           // console.log("result",result)
           // 结合populars.art渲染数据
